@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native';
 
 
 
@@ -11,16 +11,40 @@ export default function App() {
       </View>
       <View style={styles.menu}>
         <TouchableOpacity style={styles.tile}>
-          <Text>tile</Text>
+          <Image
+              style={styles.tileIcon}
+              source={{
+                uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
+              }}
+          />
+          <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tile}>
-          <Text>tile</Text>
+          <Image
+              style={styles.tileIcon}
+              source={{
+                uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
+              }}
+          />
+          <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tile}>
-          <Text>tile</Text>
+          <Image
+              style={styles.tileIcon}
+              source={{
+                uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
+              }}
+          />
+          <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tile}>
-          <Text>tile</Text>
+          <Image
+              style={styles.tileIcon}
+              source={{
+                uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
+              }}
+          />
+          <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -52,5 +76,12 @@ const styles = StyleSheet.create({
     height: 175,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  tileIcon: {
+    width: 100,
+    height: 100,
+  },
+  tileText: {
+    paddingTop: 25,
   }
 });
