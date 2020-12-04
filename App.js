@@ -40,13 +40,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   menu: {
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
   },
   tile: {
-    flex: 1,
-    backgroundColor: '#dd8a8a',
-    height: 150,
-    width: 150,
-    margin: 5,
+    backgroundColor: '#dd6e6e',
+    margin: 10,
+    width: 175,
+    height: 175,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
