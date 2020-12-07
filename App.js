@@ -38,11 +38,11 @@ export default function App() {
                   culpa qui officia deserunt mollit anim id est laborum.</Text>
               </View>
               <View style={styles.controlButtons}>
-                <TouchableOpacity onPress={() => setFTS(false)}>
-                  <Text>Zamknij</Text>
+                <TouchableOpacity onPress={() => setFTS(false)} style={styles.cancelButton}>
+                  <Text style={ { fontSize: 20, } }>Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Played Test!')}>
-                  <Text>Play!</Text>
+                <TouchableOpacity onPress={() => console.log('Played Test!')} style={styles.playButton}>
+                  <Text style={ { fontSize: 20, } }>Play!</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -129,7 +129,23 @@ const styles = StyleSheet.create({
   },
   controlButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     width: '80%',
+  },
+  cancelButton: {
+    borderWidth: 1,
+    borderColor: '#000000',
+    padding: 10,
+    width: '35%',
+    alignItems: 'center',
+    backgroundColor: "#d91414",
+  },
+  playButton: {
+    borderWidth: 1,
+    borderColor: '#000000',
+    padding: 10,
+    width: '35%',
+    alignItems: 'center',
+    backgroundColor: "#1ccf23",
   }
 });
