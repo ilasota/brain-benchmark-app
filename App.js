@@ -29,15 +29,22 @@ export default function App() {
               animationType = 'slide'
           >
             <View style={styles.infoModal}>
-              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.</Text>
-              <TouchableOpacity onPress={() => setFTS(false)}>
-                <Text>Zamknij</Text>
-              </TouchableOpacity>
+              <View style={styles.testDesc}>
+                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  Excepteur sint occaecat cupidatat non proident, sunt in
+                  culpa qui officia deserunt mollit anim id est laborum.</Text>
+              </View>
+              <View style={styles.controlButtons}>
+                <TouchableOpacity onPress={() => setFTS(false)}>
+                  <Text>Zamknij</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => console.log('Played Test!')}>
+                  <Text>Play!</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </Modal>
         </TouchableOpacity>
@@ -117,4 +124,12 @@ const styles = StyleSheet.create({
     padding: 20,
     borderColor: '#000000'
   },
+  testDesc: {
+    minHeight: '80%',
+  },
+  controlButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '80%',
+  }
 });
