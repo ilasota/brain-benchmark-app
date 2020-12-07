@@ -1,16 +1,20 @@
-import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image, Modal } from 'react-native';
 
 
 
 export default function App() {
+  const [ firstTileStatus, setFTS ] = useState(false);
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={{ fontSize: 25 }}>Brain Benchmark</Text>
       </View>
       <View style={styles.menu}>
-        <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
+        <TouchableOpacity onPress={() => setFTS(true) } activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
               source={{
@@ -18,6 +22,24 @@ export default function App() {
               }}
           />
           <Text style={styles.tileText}>tile</Text>
+          <Modal
+              onRequestClose={ () => setFTS(false) }
+              visible={firstTileStatus}
+              transparent={true}
+              animationType = 'slide'
+          >
+            <View style={styles.infoModal}>
+              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in
+                culpa qui officia deserunt mollit anim id est laborum.</Text>
+              <TouchableOpacity onPress={() => setFTS(false)}>
+                <Text>Zamknij</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
           <Image
@@ -83,5 +105,16 @@ const styles = StyleSheet.create({
   },
   tileText: {
     paddingTop: 25,
-  }
+  },
+  infoModal: {
+    flex: 1,
+    marginVertical: "5%",
+    marginHorizontal: "5%",
+    alignItems: "center",
+    backgroundColor: '#ffffff',
+    borderRadius: 30,
+    borderWidth: 1,
+    padding: 20,
+    borderColor: '#000000'
+  },
 });
