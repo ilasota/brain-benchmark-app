@@ -10,7 +10,7 @@ export default function App() {
         <Text style={{ fontSize: 25 }}>Brain Benchmark</Text>
       </View>
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.tile}>
+        <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
               source={{
@@ -19,7 +19,7 @@ export default function App() {
           />
           <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile}>
+        <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
               source={{
@@ -28,7 +28,7 @@ export default function App() {
           />
           <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile}>
+        <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
               source={{
@@ -37,7 +37,7 @@ export default function App() {
           />
           <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile}>
+        <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
               source={{
