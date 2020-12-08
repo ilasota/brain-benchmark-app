@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image, Modal } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
+
 
 
 
@@ -13,7 +14,7 @@ export default function App() {
       <View style={styles.header}>
         <Text style={{ fontSize: 25 }}>Brain Benchmark</Text>
       </View>
-      <View style={styles.menu}>
+      <ScrollView contentContainerStyle={styles.menu}>
         <TouchableOpacity onPress={() => setFTS(true) } activeOpacity={0.9} style={styles.tile}>
           <Image
               style={styles.tileIcon}
@@ -75,7 +76,7 @@ export default function App() {
           />
           <Text style={styles.tileText}>tile</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -95,8 +96,8 @@ const styles = StyleSheet.create({
   menu: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
+    alignItems: "flex-start",
     flexWrap: 'wrap',
-    flex: 1,
   },
   tile: {
     backgroundColor: '#dd6e6e',
