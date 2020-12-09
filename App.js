@@ -31,6 +31,7 @@ export default function App() {
           >
             <View style={styles.infoModal}>
               <View style={styles.testDesc}>
+                <Text style={ { fontSize: 40, } } >Game Name</Text>
                 <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
