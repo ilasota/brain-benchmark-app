@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar} from 'react-native';
 
 function GameOne ( {navigation} ) {
     return (
