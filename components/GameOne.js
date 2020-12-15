@@ -13,7 +13,10 @@ function GameOne () {
         console.log(roundNum);
         powerOfTen = Math.pow(10, roundNum);
         console.log(powerOfTen);
-
+        let randomNum = Math.random();
+        console.log(randomNum);
+        let dupa = randomNum * powerOfTen;
+        console.log(dupa);
     }
 
 
