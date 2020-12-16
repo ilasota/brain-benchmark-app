@@ -8,12 +8,12 @@ function GameOne () {
     const [ answer, setAnswer] = useState("")
 
     let powerOfTen;
-    let finalNum;
+    let finalNum = number;
     let randomNum;
 
 
     const numberHandler = () => {
-        if( answer == number) {
+        if( answer == finalNum) {
             setRound(round + 1);
             powerOfTen = Math.pow(10, round + 1);
             randomNum = Math.random();
@@ -35,17 +35,22 @@ function GameOne () {
     return (
       <SafeAreaView style={styles.container}>
           <View>
-              <Text>{round}</Text>
-              <Text>{number}</Text>
-              <TextInput
-                  placeholder="..."
-                  onChangeText = {(enteredInput) => setAnswer(enteredInput)}
-                  value ={answer}
-                  keyboardType = "number-pad"
-              />
-              <TouchableOpacity onPress={numberHandler}>
-                  <Text style={{fontSize: 20}}>Change</Text>
-              </TouchableOpacity>
+              <View style={styles.roundStyle}>
+                  <Text style={{fontSize: 20}}>Round: {round}</Text>
+              </View>
+              <View style={styles.gameScreen}>
+                  <Text>{number}</Text>
+                  <TextInput
+                      style={styles.numInput}
+                      placeholder="..."
+                      onChangeText = {(enteredInput) => setAnswer(enteredInput)}
+                      value ={answer}
+                      keyboardType = "number-pad"
+                  />
+                  <TouchableOpacity onPress={numberHandler}>
+                      <Text style={{fontSize: 20}}>Change</Text>
+                  </TouchableOpacity>
+              </View>
           </View>
       </SafeAreaView>
 
@@ -57,8 +62,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#3ac1e3',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         minHeight: '10%',
+    },
+    roundStyle: {
+        padding: 15,
+    },
+    gameScreen: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: "60%"
+    },
+    numInput: {
+      borderBottomWidth: 1,
+      width: "50%",
+      alignItems: "center",
+      fontSize: 20,
+      textAlign: "center",
+      borderColor: "#071570",
     },
 })
 
