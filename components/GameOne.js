@@ -5,21 +5,30 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Text
 function GameOne () {
     const [ number, setNumber] = useState(Math.round(Math.random()*10));
     const [ round, setRound ] = useState(1);
+    const [ answer, setAnswer] = useState("")
 
     let powerOfTen;
-    let dupa;
+    let finalNum;
     let randomNum;
 
+
     const numberHandler = () => {
-        setRound(round + 1);
-        powerOfTen = Math.pow(10, round + 1);
-        randomNum = Math.random();
-        if (randomNum < 0.1) {
-            dupa = Math.floor( (powerOfTen / 10) + (randomNum * powerOfTen) );
+        if( answer == number) {
+            setRound(round + 1);
+            powerOfTen = Math.pow(10, round + 1);
+            randomNum = Math.random();
+            if (randomNum < 0.1) {
+                finalNum = Math.floor( (powerOfTen / 10) + (randomNum * powerOfTen) );
+            } else {
+                finalNum = Math.floor( randomNum * powerOfTen );
+            }
+            setNumber(finalNum);
+            setAnswer("");
         } else {
-            dupa = Math.floor( randomNum * powerOfTen );
+            setRound(1);
+            setNumber(Math.round(Math.random()*10));
+            setAnswer("")
         }
-        setNumber(dupa);
     }
 
 
@@ -28,10 +37,13 @@ function GameOne () {
           <View>
               <Text>{round}</Text>
               <Text>{number}</Text>
+              <TextInput
+                  placeholder="..."
+                  onChangeText = {(enteredInput) => setAnswer(enteredInput)}
+                  value ={answer}
+                  keyboardType = "number-pad"
+              />
               <TouchableOpacity onPress={numberHandler}>
-                  <Text style={{fontSize: 20}}>Change</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setNumber()}>
                   <Text style={{fontSize: 20}}>Change</Text>
               </TouchableOpacity>
           </View>
