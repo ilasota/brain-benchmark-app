@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native';
 
 function GameOne () {
+    const [ gameVisible, setGameVisible ] = useState({display: "none"})
+    const [ startVisible, setStartVisible ] = useState({display: "flex"})
     const [ number, setNumber] = useState(Math.round(Math.random()*10));
     const [ round, setRound ] = useState(1);
     const [ answer, setAnswer] = useState("")
@@ -10,6 +12,11 @@ function GameOne () {
     let powerOfTen;
     let finalNum = number;
     let randomNum;
+
+    const visibilityHandler = () => {
+        setGameVisible({display: "flex"})
+        setStartVisible({display: "none"})
+    }
 
 
     const numberHandler = () => {
@@ -34,14 +41,19 @@ function GameOne () {
 
     return (
       <SafeAreaView style={styles.container}>
-          <View>
+          <View style={startVisible}>
+              <TouchableOpacity onPress={visibilityHandler}>
+                  <Text>Start</Text>
+              </TouchableOpacity>
+          </View>
+          <View style={gameVisible}>
               <View style={styles.roundStyle}>
                   <Text style={{fontSize: 20}}>Round: {round}</Text>
               </View>
               <View style={styles.gameScreen}>
                   <Text>{number}</Text>
                   <TextInput
-                      style={styles.numInput}
+                      style={ styles.numInput }
                       placeholder="..."
                       onChangeText = {(enteredInput) => setAnswer(enteredInput)}
                       value ={answer}
