@@ -42,9 +42,11 @@ function GameOne () {
     return (
       <SafeAreaView style={styles.container}>
           <View style={startVisible}>
-              <TouchableOpacity onPress={visibilityHandler}>
-                  <Text>Start</Text>
-              </TouchableOpacity>
+              <View style={styles.startGame}>
+                  <TouchableOpacity style={styles.startButton} onPress={visibilityHandler}>
+                      <Text style={{fontSize: 30}}>Start</Text>
+                  </TouchableOpacity>
+              </View>
           </View>
           <View style={gameVisible}>
               <View style={styles.roundStyle}>
@@ -74,6 +76,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#3ac1e3',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         minHeight: '10%',
+    },
+    startGame:{
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: "50%",
+    },
+    startButton: {
+      backgroundColor: "#62d653",
+      paddingVertical: 5,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderRadius: 15,
     },
     roundStyle: {
         padding: 15,
