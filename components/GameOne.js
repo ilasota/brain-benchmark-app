@@ -3,15 +3,18 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native';
 
 function GameOne () {
-    const [ gameVisible, setGameVisible ] = useState({display: "none"})
-    const [ startVisible, setStartVisible ] = useState({display: "flex"})
+    const [ gameVisible, setGameVisible ] = useState({display: "none"});
+    const [ startVisible, setStartVisible ] = useState({display: "flex"});
     const [ number, setNumber] = useState(Math.round(Math.random()*10));
     const [ round, setRound ] = useState(1);
-    const [ answer, setAnswer] = useState("")
+    const [ answer, setAnswer] = useState("");
+    const [ numVisible, setNumVisible ] = useState({display: "flex"});
+    const [ inputVisible, setInputVisible ] = useState({display: "none"});
 
     let powerOfTen;
     let finalNum = number;
     let randomNum;
+    let timeAmount;
 
     const visibilityHandler = () => {
         setGameVisible({display: "flex"})
@@ -31,11 +34,29 @@ function GameOne () {
             }
             setNumber(finalNum);
             setAnswer("");
+            setNumVisible({display: "flex"});
+            setInputVisible({display: "none"});
+            timerHandler();
         } else {
             setRound(1);
             setNumber(Math.round(Math.random()*10));
-            setAnswer("")
+            setAnswer("");
+            setNumVisible({display: "flex"});
+            setInputVisible({display: "none"});
+            timerHandler();
         }
+    }
+
+
+    const timerHandler = () => {
+        timeAmount = 2000 + ( ( round ) * 1000 );
+        setTimeout(
+            () => {
+                setInputVisible({display: "flex"});
+                setNumVisible({display: "none"})
+            },
+            timeAmount
+        )
     }
 
 
@@ -43,7 +64,7 @@ function GameOne () {
       <SafeAreaView style={styles.container}>
           <View style={startVisible}>
               <View style={styles.startGame}>
-                  <TouchableOpacity style={styles.startButton} onPress={visibilityHandler}>
+                  <TouchableOpacity style={styles.startButton} onPress={() => {visibilityHandler(); timerHandler()}}>
                       <Text style={{fontSize: 30}}>Start</Text>
                   </TouchableOpacity>
               </View>
@@ -53,17 +74,21 @@ function GameOne () {
                   <Text style={{fontSize: 20}}>Round: {round}</Text>
               </View>
               <View style={styles.gameScreen}>
-                  <Text>{number}</Text>
-                  <TextInput
-                      style={ styles.numInput }
-                      placeholder="..."
-                      onChangeText = {(enteredInput) => setAnswer(enteredInput)}
-                      value ={answer}
-                      keyboardType = "number-pad"
-                  />
-                  <TouchableOpacity onPress={numberHandler}>
-                      <Text style={{fontSize: 20}}>Change</Text>
-                  </TouchableOpacity>
+                  <View style={numVisible}>
+                      <Text style={{ fontSize: 40 }}>{number}</Text>
+                  </View>
+                  <View style={inputVisible}>
+                      <TextInput
+                          style={ styles.numInput }
+                          placeholder="..."
+                          onChangeText = {(enteredInput) => setAnswer(enteredInput)}
+                          value ={answer}
+                          keyboardType = "number-pad"
+                      />
+                      <TouchableOpacity onPress={numberHandler}>
+                          <Text style={{fontSize: 20}}>Enter</Text>
+                      </TouchableOpacity>
+                  </View>
               </View>
           </View>
       </SafeAreaView>
@@ -99,9 +124,9 @@ const styles = StyleSheet.create({
     },
     numInput: {
       borderBottomWidth: 1,
-      width: "50%",
+      minWidth: "50%",
       alignItems: "center",
-      fontSize: 20,
+      fontSize: 35,
       textAlign: "center",
       borderColor: "#071570",
     },
