@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Text
 function GameOne () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
-    const [ number, setNumber] = useState(Math.round(Math.random()*10));
+    const [ number, setNumber] = useState(Math.floor(Math.random()*10));
     const [ round, setRound ] = useState(1);
     const [ answer, setAnswer] = useState("");
     const [ numVisible, setNumVisible ] = useState({display: "flex"});
@@ -52,7 +52,7 @@ function GameOne () {
         timeAmount = 2000 + ( ( round ) * 1000 );
         setTimeout(
             () => {
-                setInputVisible({display: "flex"});
+                setInputVisible({display: "flex", alignItems: "center"});
                 setNumVisible({display: "none"})
             },
             timeAmount
@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     numInput: {
       borderBottomWidth: 1,
       minWidth: "50%",
-      alignItems: "center",
       fontSize: 35,
       textAlign: "center",
       borderColor: "#071570",
