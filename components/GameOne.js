@@ -37,11 +37,10 @@ function GameOne () {
             setWinScreen({display: "flex"});
         } else {
             setRound(1);
-            setNumber(Math.round(Math.random()*10));
+            setNumber(Math.floor(Math.random()*10));
             setAnswer("");
-            setNumVisible({display: "flex"});
-            setInputVisible({display: "none"});
-            timerHandler();
+            setGameVisible({display: "none"});
+            setLoseScreen({display: "flex"});
         }
     }
 
@@ -50,6 +49,15 @@ function GameOne () {
         setNumVisible({display: "flex"});
         setInputVisible({display: "none"});
         setWinScreen({display: "none"});
+        setGameVisible({display: "flex"})
+        timerHandler();
+    }
+
+
+    const loseHandler = () => {
+        setNumVisible({display: "flex"});
+        setInputVisible({display: "none"});
+        setLoseScreen({display: "none"});
         setGameVisible({display: "flex"})
         timerHandler();
     }
@@ -100,14 +108,18 @@ function GameOne () {
               </View>
           </View>
           <View style={winScreen}>
-              <View style={styles.roundWon}>
+              <View style={styles.roundEnd}>
                   <TouchableOpacity onPress={winHandler}>
                       <Text>Next</Text>
                   </TouchableOpacity>
               </View>
           </View>
           <View style={loseScreen}>
-              <Text>Dupa</Text>
+              <View style={styles.roundEnd}>
+                  <TouchableOpacity onPress={loseHandler}>
+                      <Text>Try Again</Text>
+                  </TouchableOpacity>
+              </View>
           </View>
       </SafeAreaView>
 
@@ -154,7 +166,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
     },
-    roundWon: {
+    roundEnd: {
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: "50%",
