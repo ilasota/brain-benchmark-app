@@ -10,11 +10,10 @@ function GameOne () {
     const [ answer, setAnswer] = useState("");
     const [ numVisible, setNumVisible ] = useState({display: "flex"});
     const [ inputVisible, setInputVisible ] = useState({display: "none"});
+    const [ loseScreen, setLoseScreen ] = useState({display: "none"});
+    const [ winScreen, setWinScreen ] = useState({display: "none"});
 
-    let powerOfTen;
     let finalNum = number;
-    let randomNum;
-    let timeAmount;
 
     const visibilityHandler = () => {
         setGameVisible({display: "flex"})
@@ -25,8 +24,8 @@ function GameOne () {
     const numberHandler = () => {
         if( answer == finalNum) {
             setRound(round + 1);
-            powerOfTen = Math.pow(10, round + 1);
-            randomNum = Math.random();
+            let powerOfTen = Math.pow(10, round + 1);
+            let randomNum = Math.random();
             if (randomNum < 0.1) {
                 finalNum = Math.floor( (powerOfTen / 10) + (randomNum * powerOfTen) );
             } else {
@@ -34,9 +33,8 @@ function GameOne () {
             }
             setNumber(finalNum);
             setAnswer("");
-            setNumVisible({display: "flex"});
-            setInputVisible({display: "none"});
-            timerHandler();
+            setGameVisible({display: "none"});
+            setWinScreen({display: "flex"});
         } else {
             setRound(1);
             setNumber(Math.round(Math.random()*10));
@@ -48,8 +46,17 @@ function GameOne () {
     }
 
 
+    const winHandler = () => {
+        setNumVisible({display: "flex"});
+        setInputVisible({display: "none"});
+        setWinScreen({display: "none"});
+        setGameVisible({display: "flex"})
+        timerHandler();
+    }
+
+
     const timerHandler = () => {
-        timeAmount = 2000 + ( ( round ) * 1000 );
+        let timeAmount = 2000 + ( ( round ) * 1000 );
         setTimeout(
             () => {
                 setInputVisible({display: "flex", alignItems: "center"});
@@ -80,16 +87,27 @@ function GameOne () {
                   <View style={inputVisible}>
                       <TextInput
                           style={ styles.numInput }
-                          placeholder="..."
+                          //placeholder="..."
                           onChangeText = {(enteredInput) => setAnswer(enteredInput)}
                           value ={answer}
                           keyboardType = "number-pad"
+                          onSubmitEditing = {numberHandler}
                       />
-                      <TouchableOpacity onPress={numberHandler}>
+                      <TouchableOpacity style={styles.submitButton} onPress={numberHandler}>
                           <Text style={{fontSize: 20}}>Enter</Text>
                       </TouchableOpacity>
                   </View>
               </View>
+          </View>
+          <View style={winScreen}>
+              <View style={styles.roundWon}>
+                  <TouchableOpacity onPress={winHandler}>
+                      <Text>Next</Text>
+                  </TouchableOpacity>
+              </View>
+          </View>
+          <View style={loseScreen}>
+              <Text>Dupa</Text>
           </View>
       </SafeAreaView>
 
@@ -103,16 +121,16 @@ const styles = StyleSheet.create({
         minHeight: '10%',
     },
     startGame:{
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: "50%",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: "50%",
     },
     startButton: {
-      backgroundColor: "#62d653",
-      paddingVertical: 5,
-      paddingHorizontal: 10,
-      borderWidth: 1,
-      borderRadius: 15,
+        backgroundColor: "#62d653",
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderRadius: 15,
     },
     roundStyle: {
         padding: 15,
@@ -123,11 +141,23 @@ const styles = StyleSheet.create({
         marginVertical: "60%"
     },
     numInput: {
-      borderBottomWidth: 1,
-      minWidth: "50%",
-      fontSize: 35,
-      textAlign: "center",
-      borderColor: "#071570",
+        borderBottomWidth: 1,
+        minWidth: "50%",
+        fontSize: 35,
+        textAlign: "center",
+        borderColor: "#071570",
+    },
+    submitButton: {
+        padding: 10,
+        marginTop: 20,
+        backgroundColor: "#48c348",
+        borderWidth: 1,
+        borderRadius: 15,
+    },
+    roundWon: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: "50%",
     },
 })
 
