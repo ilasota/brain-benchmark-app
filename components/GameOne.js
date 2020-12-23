@@ -10,12 +10,15 @@ function GameOne () {
     const [ number, setNumber] = useState(Math.floor(Math.random()*10));
     const [ round, setRound ] = useState(1);
     const [ answer, setAnswer] = useState("");
-    const [ animationStatus, setAnimationStatus] = useState(false)
+    const [ animationStatus, setAnimationStatus] = useState(false);
+    const [key, setKey] = useState(0);
+    const [ animationTime, setAnimationTime] = useState(3);
     const [ numVisible, setNumVisible ] = useState({display: "flex"});
     const [ inputVisible, setInputVisible ] = useState({display: "none"});
     const [ loseScreen, setLoseScreen ] = useState({display: "none"});
     const [ winScreen, setWinScreen ] = useState({display: "none"});
     const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" });
+
 
     let finalNum = number;
 
@@ -57,7 +60,10 @@ function GameOne () {
         setNumVisible({display: "flex"});
         setInputVisible({display: "none"});
         setWinScreen({display: "none"});
-        setGameVisible({display: "flex"})
+        setGameVisible({display: "flex"});
+        setKey(key + 1 );
+        setAnimationStatus(true);
+        setAnimationTime(2 + ( ( round ) * 1 ));
         timerHandler();
     }
 
@@ -66,7 +72,10 @@ function GameOne () {
         setNumVisible({display: "flex"});
         setInputVisible({display: "none"});
         setLoseScreen({display: "none"});
-        setGameVisible({display: "flex"})
+        setGameVisible({display: "flex"});
+        setKey(key + 1 );
+        setAnimationStatus(true);
+        setAnimationTime(3);
         timerHandler();
     }
 
@@ -98,14 +107,17 @@ function GameOne () {
               </View>
               <View style={styles.gameScreen}>
                   <View style={numVisible}>
-                      <CountdownCircleTimer
-                          isPlaying={animationStatus}
-                          duration={3}
-                          colors="#000"
-                          onComplete={() => {setAnimationStatus(false)}}
-                      >
-                          <Text style={{ fontSize: 40 }}>{number}</Text>
-                      </CountdownCircleTimer>
+                      <View style={{alignItems:"center"}}>
+                          <Text style={{ fontSize: 40}}> {number} </Text>
+                              <CountdownCircleTimer
+                                  key={key}
+                                  isPlaying={animationStatus}
+                                  duration={animationTime}
+                                  colors="#000"
+                                  size={50}
+                                  onComplete={() => {setAnimationStatus(false)}}
+                              />
+                      </View>
                   </View>
                   <View style={inputVisible}>
                       <TextInput
