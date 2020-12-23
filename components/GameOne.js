@@ -12,9 +12,9 @@ function GameOne () {
     const [ inputVisible, setInputVisible ] = useState({display: "none"});
     const [ loseScreen, setLoseScreen ] = useState({display: "none"});
     const [ winScreen, setWinScreen ] = useState({display: "none"});
+    const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" })
 
     let finalNum = number;
-
     const visibilityHandler = () => {
         setGameVisible({display: "flex"})
         setStartVisible({display: "none"})
@@ -23,6 +23,7 @@ function GameOne () {
 
     const numberHandler = () => {
         if( answer == finalNum) {
+            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum })
             setRound(round + 1);
             let powerOfTen = Math.pow(10, round + 1);
             let randomNum = Math.random();
@@ -36,6 +37,7 @@ function GameOne () {
             setGameVisible({display: "none"});
             setWinScreen({display: "flex"});
         } else {
+            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum })
             setRound(1);
             setNumber(Math.floor(Math.random()*10));
             setAnswer("");
@@ -109,6 +111,9 @@ function GameOne () {
           </View>
           <View style={winScreen}>
               <View style={styles.roundEnd}>
+                  <Text>runda: {savedScore.currentRound}</Text>
+                  <Text>numer: {savedScore.currentNumber}</Text>
+                  <Text>odp: {savedScore.userAnswer}</Text>
                   <TouchableOpacity onPress={winHandler}>
                       <Text>Next</Text>
                   </TouchableOpacity>
@@ -116,13 +121,15 @@ function GameOne () {
           </View>
           <View style={loseScreen}>
               <View style={styles.roundEnd}>
+                  <Text>runda: {savedScore.currentRound}</Text>
+                  <Text>numer: {savedScore.currentNumber}</Text>
+                  <Text>odp: {savedScore.userAnswer}</Text>
                   <TouchableOpacity onPress={loseHandler}>
                       <Text>Try Again</Text>
                   </TouchableOpacity>
               </View>
           </View>
       </SafeAreaView>
-
     );
 }
 const styles = StyleSheet.create({
