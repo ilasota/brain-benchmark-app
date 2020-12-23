@@ -114,6 +114,7 @@ function GameOne () {
                                   isPlaying={animationStatus}
                                   duration={animationTime}
                                   colors="#000"
+                                  trailColor='#3ac1e3'
                                   size={50}
                                   onComplete={() => {setAnimationStatus(false)}}
                               />
@@ -135,30 +136,42 @@ function GameOne () {
           </View>
           <View style={winScreen}>
               <View style={styles.roundEnd}>
-                  <Text>Round</Text>
-                  <Text>{savedScore.currentRound}</Text>
+                  <View style={styles.endRound}>
+                      <Text style={{fontSize: 35}}>Round</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.currentRound}</Text>
+                  </View>
                   <Image style={styles.endImage} source={require('../assets/Checkmark.png')}/>
-                  <Text>Number</Text>
-                  <Text>{savedScore.currentNumber}</Text>
-                  <Text>Your answer</Text>
-                  <Text>{savedScore.userAnswer}</Text>
-                  <TouchableOpacity onPress={winHandler}>
-                      <Text>Next</Text>
-                  </TouchableOpacity>
+                  <View style={styles.endNumber}>
+                      <Text style={{fontSize: 30}}>Number</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.currentNumber}</Text>
+                  </View>
+                  <View style={styles.endAnswer}>
+                      <Text style={{fontSize: 30}}>Your answer</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.userAnswer}</Text>
+                      <TouchableOpacity style={styles.endButton} onPress={winHandler}>
+                          <Text style={{fontSize: 25}}>Next</Text>
+                      </TouchableOpacity>
+                  </View>
               </View>
           </View>
           <View style={loseScreen}>
               <View style={styles.roundEnd}>
-                  <Text>Round</Text>
-                  <Text>{savedScore.currentRound}</Text>
+                  <View style={styles.endRound}>
+                      <Text style={{fontSize: 35}}>Round</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.currentRound}</Text>
+                  </View>
                   <Image style={styles.endImage} source={require('../assets/X.png')}/>
-                  <Text>Number</Text>
-                  <Text>{savedScore.currentNumber}</Text>
-                  <Text>Your answer</Text>
-                  <Text>{savedScore.userAnswer}</Text>
-                  <TouchableOpacity onPress={loseHandler}>
-                      <Text>Try Again</Text>
-                  </TouchableOpacity>
+                  <View style={styles.endNumber}>
+                      <Text style={{fontSize: 30}}>Number</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.currentNumber}</Text>
+                  </View>
+                  <View style={styles.endAnswer}>
+                      <Text style={{fontSize: 30}}>Your answer</Text>
+                      <Text style={{fontSize: 25}}>{savedScore.userAnswer}</Text>
+                      <TouchableOpacity style={styles.endButton} onPress={loseHandler}>
+                          <Text style={{fontSize: 25}}>Try Again</Text>
+                      </TouchableOpacity>
+                  </View>
               </View>
           </View>
       </SafeAreaView>
@@ -208,11 +221,32 @@ const styles = StyleSheet.create({
     roundEnd: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%",
+    },
+    endRound:{
+        alignItems: "center",
+        marginTop: 25,
     },
     endImage: {
         width: 100,
         height: 100,
+        marginTop: 35,
+    },
+    endNumber: {
+        alignItems: "center",
+        marginTop: 25,
+    },
+    endAnswer: {
+        alignItems: "center",
+        marginTop: 25,
+    },
+    endButton: {
+        alignItems: "center",
+        marginTop: 25,
+        borderWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: "#ddd457",
+        borderRadius: 15,
     }
 })
 
