@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput, Keyboard } from 'react-native';
 
 function GameOne () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
@@ -103,7 +103,7 @@ function GameOne () {
                           keyboardType = "number-pad"
                           onSubmitEditing = {numberHandler}
                       />
-                      <TouchableOpacity style={styles.submitButton} onPress={numberHandler}>
+                      <TouchableOpacity style={styles.submitButton} onPress={() => {numberHandler(); Keyboard.dismiss()}}>
                           <Text style={{fontSize: 20}}>Enter</Text>
                       </TouchableOpacity>
                   </View>
