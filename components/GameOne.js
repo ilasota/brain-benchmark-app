@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput, Keyboard, Image } from 'react-native';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+
 
 function GameOne () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
@@ -8,16 +10,20 @@ function GameOne () {
     const [ number, setNumber] = useState(Math.floor(Math.random()*10));
     const [ round, setRound ] = useState(1);
     const [ answer, setAnswer] = useState("");
+    const [ animationStatus, setAnimationStatus] = useState(false)
     const [ numVisible, setNumVisible ] = useState({display: "flex"});
     const [ inputVisible, setInputVisible ] = useState({display: "none"});
     const [ loseScreen, setLoseScreen ] = useState({display: "none"});
     const [ winScreen, setWinScreen ] = useState({display: "none"});
-    const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" })
+    const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" });
 
     let finalNum = number;
+
+
     const visibilityHandler = () => {
         setGameVisible({display: "flex"})
         setStartVisible({display: "none"})
+        setAnimationStatus(true)
     }
 
 
@@ -92,12 +98,18 @@ function GameOne () {
               </View>
               <View style={styles.gameScreen}>
                   <View style={numVisible}>
-                      <Text style={{ fontSize: 40 }}>{number}</Text>
+                      <CountdownCircleTimer
+                          isPlaying={animationStatus}
+                          duration={3}
+                          colors="#000"
+                          onComplete={() => {setAnimationStatus(false)}}
+                      >
+                          <Text style={{ fontSize: 40 }}>{number}</Text>
+                      </CountdownCircleTimer>
                   </View>
                   <View style={inputVisible}>
                       <TextInput
                           style={ styles.numInput }
-                          //placeholder="..."
                           onChangeText = {(enteredInput) => setAnswer(enteredInput)}
                           value ={answer}
                           keyboardType = "number-pad"
@@ -111,9 +123,13 @@ function GameOne () {
           </View>
           <View style={winScreen}>
               <View style={styles.roundEnd}>
-                  <Text>runda: {savedScore.currentRound}</Text>
-                  <Text>numer: {savedScore.currentNumber}</Text>
-                  <Text>odp: {savedScore.userAnswer}</Text>
+                  <Text>Round</Text>
+                  <Text>{savedScore.currentRound}</Text>
+                  <Image style={styles.endImage} source={require('../assets/Checkmark.png')}/>
+                  <Text>Number</Text>
+                  <Text>{savedScore.currentNumber}</Text>
+                  <Text>Your answer</Text>
+                  <Text>{savedScore.userAnswer}</Text>
                   <TouchableOpacity onPress={winHandler}>
                       <Text>Next</Text>
                   </TouchableOpacity>
@@ -121,9 +137,13 @@ function GameOne () {
           </View>
           <View style={loseScreen}>
               <View style={styles.roundEnd}>
-                  <Text>runda: {savedScore.currentRound}</Text>
-                  <Text>numer: {savedScore.currentNumber}</Text>
-                  <Text>odp: {savedScore.userAnswer}</Text>
+                  <Text>Round</Text>
+                  <Text>{savedScore.currentRound}</Text>
+                  <Image style={styles.endImage} source={require('../assets/X.png')}/>
+                  <Text>Number</Text>
+                  <Text>{savedScore.currentNumber}</Text>
+                  <Text>Your answer</Text>
+                  <Text>{savedScore.userAnswer}</Text>
                   <TouchableOpacity onPress={loseHandler}>
                       <Text>Try Again</Text>
                   </TouchableOpacity>
@@ -178,6 +198,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: "50%",
     },
+    endImage: {
+        width: 100,
+        height: 100,
+    }
 })
 
 
