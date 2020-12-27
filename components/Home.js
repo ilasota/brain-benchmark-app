@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Imag
 
 
 function Home ({ navigation }) {
-    const [ firstTileStatus, setFTS ] = useState(false);
+    const [ numberGameModal, setNGM ] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -12,7 +12,7 @@ function Home ({ navigation }) {
                 <Text style={{ fontSize: 25 }}>Brain Benchmark</Text>
             </View>
             <ScrollView contentContainerStyle={styles.menu}>
-                <TouchableOpacity onPress={() => setFTS(true) } activeOpacity={0.9} style={styles.tile}>
+                <TouchableOpacity onPress={() => setNGM(true) } activeOpacity={0.9} style={styles.tile}>
                     <Image
                         style={styles.tileIcon}
                         source={{
@@ -21,8 +21,8 @@ function Home ({ navigation }) {
                     />
                     <Text style={styles.tileText}>tile</Text>
                     <Modal
-                        onRequestClose={ () => setFTS(false) }
-                        visible={firstTileStatus}
+                        onRequestClose={ () => setNGM(false) }
+                        visible={numberGameModal}
                         transparent={true}
                         animationType = 'slide'
                     >
@@ -37,10 +37,10 @@ function Home ({ navigation }) {
                                     culpa qui officia deserunt mollit anim id est laborum.</Text>
                             </View>
                             <View style={styles.controlButtons}>
-                                <TouchableOpacity onPress={() => setFTS(false)} style={styles.cancelButton}>
+                                <TouchableOpacity onPress={() => setNGM(false)} style={styles.cancelButton}>
                                     <Text style={ { fontSize: 20, } }>Cancel</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("GameOne"); setFTS(false)}}
+                                <TouchableOpacity onPress={() => {navigation.navigate("NumberGame"); setNGM(false)}}
                                                   style={styles.playButton}>
                                     <Text style={ { fontSize: 20, } }>Play!</Text>
                                 </TouchableOpacity>

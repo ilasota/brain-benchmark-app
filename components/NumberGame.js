@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Text
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
 
-function GameOne () {
+function NumberGame () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
     const [ number, setNumber] = useState(Math.floor(Math.random()*10));
@@ -63,7 +63,7 @@ function GameOne () {
         setGameVisible({display: "flex"});
         setKey(key + 1 );
         setAnimationStatus(true);
-        setAnimationTime(2 + ( ( round ) * 1 ));
+        setAnimationTime(2 + round);
         timerHandler();
     }
 
@@ -251,4 +251,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default GameOne;
+export default NumberGame;

@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from "./components/Home"
-import GameOne from "./components/GameOne"
+import NumberGame from "./components/NumberGame"
 
 const Stack = createStackNavigator();
 
@@ -18,8 +18,8 @@ export default function App() {
               component={Home}
           />
           <Stack.Screen
-              name="GameOne"
-              component={GameOne}
+              name="NumberGame"
+              component={NumberGame}
           />
         </Stack.Navigator>
       </NavigationContainer>
