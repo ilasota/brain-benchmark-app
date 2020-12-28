@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from "./components/Home"
 import NumberGame from "./components/NumberGame"
+import ReflexGame from "./components/ReflexGame";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,10 @@ export default function App() {
           <Stack.Screen
               name="NumberGame"
               component={NumberGame}
+          />
+          <Stack.Screen
+              name="ReflexGame"
+              component={ReflexGame}
           />
         </Stack.Navigator>
       </NavigationContainer>
