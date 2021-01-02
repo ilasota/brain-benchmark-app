@@ -7,8 +7,10 @@ function ReflexGame () {
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
     const [ waitingVisible, setWaitingVisible ] = useState({display: "none"});
     const [ testVisible, setTestVisible ] = useState({display: "none"});
+    const [ resultVisible, setResultVisible ] = useState({display: "none"});
+    const [ startTime, setStartTime ] = useState();
+    const [ timeElapsed, setTimeElapsed ] = useState();
 
-    let startTime;
     let endTime;
 
     const gameHandler = () => {
@@ -17,15 +19,15 @@ function ReflexGame () {
         setTimeout(() => {
             setWaitingVisible({display: "none"});
             setTestVisible({display: "flex"});
-            startTime = new Date();
-            console.log(startTime)
+            setStartTime(new Date())
         }, 2000)
     }
 
     const endHandler = () => {
         endTime = new Date();
-        let timeElapsed = endTime - startTime;
-        console.log(startTime)
+        setTimeElapsed(endTime - startTime);
+        setTestVisible({display: "none"});
+        setResultVisible({display: "flex"});
     }
 
     return (
@@ -48,9 +50,9 @@ function ReflexGame () {
                     <Text>Dupsko</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{display: "none"}}>
+            <View style={resultVisible}>
                 <View>
-                    <Text>Dupa</Text>
+                    <Text>{timeElapsed}ms</Text>
                 </View>
             </View>
         </SafeAreaView>
