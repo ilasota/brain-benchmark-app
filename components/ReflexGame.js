@@ -20,7 +20,7 @@ function ReflexGame () {
             setWaitingVisible({display: "none"});
             setTestVisible({display: "flex"});
             setStartTime(new Date())
-        }, 2000)
+        }, Math.random() * 4000 + 2000)
     }
 
     const endHandler = () => {
