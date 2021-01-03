@@ -8,6 +8,7 @@ function ReflexGame () {
     const [ waitingVisible, setWaitingVisible ] = useState({display: "none"});
     const [ testVisible, setTestVisible ] = useState({display: "none"});
     const [ resultVisible, setResultVisible ] = useState({display: "none"});
+    const [ failVisible, setFailVisible ] = useState({display: "none"});
     const [ startTime, setStartTime ] = useState();
     const [ timeElapsed, setTimeElapsed ] = useState();
 
@@ -22,6 +23,13 @@ function ReflexGame () {
             setStartTime(new Date())
         }, Math.random() * 4000 + 2000)
     }
+
+
+    const failHandler = () => {
+        setWaitingVisible({display: "none"})
+        setFailVisible({display: "flex"})
+    }
+
 
     const endHandler = () => {
         endTime = new Date();
@@ -41,18 +49,23 @@ function ReflexGame () {
                 </View>
             </View>
             <View style={waitingVisible}>
-                    <TouchableOpacity style={styles.waitingScreen} onPress={() => console.log("chujpa")}>
-                        <Text>Dupa</Text>
+                    <TouchableOpacity style={styles.waitingScreen} onPress={failHandler}>
+                        <Text>Wait for Green</Text>
                     </TouchableOpacity>
             </View>
             <View style={testVisible}>
                 <TouchableOpacity style={styles.testScreen} onPress={endHandler}>
-                    <Text>Dupsko</Text>
+                    <Text>PRESS NOW!</Text>
                 </TouchableOpacity>
             </View>
             <View style={resultVisible}>
                 <View>
-                    <Text>{timeElapsed}ms</Text>
+                    <Text>Your time: {timeElapsed}ms</Text>
+                </View>
+            </View>
+            <View style={failVisible}>
+                <View>
+                    <Text>You pressed too early!</Text>
                 </View>
             </View>
         </SafeAreaView>
