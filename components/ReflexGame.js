@@ -12,24 +12,24 @@ function ReflexGame () {
     const [ startTime, setStartTime ] = useState();
     const [ timeElapsed, setTimeElapsed ] = useState();
 
-    let endTime;
+    let endTime, timer;
 
     const gameHandler = () => {
         setStartVisible({display: "none"});
         setWaitingVisible({display: "flex"});
-        setTimeout(() => {
+        timer = setTimeout(() => {
             setWaitingVisible({display: "none"});
             setTestVisible({display: "flex"});
             setStartTime(new Date())
-        }, Math.random() * 4000 + 2000)
+        },Math.random() * 4000 + 2000)
     }
 
 
     const failHandler = () => {
+        clearTimeout(timer)
         setWaitingVisible({display: "none"})
         setFailVisible({display: "flex"})
     }
-
 
     const endHandler = () => {
         endTime = new Date();
