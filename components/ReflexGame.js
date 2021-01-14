@@ -51,22 +51,23 @@ function ReflexGame () {
             </View>
             <View style={waitingVisible}>
                     <TouchableOpacity style={styles.waitingScreen} onPress={failHandler}>
-                        <Text>Wait for Green</Text>
+                        <Text style={{fontSize: 20, fontWeight: "bold"}}>Wait for Green</Text>
                     </TouchableOpacity>
             </View>
             <View style={testVisible}>
                 <TouchableOpacity style={styles.testScreen} onPress={endHandler}>
-                    <Text>PRESS NOW!</Text>
+                    <Text style={{fontSize: 20, fontWeight: "bold"}}>PRESS NOW!</Text>
                 </TouchableOpacity>
             </View>
             <View style={resultVisible}>
-                <View>
-                    <Text>Your time: {timeElapsed}ms</Text>
+                <View style={styles.resultStyle}>
+                    <Text style={{fontSize: 30}}>Your time:</Text>
+                    <Text style={{fontSize: 20}}>{timeElapsed}ms</Text>
                 </View>
             </View>
             <View style={failVisible}>
-                <View>
-                    <Text>You pressed too early!</Text>
+                <View style={styles.failStyle}>
+                    <Text style={{fontSize: 20}}>You pressed too early!</Text>
                 </View>
             </View>
         </SafeAreaView>
@@ -103,6 +104,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: "#00ff40"
+    },
+    resultStyle: {
+        minHeight: "100%",
+        minWidth: "100%",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    failStyle: {
+        minHeight: "100%",
+        minWidth: "100%",
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 
