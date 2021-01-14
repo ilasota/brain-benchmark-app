@@ -63,11 +63,27 @@ function ReflexGame () {
                 <View style={styles.resultStyle}>
                     <Text style={{fontSize: 30}}>Your time:</Text>
                     <Text style={{fontSize: 20}}>{timeElapsed}ms</Text>
+                    <View style={styles.controlButtons}>
+                        <TouchableOpacity styles={styles.resetButton}>
+                            <Text>Try Again</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.backButton}>
+                            <Text>Back</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
             <View style={failVisible}>
                 <View style={styles.failStyle}>
                     <Text style={{fontSize: 20}}>You pressed too early!</Text>
+                    <View style={styles.controlButtons}>
+                        <TouchableOpacity styles={styles.resetButton}>
+                            <Text>Try Again</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.backButton}>
+                            <Text>Back</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -106,16 +122,20 @@ const styles = StyleSheet.create({
         backgroundColor: "#00ff40"
     },
     resultStyle: {
-        minHeight: "100%",
-        minWidth: "100%",
+        marginTop: '40%',
         alignItems: 'center',
         justifyContent: 'center',
     },
     failStyle: {
-        minHeight: "100%",
-        minWidth: "100%",
+        marginTop: '40%',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    controlButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '40%',
+        marginTop: 10,
     }
 })
 
