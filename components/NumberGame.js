@@ -32,7 +32,7 @@ function NumberGame () {
 
     const numberHandler = () => {
         if( answer == finalNum) {
-            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum })
+            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum });
             setRound(round + 1);
             let powerOfTen = Math.pow(10, round + 1);
             let randomNum = Math.random();
@@ -46,7 +46,7 @@ function NumberGame () {
             setGameVisible({display: "none"});
             setWinScreen({display: "flex"});
         } else {
-            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum })
+            setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum });
             setRound(1);
             setNumber(Math.floor(Math.random()*10));
             setAnswer("");
@@ -85,7 +85,7 @@ function NumberGame () {
         setTimeout(
             () => {
                 setInputVisible({display: "flex", alignItems: "center"});
-                setNumVisible({display: "none"})
+                setNumVisible({display: "none"});
             },
             timeAmount
         )
