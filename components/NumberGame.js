@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput, Keyboard, Image } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+
 
 
 function NumberGame () {
@@ -18,6 +19,8 @@ function NumberGame () {
     const [ loseScreen, setLoseScreen ] = useState({display: "none"});
     const [ winScreen, setWinScreen ] = useState({display: "none"});
     const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" });
+    const [timerStatus, setTimerStatus ] = useState(false);
+    const [ timeAmount, setTimeAmount ] = useState();
 
 
     let finalNum = number;
@@ -81,15 +84,24 @@ function NumberGame () {
 
 
     const timerHandler = () => {
-        let timeAmount = 2000 + ( ( round ) * 1000 );
-        setTimeout(
-            () => {
-                setInputVisible({display: "flex", alignItems: "center"});
-                setNumVisible({display: "none"});
-            },
-            timeAmount
-        )
+        setTimeAmount(2000 + ( ( round ) * 1000 ));
+        setTimerStatus(true);
     }
+
+
+    useEffect(() => {
+        if(timerStatus){
+            let timer = setTimeout(
+                () => {
+                    setInputVisible({display: "flex", alignItems: "center"});
+                    setNumVisible({display: "none"});
+                    setTimerStatus(false);
+                },
+                timeAmount
+            )
+            return () => {clearTimeout(timer)}
+        }
+    }, [setInputVisible, setNumVisible, timerStatus, timeAmount])
 
 
     return (
