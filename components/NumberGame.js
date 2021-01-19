@@ -34,7 +34,7 @@ function NumberGame () {
 
 
     const numberHandler = () => {
-        if( answer == finalNum) {
+        if( parseInt(answer, 10) === finalNum) {
             setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum });
             setRound(round + 1);
             let powerOfTen = Math.pow(10, round + 1);
