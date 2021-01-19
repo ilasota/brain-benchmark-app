@@ -8,17 +8,17 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 function NumberGame () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
+    const [ numVisible, setNumVisible ] = useState({display: "flex"});
+    const [ inputVisible, setInputVisible ] = useState({display: "none"});
+    const [ loseScreen, setLoseScreen ] = useState({display: "none"});
+    const [ winScreen, setWinScreen ] = useState({display: "none"});
+    const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" });
     const [ number, setNumber] = useState(Math.floor(Math.random()*10));
     const [ round, setRound ] = useState(1);
     const [ answer, setAnswer] = useState("");
     const [ animationStatus, setAnimationStatus] = useState(false);
     const [key, setKey] = useState(0);
     const [ animationTime, setAnimationTime] = useState(3);
-    const [ numVisible, setNumVisible ] = useState({display: "flex"});
-    const [ inputVisible, setInputVisible ] = useState({display: "none"});
-    const [ loseScreen, setLoseScreen ] = useState({display: "none"});
-    const [ winScreen, setWinScreen ] = useState({display: "none"});
-    const [ savedScore, setSavedScore ] = useState({ userAnswer: "", currentRound: "", currentNumber: "" });
     const [timerStatus, setTimerStatus ] = useState(false);
     const [ timeAmount, setTimeAmount ] = useState();
 
