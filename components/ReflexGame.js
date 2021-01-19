@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
 
 
@@ -11,23 +11,33 @@ function ReflexGame () {
     const [ failVisible, setFailVisible ] = useState({display: "none"});
     const [ startTime, setStartTime ] = useState();
     const [ timeElapsed, setTimeElapsed ] = useState();
-    const [ gameTimer, setGameTimer ] = useState()
+    const [ timerStatus, setTimerStatus ] = useState(false);
 
     let endTime;
+    let timer;
 
     const gameHandler = () => {
         setStartVisible({display: "none"});
         setWaitingVisible({display: "flex"});
-        setGameTimer(setTimeout(() => {
-            setWaitingVisible({display: "none"});
-            setTestVisible({display: "flex"});
-            setStartTime(new Date());
-        }, Math.random() * 4000 + 2000))
+        setTimerStatus(true)
     }
 
 
+    useEffect(() => {
+        if(timerStatus){
+            timer = setTimeout(() => {
+                setWaitingVisible({display: "none"});
+                setTestVisible({display: "flex"});
+                setStartTime(new Date());
+                setTimerStatus(false);
+            }, Math.random() * 4000 + 2000)
+            return () => {clearTimeout(timer)}
+        }
+    }, [setWaitingVisible, setTestVisible, timerStatus])
+
+
     const failHandler = () => {
-        clearTimeout(gameTimer);
+        clearTimeout(timer);
         setWaitingVisible({display: "none"});
         setFailVisible({display: "flex"});
     }
