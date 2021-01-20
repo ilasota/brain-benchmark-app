@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
         width: '35%',
         alignItems: 'center',
         backgroundColor: "#d91414",
+        borderRadius: 15,
     },
     playButton: {
         borderWidth: 1,
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
         width: '35%',
         alignItems: 'center',
         backgroundColor: "#1ccf23",
+        borderRadius: 15,
     }
 });
 
