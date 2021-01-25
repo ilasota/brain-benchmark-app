@@ -22,6 +22,13 @@ function ReflexGame () {
         setTimerStatus(true)
     }
 
+    const restartHandler = () => {
+        setResultVisible({display: "none"});
+        setFailVisible({display: "none"})
+        setWaitingVisible({display: "flex"});
+        setTimerStatus(true);
+    }
+
 
     useEffect(() => {
         if(timerStatus){
@@ -30,7 +37,7 @@ function ReflexGame () {
                 setTestVisible({display: "flex"});
                 setStartTime(new Date());
                 setTimerStatus(false);
-            }, Math.random() * 4000 + 2000)
+            }, 500/*Math.random() * 4000 + 2000*/)
             return () => {clearTimeout(timer)}
         }
     }, [setWaitingVisible, setTestVisible, timerStatus])
@@ -72,26 +79,20 @@ function ReflexGame () {
             <View style={resultVisible}>
                 <View style={styles.resultStyle}>
                     <Text style={{fontSize: 30}}>Your time:</Text>
-                    <Text style={{fontSize: 20}}>{timeElapsed}ms</Text>
+                    <Text style={{fontSize: 25}}>{timeElapsed}ms</Text>
                     <View style={styles.controlButtons}>
-                        <TouchableOpacity styles={styles.resetButton}>
-                            <Text>Try Again</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.backButton}>
-                            <Text>Back</Text>
+                        <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
+                            <Text style={{fontSize: 20,}}>Try Again</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={failVisible}>
                 <View style={styles.failStyle}>
-                    <Text style={{fontSize: 20}}>You pressed too early!</Text>
+                    <Text style={{fontSize: 30}}>You pressed too early!</Text>
                     <View style={styles.controlButtons}>
-                        <TouchableOpacity styles={styles.resetButton}>
-                            <Text>Try Again</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.backButton}>
-                            <Text>Back</Text>
+                        <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
+                            <Text style={{fontSize: 20,}}>Try Again</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -143,10 +144,19 @@ const styles = StyleSheet.create({
     },
     controlButtons: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '40%',
+        justifyContent: 'center',
+        width: '60%',
         marginTop: 10,
-    }
+    },
+    restartButton: {
+        alignItems: "center",
+        marginTop: 25,
+        borderWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: "#2bde1b",
+        borderRadius: 10,
+    },
 })
 
 export default ReflexGame
