@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Imag
 
 function Home ({ navigation }) {
     const [ numberGameModal, setNGM ] = useState(false);
-    const [ reflexGameModal, setRGM ] = useState(false);
+    const [ reactionGameModal, setRGM ] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -59,7 +59,7 @@ function Home ({ navigation }) {
                     <Text style={styles.tileText}>tile</Text>
                     <Modal
                         onRequestClose={ () => setRGM(false) }
-                        visible={reflexGameModal}
+                        visible={reactionGameModal}
                         transparent={true}
                         animationType = 'slide'
                     >
@@ -77,7 +77,7 @@ function Home ({ navigation }) {
                                 <TouchableOpacity onPress={() => setRGM(false)} style={styles.cancelButton}>
                                     <Text style={ { fontSize: 20, } }>Cancel</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("ReflexGame"); setRGM(false)}}
+                                <TouchableOpacity onPress={() => {navigation.navigate("ReactionGame"); setRGM(false)}}
                                                   style={styles.playButton}>
                                     <Text style={ { fontSize: 20, } }>Play!</Text>
                                 </TouchableOpacity>

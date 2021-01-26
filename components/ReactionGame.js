@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
 
 
-function ReflexGame () {
+function ReactionGame () {
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
     const [ waitingVisible, setWaitingVisible ] = useState({display: "none"});
     const [ testVisible, setTestVisible ] = useState({display: "none"});
@@ -160,4 +160,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ReflexGame
+export default ReactionGame
