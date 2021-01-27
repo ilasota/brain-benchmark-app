@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from "./components/Home"
 import NumberGame from "./components/NumberGame"
 import ReactionGame from "./components/ReactionGame";
+import SpeedGame from "./components/SpeedGame";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,10 @@ export default function App() {
               name="ReactionGame"
               component={ReactionGame}
           />
+            <Stack.Screen
+                name="SpeedGame"
+                component={SpeedGame}
+            />
         </Stack.Navigator>
       </NavigationContainer>
   );

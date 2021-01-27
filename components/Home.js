@@ -6,6 +6,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Imag
 function Home ({ navigation }) {
     const [ numberGameModal, setNGM ] = useState(false);
     const [ reactionGameModal, setRGM ] = useState(false);
+    const [ speedGameModal, setSGM ] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -85,7 +86,7 @@ function Home ({ navigation }) {
                         </View>
                     </Modal>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
+                <TouchableOpacity onPress={ () => setSGM(true) } activeOpacity={0.9} style={styles.tile}>
                     <Image
                         style={styles.tileIcon}
                         source={{
@@ -93,6 +94,33 @@ function Home ({ navigation }) {
                         }}
                     />
                     <Text style={styles.tileText}>tile</Text>
+                    <Modal
+                        onRequestClose={ () => setSGM(false) }
+                        visible={speedGameModal}
+                        transparent={true}
+                        animationType = 'slide'
+                    >
+                        <View style={styles.infoModal}>
+                            <View style={styles.testDesc}>
+                                <Text style={ { fontSize: 40, } } >Game Name</Text>
+                                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non proident, sunt in
+                                    culpa qui officia deserunt mollit anim id est laborum.</Text>
+                            </View>
+                            <View style={styles.controlButtons}>
+                                <TouchableOpacity onPress={() => setSGM(false)} style={styles.cancelButton}>
+                                    <Text style={ { fontSize: 20, } }>Cancel</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => {navigation.navigate("SpeedGame"); setSGM(false)}}
+                                                  style={styles.playButton}>
+                                    <Text style={ { fontSize: 20, } }>Play!</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.9} style={styles.tile}>
                     <Image
