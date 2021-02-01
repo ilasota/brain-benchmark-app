@@ -65,14 +65,14 @@ function SpeedGame () {
             <View style={gameVisible}>
                 <View>
                     <TouchableOpacity style={styles.testScreen} onPress={() => {setCounter(counter + 1)}}>
-                        <Text style={{fontWeight: "bold", fontSize: 30}}>CLICK AS FAST AS YOU CAN</Text>
+                        <Text style={{fontWeight: "bold", fontSize: 25}}>CLICK AS FAST AS YOU CAN</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={resultVisible}>
                 <View style={styles.resultScreen}>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked {counter} times!</Text>
-                    <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5}CPS</Text>
+                    <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5} CPS</Text>
                 </View>
             </View>
         </SafeAreaView>
