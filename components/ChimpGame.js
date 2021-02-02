@@ -1,14 +1,24 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, StatusBar} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList} from 'react-native';
 
 
 function ChimpGame () {
+  let test = Array(36);
+  test.fill({value: 0})
+
+
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text>Test</Text>
-            </View>
+            <FlatList
+                keyExtractor={() => Math.random()}
+                data={test}
+                renderItem={ (test) =>
+                    <View>
+                        <Text>{test.value}</Text>
+                    </View>
+                }
+            />
         </SafeAreaView>
     )
 }
