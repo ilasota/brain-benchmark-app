@@ -5,20 +5,18 @@ import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList} from 'react-n
 
 function ChimpGame () {
   let test = Array(36);
-  test.fill({value: 0})
+  test.fill({value: "  ",event: ()=>{} })
+  test[13].value = 15;
 
+
+  test.forEach(value => {console.log(value)})
+
+  console.log(test[10].value);
+  console.log(test[12].event);
 
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                keyExtractor={() => Math.random()}
-                data={test}
-                renderItem={ (test) =>
-                    <View>
-                        <Text>{test.value}</Text>
-                    </View>
-                }
-            />
+            <View><Text>test</Text></View>
         </SafeAreaView>
     )
 }
@@ -34,3 +32,13 @@ const styles = StyleSheet.create({
 })
 
 export default ChimpGame;
+
+/*<FlatList
+                keyExtractor={() => Math.random()}
+                data={test}
+                renderItem={ ({item}) =>
+                    <View>
+                        <Text>{item.value}</Text>
+                    </View>
+                }
+            />*/
