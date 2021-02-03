@@ -5,15 +5,14 @@ import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList} from 'react-n
 
 function ChimpGame () {
   let test = Array(36);
-  test.fill({value: "  ",event: ()=>{} })
-  test[13].value = 15;
-
+  test[13] = {value: 15, event: () =>{}};
+    test[16] = {value: 15, event: () =>{}};
+    test[11] = {value: 15, event: () =>{}};
+    test[20] = {value: 15, event: () =>{}};
 
   test.forEach(value => {console.log(value)})
 
-  console.log(test[10].value);
-  console.log(test[12].event);
-
+  console.log(test[20])
     return (
         <SafeAreaView style={styles.container}>
             <View><Text>test</Text></View>
