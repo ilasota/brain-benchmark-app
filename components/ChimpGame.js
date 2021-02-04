@@ -1,21 +1,44 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpacity} from 'react-native';
+
 
 
 function ChimpGame () {
-  let test = Array(36);
-  test[13] = {value: 15, event: () =>{}};
-    test[16] = {value: 15, event: () =>{}};
-    test[11] = {value: 15, event: () =>{}};
-    test[20] = {value: 15, event: () =>{}};
+  let gameBoard = Array(36);
+  let position = [];
 
-  test.forEach(value => {console.log(value)})
 
-  console.log(test[20])
+    const boardHandler = () => {
+        for(let i = 0; i < 4; i++){
+            position[i] = Math.floor(Math.random() * 35);
+        }
+
+        for(let i = 0; i < 36; i++){
+            gameBoard[i] = {value: " ", event: () =>{}, id: Math.random()};
+        }
+
+        for(let i = 0; i < position.length; i++){
+            gameBoard[position[i]] = {value: i+1,event: () =>{boardHandler()}, id: Math.random()}
+        }
+    }
+
+    boardHandler()
+
+
     return (
         <SafeAreaView style={styles.container}>
-            <View><Text>test</Text></View>
+            <FlatList
+                keyExtractor={(item)=> item.id.toString()}
+                data={gameBoard}
+                renderItem={ ({item}) =>
+                    <View>
+                        <TouchableOpacity onPress={item.event}>
+                            <Text style={{fontSize: 40}}>{item.value}</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+            />
         </SafeAreaView>
     )
 }
@@ -32,12 +55,4 @@ const styles = StyleSheet.create({
 
 export default ChimpGame;
 
-/*<FlatList
-                keyExtractor={() => Math.random()}
-                data={test}
-                renderItem={ ({item}) =>
-                    <View>
-                        <Text>{item.value}</Text>
-                    </View>
-                }
-            />*/
+/**/
