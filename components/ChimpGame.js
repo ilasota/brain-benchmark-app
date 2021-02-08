@@ -1,39 +1,46 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpacity} from 'react-native';
 
 
 
 function ChimpGame () {
-  let gameBoard = Array(36);
+  const [gameBoard, setGameBoard]  = useState([]);
+  let squarePosition = Array(36);
   let position = [];
 
 
     const boardHandler = () => {
-        for(let i = 0; i < 4; i++){
-            position[i] = Math.floor(Math.random() * 35);
+        for(let i = 0; i < 10; i++) {
+            let pos = Math.floor(Math.random() * 35);
+            while (position.includes(pos)) {
+                pos = Math.floor(Math.random() * 35);
+            }
+            position[i] = pos;
         }
 
         for(let i = 0; i < 36; i++){
-            gameBoard[i] = {value: " ", event: () =>{}, id: Math.random()};
+            squarePosition[i] = {value: " ", event: () =>{}, id: Math.random()};
         }
 
         for(let i = 0; i < position.length; i++){
-            gameBoard[position[i]] = {value: i+1,event: () =>{boardHandler()}, id: Math.random()}
+            squarePosition[position[i]] = {value: i+1,event: () =>{}, id: Math.random()}
         }
     }
 
-    boardHandler()
+
 
 
     return (
         <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={()=>{boardHandler(); setGameBoard(squarePosition)}}><Text>Test</Text></TouchableOpacity>
             <FlatList
-                keyExtractor={(item)=> item.id.toString()}
+                keyExtractor={()=> Math.random().toString()}
                 data={gameBoard}
+                numColumns={6}
                 renderItem={ ({item}) =>
-                    <View>
-                        <TouchableOpacity onPress={item.event}>
+                    <View style={styles.board}>
+                        <TouchableOpacity style={styles.tile} onPress={item.event}>
                             <Text style={{fontSize: 40}}>{item.value}</Text>
                         </TouchableOpacity>
                     </View>
@@ -50,9 +57,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#3ac1e3',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         minHeight: '10%',
+    },
+    board: {
+
+    },
+    tile: {
+        backgroundColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 5,
+        minWidth: 55,
+        minHeight: 55,
+        alignItems: "center",
+        margin: 5,
     }
 })
 
-export default ChimpGame;
+export default ChimpGame
 
-/**/
+
