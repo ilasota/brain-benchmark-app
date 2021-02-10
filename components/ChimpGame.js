@@ -14,7 +14,7 @@ function ChimpGame () {
 
 
     const boardHandler = () => {
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < 7; i++) {
             let pos = Math.floor(Math.random() * 35);
             while (position.includes(pos)) {
                 pos = Math.floor(Math.random() * 35);
@@ -38,7 +38,7 @@ function ChimpGame () {
         for(let i = 0; i < position.length; i++){
             squarePosition[position[i]] = {
                 value: i+1,
-                event: () =>{},
+                event: () =>{startHandler()},
                 id: Math.random(),
                 test: {
                     backgroundColor: '#ffffff',
@@ -61,6 +61,10 @@ function ChimpGame () {
     }
 
 
+    const testHandler = (itemID) => {
+        let result = gameBoard.filter((item) => item.id === itemID)
+        console.log(result)
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -80,7 +84,7 @@ function ChimpGame () {
                     numColumns={6}
                     renderItem={ ({item}) =>
                         <View>
-                            <TouchableOpacity activeOpacity={0.8} style={item.test} onPress={item.event}>
+                            <TouchableOpacity activeOpacity={0.8} style={item.test} onPress={testHandler}>
                                 <Text style={{fontSize: 30}}>{item.value}</Text>
                             </TouchableOpacity>
                         </View>
