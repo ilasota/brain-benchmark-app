@@ -25,7 +25,7 @@ function ChimpGame () {
         for(let i = 0; i < 36; i++){
             squarePosition[i] = {
                 value: " ",
-                event: () =>{},
+                event: (id) =>{testHandler()},
                 id: Math.random(),
                 test: {
                     minWidth: 55,
@@ -62,8 +62,14 @@ function ChimpGame () {
 
 
     const testHandler = (itemID) => {
-        let result = gameBoard.filter((item) => item.id === itemID)
-        console.log(result)
+        const editedGameBoard = gameBoard.map( item => {
+            if ( item.id === itemID ) {
+                item.value = 69
+                return item
+            }
+            return item
+        })
+        setGameBoard(editedGameBoard)
     }
 
     return (
