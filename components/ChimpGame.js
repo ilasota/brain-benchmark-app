@@ -7,7 +7,9 @@ import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpac
 function ChimpGame () {
   const [ startVisible, setStartVisible ] = useState({display: "flex"});
   const [ gameVisible, setGameVisible ] = useState({display: "none"});
-  const [gameBoard, setGameBoard]  = useState([]);
+  const [ gameBoard, setGameBoard ]  = useState([]);
+  const [ numVisible, setNumVisible ] = useState({font: 30})
+
 
   let squarePosition = Array(36);
   let position = [];
@@ -25,9 +27,8 @@ function ChimpGame () {
         for(let i = 0; i < 36; i++){
             squarePosition[i] = {
                 value: " ",
-                event: (id) =>{testHandler()},
                 id: Math.random(),
-                test: {
+                tile: {
                     minWidth: 55,
                     minHeight: 55,
                     margin: 5,
@@ -38,9 +39,8 @@ function ChimpGame () {
         for(let i = 0; i < position.length; i++){
             squarePosition[position[i]] = {
                 value: i+1,
-                event: () =>{startHandler()},
                 id: Math.random(),
-                test: {
+                tile: {
                     backgroundColor: '#ffffff',
                     borderWidth: 1,
                     borderRadius: 5,
@@ -61,15 +61,16 @@ function ChimpGame () {
     }
 
 
-    const testHandler = (itemID) => {
-        const editedGameBoard = gameBoard.map( item => {
+    const gameHandler = (item, itemID) => {
+        setNumVisible({display: "none"})
+        const newListOfText = gameBoard.map( item => {
             if ( item.id === itemID ) {
-                item.value = 69
+                item.tile = {minWidth: 55, minHeight: 55, margin: 5,}
                 return item
             }
             return item
         })
-        setGameBoard(editedGameBoard)
+        setGameBoard( newListOfText )
     }
 
     return (
@@ -90,8 +91,10 @@ function ChimpGame () {
                     numColumns={6}
                     renderItem={ ({item}) =>
                         <View>
-                            <TouchableOpacity activeOpacity={0.8} style={item.test} onPress={testHandler}>
-                                <Text style={{fontSize: 30}}>{item.value}</Text>
+                            <TouchableOpacity activeOpacity={0.8} style={item.tile} onPress={()=>{gameHandler(item, item.id)}}>
+                                <View style={numVisible}>
+                                    <Text style={{fontSize: 30}}>{item.value}</Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                     }
