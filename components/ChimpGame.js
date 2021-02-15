@@ -13,6 +13,7 @@ function ChimpGame () {
   const [ numberAmount, setNumberAmount ] = useState(4)
   const [ numVisible, setNumVisible ] = useState({font: 30});
   const [ currentNum , setCurrentNum ] = useState(1);
+  const [ roundResult, setRoundResult ] = useState()
 
 
   let squarePosition = Array(36);
@@ -81,7 +82,8 @@ function ChimpGame () {
             setNumVisible({display: "none"})
             if(item.value === currentNum){
                 if(item.value === numberAmount){
-                    setNumberAmount(numberAmount + 1)
+                    setRoundResult(numberAmount);
+                    setNumberAmount(numberAmount + 1);
                     setWinVisible({display: "flex"});
                     setGameVisible({display: "none"});
                     setNumVisible({display: "flex"});
@@ -89,6 +91,7 @@ function ChimpGame () {
                     setCurrentNum(currentNum + 1)
                 }
             }else {
+                setRoundResult(numberAmount);
                 setNumberAmount(4);
                 setLoseVisible({display: "flex"});
                 setGameVisible({display: "none"});
@@ -124,14 +127,22 @@ function ChimpGame () {
                     }/>
             </View>
             <View style={winVisible}>
-                <TouchableOpacity onPress={roundHandler}>
-                    <Text>Next</Text>
-                </TouchableOpacity>
+                <View style={styles.resultScreen}>
+                    <Text style={{fontSize: 30}}>Numbers</Text>
+                    <Text style={{fontSize: 50}}>{roundResult + 1}</Text>
+                    <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
+                        <Text style={{fontSize: 20}}>Next</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
             <View style={loseVisible}>
-                <TouchableOpacity onPress={roundHandler}>
-                    <Text>Try Again</Text>
-                </TouchableOpacity>
+                <View style={styles.resultScreen}>
+                    <Text style={{fontSize: 30}}>Your Score:</Text>
+                    <Text style={{fontSize: 50}}>{roundResult}</Text>
+                    <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
+                        <Text style={{fontSize: 20}}>Try Again</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     )
@@ -157,6 +168,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
     },
+    resultScreen: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: "30%",
+    },
+    endButton: {
+        alignItems: "center",
+        marginTop: 15,
+        borderWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: "#ddd457",
+        borderRadius: 15,
+    }
 })
 
 export default ChimpGame
