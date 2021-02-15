@@ -7,9 +7,12 @@ import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpac
 function ChimpGame () {
   const [ startVisible, setStartVisible ] = useState({display: "flex"});
   const [ gameVisible, setGameVisible ] = useState({display: "none"});
+  const [ winVisible, setWinVisible ] = useState({display: "none"});
+  const [ loseVisible, setLoseVisible ] = useState({display: "none"});
   const [ gameBoard, setGameBoard ]  = useState([]);
   const [ numberAmount, setNumberAmount ] = useState(4)
   const [ numVisible, setNumVisible ] = useState({font: 30});
+  const [ currentNum , setCurrentNum ] = useState(1);
 
 
   let squarePosition = Array(36);
@@ -57,8 +60,11 @@ function ChimpGame () {
     const roundHandler = () => {
         boardHandler();
         setGameBoard(squarePosition);
+        setCurrentNum(1);
         setStartVisible({display: "none"});
         setGameVisible({display: "flex"});
+        setWinVisible({display: "none"});
+        setLoseVisible({display: "none"});
     }
 
 
@@ -72,12 +78,21 @@ function ChimpGame () {
             return item
         })
         setGameBoard( editedBoard )
-        if(item.id===itemID){
-            if(item.value === numberAmount){
-                setNumberAmount(numberAmount + 1)
-                setStartVisible({display: "flex"});
+        if( item.id === itemID ){
+            if(item.value === currentNum){
+                if(item.value === numberAmount){
+                    setNumberAmount(numberAmount + 1)
+                    setWinVisible({display: "flex"});
+                    setGameVisible({display: "none"});
+                    setNumVisible({display: "flex"});
+                } else {
+                    setCurrentNum(currentNum + 1)
+                }
+            }else {
+                setNumberAmount(4);
+                setLoseVisible({display: "flex"});
                 setGameVisible({display: "none"});
-                setNumVisible({display: "flex"})
+                setNumVisible({display: "flex"});
             }
         }
     }
@@ -106,8 +121,17 @@ function ChimpGame () {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    }
-                />
+                    }/>
+            </View>
+            <View style={winVisible}>
+                <TouchableOpacity onPress={roundHandler}>
+                    <Text>Next</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={loseVisible}>
+                <TouchableOpacity onPress={roundHandler}>
+                    <Text>Try Again</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
