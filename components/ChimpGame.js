@@ -69,7 +69,6 @@ function ChimpGame () {
 
 
     const gameHandler = (item, itemID) => {
-        setNumVisible({display: "none"})
         const editedBoard = gameBoard.map( item => {
             if ( item.id === itemID ) {
                 item.tile = {minWidth: 55, minHeight: 55, margin: 5,}
@@ -78,7 +77,8 @@ function ChimpGame () {
             return item
         })
         setGameBoard( editedBoard )
-        if( item.id === itemID ){
+        if( item.id === itemID && item.value !== " "){
+            setNumVisible({display: "none"})
             if(item.value === currentNum){
                 if(item.value === numberAmount){
                     setNumberAmount(numberAmount + 1)
