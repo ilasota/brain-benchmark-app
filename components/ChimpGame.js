@@ -8,7 +8,8 @@ function ChimpGame () {
   const [ startVisible, setStartVisible ] = useState({display: "flex"});
   const [ gameVisible, setGameVisible ] = useState({display: "none"});
   const [ gameBoard, setGameBoard ]  = useState([]);
-  const [ numVisible, setNumVisible ] = useState({font: 30})
+  const [ numberAmount, setNumberAmount ] = useState(4)
+  const [ numVisible, setNumVisible ] = useState({font: 30});
 
 
   let squarePosition = Array(36);
@@ -16,7 +17,7 @@ function ChimpGame () {
 
 
     const boardHandler = () => {
-        for(let i = 0; i < 7; i++) {
+        for(let i = 0; i < numberAmount; i++) {
             let pos = Math.floor(Math.random() * 35);
             while (position.includes(pos)) {
                 pos = Math.floor(Math.random() * 35);
@@ -53,7 +54,7 @@ function ChimpGame () {
         }
     }
 
-    const startHandler = () => {
+    const roundHandler = () => {
         boardHandler();
         setGameBoard(squarePosition);
         setStartVisible({display: "none"});
@@ -63,14 +64,22 @@ function ChimpGame () {
 
     const gameHandler = (item, itemID) => {
         setNumVisible({display: "none"})
-        const newListOfText = gameBoard.map( item => {
+        const editedBoard = gameBoard.map( item => {
             if ( item.id === itemID ) {
                 item.tile = {minWidth: 55, minHeight: 55, margin: 5,}
                 return item
             }
             return item
         })
-        setGameBoard( newListOfText )
+        setGameBoard( editedBoard )
+        if(item.id===itemID){
+            if(item.value === numberAmount){
+                setNumberAmount(numberAmount + 1)
+                setStartVisible({display: "flex"});
+                setGameVisible({display: "none"});
+                setNumVisible({display: "flex"})
+            }
+        }
     }
 
     return (
@@ -78,7 +87,7 @@ function ChimpGame () {
             <View style={startVisible}>
                 <View style={styles.startGame}>
                     <TouchableOpacity style={styles.startButton}
-                                      onPress={startHandler}>
+                                      onPress={roundHandler}>
                         <Text style={ {fontSize: 30} }>Start</Text>
                     </TouchableOpacity>
                 </View>
