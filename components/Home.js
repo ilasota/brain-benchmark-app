@@ -31,11 +31,11 @@ function Home ({ navigation }) {
                            <View style={styles.scoresRow}>
                                <View style={styles.scores}>
                                    <Text style={{fontSize: 18, color: '#222222'}}>High Score</Text>
-                                   <Text style={{fontSize: 20, color: '#222222'}}>0</Text>
+                                   <Text style={{fontSize: 20, color: '#222222'}}>{item.high}</Text>
                                </View>
                                <View style={styles.scores}>
                                    <Text style={{fontSize: 18, color: '#222222'}}>Average Score</Text>
-                                   <Text style={{fontSize: 20, color: '#222222'}}>0</Text>
+                                   <Text style={{fontSize: 20, color: '#222222'}}>{item.average}</Text>
                                </View>
                            </View>
                            <Text style={styles.body}>{item.body}</Text>
