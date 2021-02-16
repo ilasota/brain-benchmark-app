@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import Carousel from 'react-native-snap-carousel';
+import React, { useState } from 'react';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity} from 'react-native';
 
 import data from "../assets/data";
@@ -10,7 +10,7 @@ export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 
 function Home ({ navigation }) {
-
+    const [ index, setIndex ] = useState(0)
     const isCarousel = React.useRef(null)
 
     return (
@@ -21,6 +21,7 @@ function Home ({ navigation }) {
                      sliderWidth={SLIDER_WIDTH}
                      itemWidth={ITEM_WIDTH}
                      useScrollView={true}
+                     onSnapToItem={(index) => setIndex(index)}
                      renderItem={ ({item} ) =>
                        <View style={styles.carousel}>
                            <Text style={styles.headerCar}>{item.title}</Text>
@@ -45,6 +46,21 @@ function Home ({ navigation }) {
                        </View>
                      }
            />
+            <Pagination
+                dotsLength={data.length}
+                activeDotIndex={index}
+                carouselRef={isCarousel}
+                dotStyle={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    marginHorizontal: 0,
+                    backgroundColor: "rgba(0,0,0,0.92)"
+                }}
+                inactiveDotOpacity={0.4}
+                inactiveDotScale={0.6}
+                tappableDots={true}
+            />
         </SafeAreaView>
         );
     }
@@ -71,7 +87,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
         elevation: 7,
-        marginTop: "30%",
+        marginTop: "20%",
     },
     headerCar: {
         color: "#222222",
@@ -104,7 +120,7 @@ const styles = StyleSheet.create({
     },
     playButton: {
         alignItems: "center",
-        marginTop: 25,
+        marginVertical: 25,
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: "#3ac1e3",
