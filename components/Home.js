@@ -1,165 +1,39 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
+import React from 'react';
+import Carousel from 'react-native-snap-carousel';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity} from 'react-native';
+
+import data from "../assets/data";
+
+export const SLIDER_WIDTH = Dimensions.get('window').width + 80
+export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 
 function Home ({ navigation }) {
-    const [ numberGameModal, setNGM ] = useState(false);
-    const [ reactionGameModal, setRGM ] = useState(false);
-    const [ speedGameModal, setSGM ] = useState(false);
-    const [ chimpGameModal, setCGM ] = useState(false)
+
+    const isCarousel = React.useRef(null)
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <Text style={{ fontSize: 25 }}>Brain Benchmark</Text>
-            </View>
-            <ScrollView contentContainerStyle={styles.menu}>
-                <TouchableOpacity onPress={ () => setNGM(true) } activeOpacity={0.9} style={styles.tile}>
-                    <Image
-                        style={styles.tileIcon}
-                        source={{
-                            uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
-                        }}
-                    />
-                    <Text style={styles.tileText}>tile</Text>
-                    <Modal
-                        onRequestClose={ () => setNGM(false) }
-                        visible={numberGameModal}
-                        transparent={true}
-                        animationType = 'slide'
-                    >
-                        <View style={styles.infoModal}>
-                            <View style={styles.testDesc}>
-                                <Text style={ { fontSize: 40, } } >Game Name</Text>
-                                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</Text>
-                            </View>
-                            <View style={styles.controlButtons}>
-                                <TouchableOpacity onPress={() => setNGM(false)} style={styles.cancelButton}>
-                                    <Text style={ { fontSize: 20, } }>Cancel</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("NumberGame"); setNGM(false)}}
-                                                  style={styles.playButton}>
-                                    <Text style={ { fontSize: 20, } }>Play!</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </Modal>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={ () => setRGM(true) } activeOpacity={0.9} style={styles.tile}>
-                    <Image
-                        style={styles.tileIcon}
-                        source={{
-                            uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
-                        }}
-                    />
-                    <Text style={styles.tileText}>tile</Text>
-                    <Modal
-                        onRequestClose={ () => setRGM(false) }
-                        visible={reactionGameModal}
-                        transparent={true}
-                        animationType = 'slide'
-                    >
-                        <View style={styles.infoModal}>
-                            <View style={styles.testDesc}>
-                                <Text style={ { fontSize: 40, } } >Game Name</Text>
-                                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</Text>
-                            </View>
-                            <View style={styles.controlButtons}>
-                                <TouchableOpacity onPress={() => setRGM(false)} style={styles.cancelButton}>
-                                    <Text style={ { fontSize: 20, } }>Cancel</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("ReactionGame"); setRGM(false)}}
-                                                  style={styles.playButton}>
-                                    <Text style={ { fontSize: 20, } }>Play!</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </Modal>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={ () => setSGM(true) } activeOpacity={0.9} style={styles.tile}>
-                    <Image
-                        style={styles.tileIcon}
-                        source={{
-                            uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
-                        }}
-                    />
-                    <Text style={styles.tileText}>tile</Text>
-                    <Modal
-                        onRequestClose={ () => setSGM(false) }
-                        visible={speedGameModal}
-                        transparent={true}
-                        animationType = 'slide'
-                    >
-                        <View style={styles.infoModal}>
-                            <View style={styles.testDesc}>
-                                <Text style={ { fontSize: 40, } } >Game Name</Text>
-                                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</Text>
-                            </View>
-                            <View style={styles.controlButtons}>
-                                <TouchableOpacity onPress={() => setSGM(false)} style={styles.cancelButton}>
-                                    <Text style={ { fontSize: 20, } }>Cancel</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("SpeedGame"); setSGM(false)}}
-                                                  style={styles.playButton}>
-                                    <Text style={ { fontSize: 20, } }>Play!</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </Modal>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={ () => setCGM(true) } activeOpacity={0.9} style={styles.tile}>
-                    <Image
-                        style={styles.tileIcon}
-                        source={{
-                            uri: 'https://2rri712hg8ztbbaed491mw10-wpengine.netdna-ssl.com/wp-content/uploads/2018/12/placeholder-square.png',
-                        }}
-                    />
-                    <Text style={styles.tileText}>tile</Text>
-                    <Modal
-                        onRequestClose={ () => setCGM(false) }
-                        visible={chimpGameModal}
-                        transparent={true}
-                        animationType = 'slide'
-                    >
-                        <View style={styles.infoModal}>
-                            <View style={styles.testDesc}>
-                                <Text style={ { fontSize: 40, } } >Game Name</Text>
-                                <Text style={ { fontSize: 20, } }>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</Text>
-                            </View>
-                            <View style={styles.controlButtons}>
-                                <TouchableOpacity onPress={() => setCGM(false)} style={styles.cancelButton}>
-                                    <Text style={ { fontSize: 20, } }>Cancel</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {navigation.navigate("ChimpGame"); setCGM(false)}}
-                                                  style={styles.playButton}>
-                                    <Text style={ { fontSize: 20, } }>Play!</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </Modal>
-                </TouchableOpacity>
-            </ScrollView>
+           <Carousel data={data}
+                     layout="default"
+                     ref={isCarousel}
+                     sliderWidth={SLIDER_WIDTH}
+                     itemWidth={ITEM_WIDTH}
+                     useScrollView={true}
+                     renderItem={ ({item} ) =>
+                       <View style={styles.carousel}>
+                           <Image
+                               source={{ uri: item.imgUrl }}
+                               style={styles.image}
+                           />
+                           <TouchableOpacity onPress={() => {navigation.navigate(item.navi)}}>
+                               <Text style={styles.headerCar}>{item.title}</Text>
+                           </TouchableOpacity>
+                           <Text style={styles.body}>{item.body}</Text>
+                       </View>
+                     }
+           />
         </SafeAreaView>
         );
     }
@@ -168,72 +42,40 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-    },
-    header: {
-        padding: 5,
-        backgroundColor: '#3ac1e3',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        minHeight: '10%',
-        justifyContent: 'center',
+        alignItems: "center"
     },
-    menu: {
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',
-        alignItems: "flex-start",
-        flexWrap: 'wrap',
+    image: {
+        width: ITEM_WIDTH,
+        height: 300,
     },
-    tile: {
-        backgroundColor: '#dd6e6e',
-        margin: 10,
-        width: 175,
-        height: 175,
-        justifyContent: 'center',
-        alignItems: 'center',
+    carousel: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        width: ITEM_WIDTH,
+        paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
-    tileIcon: {
-        width: 100,
-        height: 100,
+    headerCar: {
+        color: "#222",
+        fontSize: 28,
+        fontWeight: "bold",
+        paddingLeft: 20,
+        paddingTop: 20
     },
-    tileText: {
-        paddingTop: 25,
+    body: {
+        color: "#222",
+        fontSize: 18,
+        paddingLeft: 20,
+        paddingRight: 20
     },
-    infoModal: {
-        flex: 1,
-        marginVertical: "5%",
-        marginHorizontal: "5%",
-        alignItems: "center",
-        backgroundColor: '#ffffff',
-        borderRadius: 30,
-        borderWidth: 1,
-        padding: 20,
-        borderColor: '#000000'
-    },
-    testDesc: {
-        minHeight: '80%',
-    },
-    controlButtons: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
-    },
-    cancelButton: {
-        borderWidth: 1,
-        borderColor: '#000000',
-        padding: 10,
-        width: '35%',
-        alignItems: 'center',
-        backgroundColor: "#d91414",
-        borderRadius: 15,
-    },
-    playButton: {
-        borderWidth: 1,
-        borderColor: '#000000',
-        padding: 10,
-        width: '35%',
-        alignItems: 'center',
-        backgroundColor: "#1ccf23",
-        borderRadius: 15,
-    }
 });
 
 export default Home;
