@@ -15,6 +15,9 @@ function Home ({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <Text style={{fontSize: 20, fontWeight: "bold"}}>BRAIN BENCHMARK</Text>
+            </View>
            <Carousel data={data}
                      layout="default"
                      ref={isCarousel}
@@ -72,13 +75,20 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         alignItems: "center"
     },
+    header: {
+        alignItems: "flex-start",
+        width: "100%",
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    },
     carousel: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#fcf6f5',
+        alignItems: "center",
         borderRadius: 8,
         minWidth: ITEM_WIDTH,
-        minHeight: "75%",
+        minHeight: "95%",
         paddingBottom: 40,
-        shadowColor: "#000000",
+        /*shadowColor: "#000000",
         alignItems: "center",
         shadowOffset: {
             width: 0,
@@ -86,19 +96,18 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.3,
         shadowRadius: 5,
-        elevation: 7,
-        marginTop: "20%",
+        elevation: 7,*/
+        marginTop: 15,
     },
     headerCar: {
         color: "#222222",
         fontSize: 30,
         fontWeight: "bold",
-        paddingLeft: 20,
-        paddingVertical: 20
+        paddingVertical: 20,
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 75,
+        height: 75,
     },
     body: {
         color: "#222222",
@@ -120,7 +129,8 @@ const styles = StyleSheet.create({
     },
     playButton: {
         alignItems: "center",
-        marginVertical: 25,
+        marginTop: "15%",
+        marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: "#3ac1e3",
