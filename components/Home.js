@@ -56,10 +56,6 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         alignItems: "center"
     },
-    image: {
-        width: 100,
-        height: 100,
-    },
     carousel: {
         backgroundColor: '#ffffff',
         borderRadius: 8,
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
         elevation: 7,
-        marginTop: 35,
+        marginTop: "30%",
     },
     headerCar: {
         color: "#222222",
@@ -83,6 +79,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingLeft: 20,
         paddingVertical: 20
+    },
+    image: {
+        width: 100,
+        height: 100,
     },
     body: {
         color: "#222222",
