@@ -18,7 +18,7 @@ export default data = [
     },
     {
         title: "Speed Game",
-        body: "Test that measures your clicking speed. For a reliable result you should only use one finger.\n\n" + "" +
+        body: "Test that measures your clicking speed. For a reliable results you should only use one finger.\n\n" + "" +
             "The average person clicks with speed of 8-10 clicks per second.",
         imgUrl: "https://lh3.googleusercontent.com/proxy/3FDMLOMlorU-izSf9kgtq1QjI9nAvHeH8-o5vIxsw8wIChg_XlxzFPfKIVTxM3pXsz8eCOn-s4NPz9Ht1f9eVlqH6B21vNdI7Z29q88",
         high: 0 + " cps",
@@ -27,8 +27,8 @@ export default data = [
     },
     {
         title: "Chimp Game",
-        body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.\n\n" +
-            "In the study, the chimps consistently outperformed humans, and some chimps were able to remember 9 digits over 90% of the time.",
+        body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.\n" +
+            "",
         imgUrl: "https://static.thenounproject.com/png/1316681-200.png",
         high: 0,
         average: 0,
