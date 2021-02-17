@@ -68,12 +68,12 @@ function ReactionGame () {
                 </View>
             </View>
             <View style={waitingVisible}>
-                    <TouchableOpacity style={styles.waitingScreen} onPress={failHandler}>
+                    <TouchableOpacity style={styles.waitingScreen} onPressIn={failHandler}>
                         <Text style={{fontSize: 20, fontWeight: "bold"}}>Wait for Green</Text>
                     </TouchableOpacity>
             </View>
             <View style={testVisible}>
-                <TouchableOpacity style={styles.testScreen} onPress={endHandler}>
+                <TouchableOpacity style={styles.testScreen} onPressIn={endHandler}>
                     <Text style={{fontSize: 20, fontWeight: "bold"}}>PRESS NOW!</Text>
                 </TouchableOpacity>
             </View>
