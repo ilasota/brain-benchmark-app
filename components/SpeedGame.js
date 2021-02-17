@@ -19,6 +19,14 @@ function SpeedGame () {
         setCountdownStatus(true);
     }
 
+    const resetHandler = () => {
+        setWaitingVisible({display: "flex"});
+        setResultVisible({display: "none"});
+        setCountdown(3);
+        setCounter(0);
+        setCountdownStatus(true);
+    }
+
     useEffect(() => {
         if(countdownStatus){
             let interval = setInterval(() =>{
@@ -40,7 +48,7 @@ function SpeedGame () {
             let timer = setTimeout(() => {
                 setResultVisible({display: "flex"});
                 setGameVisible({display: "none"});
-                setTimerStatus(true);
+                setTimerStatus(false)
             }, 5000)
             return () => { clearTimeout(timer) }
         }
@@ -73,6 +81,9 @@ function SpeedGame () {
                 <View style={styles.resultScreen}>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked {counter} times!</Text>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5} CPS</Text>
+                    <TouchableOpacity style={styles.restartButton} onPress={resetHandler}>
+                        <Text style={{fontSize: 20,}}>Try Again!</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </SafeAreaView>
@@ -124,6 +135,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: "50%"
+    },
+    restartButton: {
+    alignItems: "center",
+        marginTop: "15%",
+        marginBottom: "5%",
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: "#3ac1e3",
+        borderRadius: 15,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7,
     },
 })
 
