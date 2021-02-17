@@ -97,6 +97,7 @@ function ChimpGame () {
                 setGameVisible({display: "none"});
                 setNumVisible({display: "flex"});
             }
+            item.value = " ";
         }
     }
 
