@@ -82,21 +82,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     carousel: {
-        backgroundColor: '#fcf6f5',
         alignItems: "center",
         borderRadius: 8,
         minWidth: ITEM_WIDTH,
         minHeight: "95%",
         paddingBottom: 40,
-        /*shadowColor: "#000000",
-        alignItems: "center",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        elevation: 7,*/
         marginTop: 15,
     },
     headerCar: {
