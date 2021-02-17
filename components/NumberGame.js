@@ -126,7 +126,7 @@ function NumberGame () {
                                   isPlaying={animationStatus}
                                   duration={animationTime}
                                   colors="#000"
-                                  trailColor='#3ac1e3'
+                                  trailColor='#fcf6f5'
                                   size={50}
                                   onComplete={() => {setAnimationStatus(false)}}
                               />
@@ -192,7 +192,7 @@ function NumberGame () {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3ac1e3',
+        backgroundColor: '#fcf6f5',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         minHeight: '10%',
     },
@@ -202,11 +202,21 @@ const styles = StyleSheet.create({
         marginTop: "50%",
     },
     startButton: {
-        backgroundColor: "#62d653",
+        alignItems: "center",
+        marginTop: "15%",
+        marginBottom: "5%",
+        paddingHorizontal: 15,
         paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderWidth: 1,
+        backgroundColor: "#3ac1e3",
         borderRadius: 15,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7,
     },
     roundStyle: {
         padding: 15,
@@ -224,11 +234,21 @@ const styles = StyleSheet.create({
         borderColor: "#071570",
     },
     submitButton: {
-        padding: 10,
-        marginTop: 20,
-        backgroundColor: "#48c348",
-        borderWidth: 1,
+        alignItems: "center",
+        marginTop: "15%",
+        marginBottom: "5%",
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: "#3ac1e3",
         borderRadius: 15,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7,
     },
     roundEnd: {
         alignItems: 'center',
@@ -253,12 +273,20 @@ const styles = StyleSheet.create({
     },
     endButton: {
         alignItems: "center",
-        marginTop: 25,
-        borderWidth: 1,
+        marginTop: "15%",
+        marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
-        backgroundColor: "#ddd457",
+        backgroundColor: "#3ac1e3",
         borderRadius: 15,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7,
     }
 })
 
