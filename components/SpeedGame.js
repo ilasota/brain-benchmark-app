@@ -83,7 +83,7 @@ function SpeedGame () {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3ac1e3',
+        backgroundColor: '#fcf6f5',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         minHeight: '10%',
     },
@@ -93,11 +93,21 @@ const styles = StyleSheet.create({
         marginTop: "50%",
     },
     startButton: {
-        backgroundColor: "#62d653",
+        alignItems: "center",
+        marginTop: "15%",
+        marginBottom: "5%",
+        paddingHorizontal: 15,
         paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderWidth: 1,
+        backgroundColor: "#3ac1e3",
         borderRadius: 15,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7,
     },
     testScreen: {
         minHeight: "100%",
