@@ -29,7 +29,7 @@ function Home ({ navigation }) {
                        <View style={styles.carousel}>
                            <Text style={styles.headerCar}>{item.title}</Text>
                            <Image
-                               source={{ uri: item.imgUrl }}
+                               source={item.imgUrl}
                                style={styles.image}
                            />
                            <View style={styles.scoresRow}>

@@ -2,7 +2,7 @@ export default data = [
     {
         title: "Number Game",
         body: "Simple number memory test. The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. ",
-        imgUrl: "https://image.flaticon.com/icons/png/512/66/66116.png",
+        imgUrl: require("../assets/numbers.png"),
         high: 0,
         average: 0,
         navi: "NumberGame",
@@ -11,7 +11,7 @@ export default data = [
         title: "Reaction Game",
         body: "Simple test that measures your reaction speed. Average reaction time for a person is around 250ms.\n\n" +
         "Don't worry if your time is above average because your score can be off by up to 70ms due to phone and screen lag.",
-        imgUrl: "https://icon-library.com/images/stop-watch-icon/stop-watch-icon-15.jpg",
+        imgUrl: require("../assets/speed.png"),
         high: 0 + " ms",
         average: 0 + " ms",
         navi: "ReactionGame",
@@ -20,7 +20,7 @@ export default data = [
         title: "Speed Game",
         body: "Test that measures your clicking speed. For a reliable results you should only use one finger.\n\n" + "" +
             "The average person clicks with speed of 8-10 clicks per second.",
-        imgUrl: "https://lh3.googleusercontent.com/proxy/3FDMLOMlorU-izSf9kgtq1QjI9nAvHeH8-o5vIxsw8wIChg_XlxzFPfKIVTxM3pXsz8eCOn-s4NPz9Ht1f9eVlqH6B21vNdI7Z29q88",
+        imgUrl: require("../assets/click.png"),
         high: 0 + " cps",
         average: 0 + " cps",
         navi: "SpeedGame",
@@ -29,7 +29,7 @@ export default data = [
         title: "Chimp Game",
         body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.\n" +
             "",
-        imgUrl: "https://static.thenounproject.com/png/1316681-200.png",
+        imgUrl: require("../assets/chimp.png"),
         high: 0,
         average: 0,
         navi: "ChimpGame",
