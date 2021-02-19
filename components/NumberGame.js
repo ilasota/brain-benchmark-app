@@ -108,6 +108,9 @@ function NumberGame () {
       <SafeAreaView style={styles.container}>
           <View style={startVisible}>
               <View style={styles.startGame}>
+                  <Text style={{fontSize: 40}}>Number Game</Text>
+                  <Image style={styles.image} source={require("../assets/numbers.png")} />
+                  <Text style={{fontSize: 15}}>Simple memory test.</Text>
                   <TouchableOpacity style={styles.startButton} onPress={() => {visibilityHandler(); timerHandler()}}>
                       <Text style={{fontSize: 30}}>Start</Text>
                   </TouchableOpacity>
@@ -199,11 +202,11 @@ const styles = StyleSheet.create({
     startGame:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%",
+        padding: 10,
     },
     startButton: {
         alignItems: "center",
-        marginTop: "15%",
+        marginTop: "10%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -287,6 +290,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
         elevation: 7,
+    },
+    image: {
+        width: 150,
+        height: 150,
     }
 })
 
