@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image} from 'react-native';
 
 
 function ReactionGame () {
@@ -61,6 +61,9 @@ function ReactionGame () {
         <SafeAreaView style={styles.container}>
             <View style={startVisible}>
                 <View style={styles.startGame}>
+                    <Text style={{fontSize: 40}}>Reaction Game</Text>
+                    <Image style={styles.image} source={require("../assets/speed.png")} />
+                    <Text style={{fontSize: 15}}>Click when the screen turns green.</Text>
                     <TouchableOpacity style={styles.startButton}
                                       onPress={ gameHandler }>
                         <Text style={ {fontSize: 30} }>Start</Text>
@@ -111,11 +114,11 @@ const styles = StyleSheet.create({
     startGame:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%",
+        padding: 10,
     },
     startButton: {
         alignItems: "center",
-        marginTop: "15%",
+        marginTop: "10%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -176,6 +179,10 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 7,
     },
+    image: {
+        width: 150,
+        height: 150,
+    }
 })
 
 export default ReactionGame
