@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpacity, Image} from 'react-native';
 
 
 
@@ -105,6 +105,9 @@ function ChimpGame () {
         <SafeAreaView style={styles.container}>
             <View style={startVisible}>
                 <View style={styles.startGame}>
+                    <Text style={{fontSize: 40}}>Chimp Game</Text>
+                    <Image style={styles.image} source={require("../assets/chimp.png")} />
+                    <Text style={{fontSize: 15}}>Press the squares according to their numbers.</Text>
                     <TouchableOpacity style={styles.startButton}
                                       onPress={roundHandler}>
                         <Text style={ {fontSize: 30} }>Start</Text>
@@ -160,11 +163,11 @@ const styles = StyleSheet.create({
     startGame:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%",
+        padding: 10,
     },
     startButton: {
         alignItems: "center",
-        marginTop: "15%",
+        marginTop: "10%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -200,6 +203,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
         elevation: 7,
+    },
+    image: {
+        width: 150,
+        height: 150,
     }
 })
 
