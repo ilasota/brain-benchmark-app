@@ -6,8 +6,8 @@ export const lightColors = {
 };
 
 export const darkColors = {
-    background: '#fcf6f5',
-    button: '#3ac1e3',
-    text: '#222222',
-    buttonText: '#fff'
+    background: '#393e46',
+    button: '#d65a31',
+    text: '#eeeeee',
+    buttonText: '#222831'
 };
