@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "brain-benchmark-app",
+    "name": "Brain Benchmark",
     "slug": "brain-benchmark-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3ac1e3"
+      "backgroundColor": "#fcf6f5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,8 +22,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#fcf6f5"
+      },
+      "package": "com.ilasota.brainbenchmark"
     },
     "web": {
       "favicon": "./assets/favicon.png"
