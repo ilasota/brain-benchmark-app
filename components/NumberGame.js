@@ -110,7 +110,7 @@ function NumberGame () {
               <View style={styles.startGame}>
                   <Text style={{fontSize: 40}}>Number Game</Text>
                   <Image style={styles.image} source={require("../assets/numbers.png")} />
-                  <Text style={{fontSize: 15}}>Simple memory test.</Text>
+                  <Text style={{fontSize: 20}}>Simple memory test.</Text>
                   <TouchableOpacity style={styles.startButton} onPress={() => {visibilityHandler(); timerHandler()}}>
                       <Text style={{fontSize: 30}}>Start</Text>
                   </TouchableOpacity>
