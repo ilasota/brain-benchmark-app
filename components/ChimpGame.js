@@ -107,7 +107,8 @@ function ChimpGame () {
                 <View style={styles.startGame}>
                     <Text style={{fontSize: 40}}>Chimp Game</Text>
                     <Image style={styles.image} source={require("../assets/chimp.png")} />
-                    <Text style={{fontSize: 15}}>Press the squares according to their numbers.</Text>
+                    <Text style={{fontSize: 20}}>Press the squares</Text>
+                    <Text style={{fontSize: 20}}>according to their numbers.</Text>
                     <TouchableOpacity style={styles.startButton}
                                       onPress={roundHandler}>
                         <Text style={ {fontSize: 30} }>Start</Text>
