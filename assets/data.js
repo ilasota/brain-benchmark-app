@@ -9,8 +9,7 @@ export default data = [
     },
     {
         title: "Reaction Game",
-        body: "Simple test that measures your reaction speed. Average reaction time for a person is around 250ms.\n\n" +
-        "Don't worry if your time is above average because your score can be off by up to 70ms due to phone and screen lag.",
+        body: "Simple test that measures your reaction speed. Average reaction time for a person is around 250ms.",
         imgUrl: require("../assets/speed.png"),
         high: 0 + " ms",
         average: 0 + " ms",
@@ -18,8 +17,8 @@ export default data = [
     },
     {
         title: "Speed Game",
-        body: "Test that measures your clicking speed. For a reliable results you should only use one finger.\n\n" + "" +
-            "The average person clicks with speed of 8-10 clicks per second.",
+        body: "Test that measures your clicking speed. For a reliable results you should only use one finger.",
+
         imgUrl: require("../assets/click.png"),
         high: 0 + " cps",
         average: 0 + " cps",
@@ -27,8 +26,7 @@ export default data = [
     },
     {
         title: "Chimp Game",
-        body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.\n" +
-            "",
+        body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.",
         imgUrl: require("../assets/chimp.png"),
         high: 0,
         average: 0,
