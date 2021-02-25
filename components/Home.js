@@ -1,12 +1,14 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity } from 'react-native';
 
 import data from "../assets/data";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
+export const IMAGE = Dimensions.get("window").width * 0.25
+export const BODY = Dimensions.get("window").width * 0.55
 
 
 function Home ({ navigation }) {
@@ -19,6 +21,7 @@ function Home ({ navigation }) {
                 <Text style={{fontSize: 20, fontWeight: "bold"}}>BRAIN BENCHMARK</Text>
             </View>
            <Carousel data={data}
+                     style={{flex:1, justifyContent: "space-between"}}
                      layout="default"
                      ref={isCarousel}
                      sliderWidth={SLIDER_WIDTH}
@@ -50,12 +53,13 @@ function Home ({ navigation }) {
                      }
            />
             <Pagination
+                containerStyle = {{padding: 5}}
                 dotsLength={data.length}
                 activeDotIndex={index}
                 carouselRef={isCarousel}
                 dotStyle={{
-                    width: 10,
-                    height: 10,
+                    width: 7,
+                    height: 7,
                     borderRadius: 5,
                     marginHorizontal: 0,
                     backgroundColor: "rgba(0,0,0,0.92)"
@@ -73,54 +77,49 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fcf6f5',
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        alignItems: "center"
+        alignItems: "center",
     },
     header: {
         alignItems: "flex-start",
         width: "100%",
-        paddingVertical: 10,
+        paddingVertical: 3,
         paddingHorizontal: 10,
     },
     carousel: {
+        flex: 1,
         alignItems: "center",
         borderRadius: 8,
         minWidth: ITEM_WIDTH,
-        minHeight: "95%",
         paddingBottom: 40,
-        marginTop: 15,
+        justifyContent: "space-between"
     },
     headerCar: {
         color: "#222222",
         fontSize: 30,
         fontWeight: "bold",
-        paddingVertical: 20,
+        paddingVertical: 3,
     },
     image: {
-        width: 75,
-        height: 75,
+        width: IMAGE,
+        height: IMAGE,
     },
     body: {
         color: "#222222",
         fontSize: 18,
         paddingLeft: 20,
         paddingRight: 20,
-        minHeight: "35%",
     },
     scoresRow: {
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
         width: 300,
-        paddingVertical: 10,
     },
     scores: {
         alignItems: "center",
-        paddingVertical: 5,
     },
     playButton: {
         alignItems: "center",
-        marginTop: "15%",
-        marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: "#3ac1e3",
