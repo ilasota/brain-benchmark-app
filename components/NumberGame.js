@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     gameScreen: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: "60%"
+        marginTop: "20%"
     },
     numInput: {
         borderBottomWidth: 1,
@@ -255,29 +255,27 @@ const styles = StyleSheet.create({
     },
     roundEnd: {
         alignItems: 'center',
-        justifyContent: 'center',
     },
     endRound:{
         alignItems: "center",
-        marginTop: 25,
+        marginTop: "5%",
     },
     endImage: {
-        width: 100,
-        height: 100,
-        marginTop: 35,
+        width: 75,
+        height: 75,
+        marginTop: "5%",
     },
     endNumber: {
         alignItems: "center",
-        marginTop: 25,
+        marginTop: "5%",
     },
     endAnswer: {
         alignItems: "center",
-        marginTop: 25,
+        marginTop: "5%",
     },
     endButton: {
         alignItems: "center",
-        marginTop: "15%",
-        marginBottom: "5%",
+        marginTop: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: "#3ac1e3",
