@@ -63,7 +63,8 @@ function ReactionGame () {
                 <View style={styles.startGame}>
                     <Text style={{fontSize: 40}}>Reaction Game</Text>
                     <Image style={styles.image} source={require("../assets/speed.png")} />
-                    <Text style={{fontSize: 20}}>Click when the screen turns green.</Text>
+                    <Text style={{fontSize: 20}}>Click when the screen</Text>
+                    <Text style={{fontSize: 20}}>turns green.</Text>
                     <TouchableOpacity style={styles.startButton}
                                       onPress={ gameHandler }>
                         <Text style={ {fontSize: 30} }>Start</Text>
