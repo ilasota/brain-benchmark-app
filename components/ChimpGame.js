@@ -22,7 +22,7 @@ function ChimpGame () {
   const [ loseVisible, setLoseVisible ] = useState({display: "none"});
   const [ gameBoard, setGameBoard ]  = useState([]);
   const [ numberAmount, setNumberAmount ] = useState(4)
-  const [ numVisible, setNumVisible ] = useState({font: 30});
+  const [ numVisible, setNumVisible ] = useState({fontSize: 30});
   const [ currentNum , setCurrentNum ] = useState(1);
   const [ roundResult, setRoundResult ] = useState()
 
