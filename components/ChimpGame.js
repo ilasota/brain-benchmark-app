@@ -1,7 +1,18 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, SafeAreaView, StatusBar, FlatList, TouchableOpacity, Image} from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    SafeAreaView,
+    StatusBar,
+    FlatList,
+    TouchableOpacity,
+    Image,
+    Dimensions
+} from 'react-native';
 
+export const TILE = Dimensions.get("screen").width * 0.13
 
 
 function ChimpGame () {
@@ -34,9 +45,9 @@ function ChimpGame () {
                 value: " ",
                 id: Math.random(),
                 tile: {
-                    minWidth: 55,
-                    minHeight: 55,
-                    margin: 5,
+                    minWidth: TILE,
+                    minHeight: TILE,
+                    margin: 2,
                 }
             };
         }
@@ -49,10 +60,10 @@ function ChimpGame () {
                     backgroundColor: '#ffffff',
                     borderWidth: 1,
                     borderRadius: 5,
-                    minWidth: 55,
-                    minHeight: 55,
+                    minWidth: TILE,
+                    minHeight: TILE,
                     alignItems: "center",
-                    margin: 5,
+                    margin: 2,
                 }
             }
         }
@@ -72,7 +83,7 @@ function ChimpGame () {
     const gameHandler = (item, itemID) => {
         const editedBoard = gameBoard.map( item => {
             if ( item.id === itemID ) {
-                item.tile = {minWidth: 55, minHeight: 55, margin: 5,}
+                item.tile = {width: TILE, height: TILE, margin: 2,}
                 return item
             }
             return item
@@ -117,7 +128,7 @@ function ChimpGame () {
             </View>
             <View style={gameVisible}>
                 <FlatList
-                    style={{marginVertical: 100}}
+                    contentContainerStyle={{marginTop: 45, marginHorizontal: 10, alignItems: "center"}}
                     keyExtractor={()=> Math.random().toString()}
                     data={gameBoard}
                     numColumns={6}
