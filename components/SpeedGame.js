@@ -76,13 +76,15 @@ function SpeedGame () {
             <View style={gameVisible}>
                 <View>
                     <TouchableOpacity style={styles.testScreen} onPress={() => {setCounter(counter + 1)}}>
-                        <Text style={{fontWeight: "bold", fontSize: 25}}>CLICK AS FAST AS YOU CAN</Text>
+                        <Text style={{fontWeight: "bold", fontSize: 25}}>CLICK AS FAST</Text>
+                        <Text style={{fontWeight: "bold", fontSize: 25}}>AS YOU CAN</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={resultVisible}>
                 <View style={styles.resultScreen}>
-                    <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked {counter} times!</Text>
+                    <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked</Text>
+                    <Text style={{fontWeight: "bold", fontSize: 35}} >{counter} times!</Text>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5} CPS</Text>
                     <TouchableOpacity style={styles.restartButton} onPress={resetHandler}>
                         <Text style={{fontSize: 20,}}>Try Again!</Text>
@@ -127,21 +129,21 @@ const styles = StyleSheet.create({
         minHeight: "100%",
         minWidth: "100%",
         alignItems: 'center',
-        justifyContent: 'center',
+        marginTop: "20%"
     },
     waitingScreen: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%"
+        marginTop: "20%"
     },
     resultScreen: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: "50%"
+        marginTop: "20%"
     },
     restartButton: {
     alignItems: "center",
-        marginTop: "15%",
+        marginTop: "10%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
