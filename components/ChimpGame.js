@@ -144,8 +144,10 @@ function ChimpGame () {
             </View>
             <View style={winVisible}>
                 <View style={styles.resultScreen}>
-                    <Text style={{fontSize: 30}}>Numbers</Text>
+                    <Text style={{fontSize: 30}}>Good job!</Text>
+                    <Text style={{fontSize: 30}}>Next round will be</Text>
                     <Text style={{fontSize: 50}}>{roundResult + 1}</Text>
+                    <Text style={{fontSize: 30}}>numbers</Text>
                     <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
                         <Text style={{fontSize: 20}}>Next</Text>
                     </TouchableOpacity>
@@ -153,8 +155,10 @@ function ChimpGame () {
             </View>
             <View style={loseVisible}>
                 <View style={styles.resultScreen}>
+                    <Text style={{fontSize: 30}}>You lost!</Text>
                     <Text style={{fontSize: 30}}>Your Score:</Text>
                     <Text style={{fontSize: 50}}>{roundResult}</Text>
+                    <Text style={{fontSize: 30}}>numbers</Text>
                     <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
                         <Text style={{fontSize: 20}}>Try Again</Text>
                     </TouchableOpacity>
@@ -179,7 +183,7 @@ const styles = StyleSheet.create({
     },
     startButton: {
         alignItems: "center",
-        marginTop: "10%",
+        marginTop: "5%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -196,12 +200,11 @@ const styles = StyleSheet.create({
     },
     resultScreen: {
         alignItems: 'center',
-        justifyContent: 'center',
-        marginVertical: "30%",
+        marginTop: "5%",
     },
     endButton: {
         alignItems: "center",
-        marginTop: "15%",
+        marginTop: "5%",
         marginBottom: "5%",
         paddingHorizontal: 15,
         paddingVertical: 5,
