@@ -9,6 +9,7 @@ function SpeedGame () {
     const [ resultVisible, setResultVisible ] = useState({display: "none"});
     const [ countdownStatus, setCountdownStatus ] = useState(false);
     const [ timerStatus, setTimerStatus ] = useState(false);
+    const [ delayStatus, setDelayStatus ] = useState(false);
     const [ countdown, setCountdown ] = useState(3);
     const [ counter, setCounter ] = useState(0);
 
@@ -46,13 +47,23 @@ function SpeedGame () {
     useEffect(() => {
         if(timerStatus){
             let timer = setTimeout(() => {
-                setResultVisible({display: "flex"});
                 setGameVisible({display: "none"});
                 setTimerStatus(false)
+                setDelayStatus(true)
             }, 5000)
             return () => { clearTimeout(timer) }
         }
     }, [timerStatus])
+
+    useEffect(() => {
+        if(delayStatus){
+            let timer = setTimeout(() => {
+                setResultVisible({display: "flex"});
+                setDelayStatus(false)
+            }, 100)
+            return () => { clearTimeout(timer) }
+        }
+    }, [delayStatus])
 
 
     return (
