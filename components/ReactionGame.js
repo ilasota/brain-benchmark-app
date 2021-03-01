@@ -37,14 +37,13 @@ function ReactionGame () {
                 setTestVisible({display: "flex"});
                 setStartTime(new Date());
                 setTimerStatus(false);
-            }, Math.random() * 500 + 2000)
+            }, Math.random() * 2000 + 500)
             return () => {clearTimeout(timer)}
         }
     }, [setWaitingVisible, setTestVisible, timerStatus])
 
 
     const failHandler = () => {
-        //clearTimeout(timer);
         setTimerStatus(false)
         setWaitingVisible({display: "none"});
         setFailVisible({display: "flex"});
