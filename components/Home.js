@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity } from 'react-native';
 
-import data from "../assets/data";
+import data from "../data/data";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
