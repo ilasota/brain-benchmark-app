@@ -12,12 +12,12 @@ export const IMAGE = Dimensions.get("window").width * 0.25
 
 function Home ({ navigation }) {
     const [ index, setIndex ] = useState(0)
-    const [speedScore, setSpeedScore] = useState([1,2,5])
     const [chimpScore, setChimpScore] = useState([1,2,3])
     const isCarousel = React.useRef(null)
 
     const numberScore = useSelector(state => state.numberReducer)
     const reactionScore = useSelector(state => state.reactionReducer)
+    const speedScore = useSelector(state => state.speedReducer)
 
 
     return (

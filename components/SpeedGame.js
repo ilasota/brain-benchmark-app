@@ -1,6 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image} from 'react-native';
+import {  useDispatch } from "react-redux";
+
+import { speedSubmit } from '../data/actions'
 
 function SpeedGame () {
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
@@ -13,6 +16,7 @@ function SpeedGame () {
     const [ countdown, setCountdown ] = useState(3);
     const [ counter, setCounter ] = useState(0);
 
+    const dispatch = useDispatch()
 
     const visibilityHandler = () => {
         setWaitingVisible({display: "flex"});
@@ -97,7 +101,7 @@ function SpeedGame () {
                     <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked</Text>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >{counter} times!</Text>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5} CPS</Text>
-                    <TouchableOpacity style={styles.restartButton} onPress={resetHandler}>
+                    <TouchableOpacity style={styles.restartButton} onPress={() => {dispatch(speedSubmit(counter/5)); resetHandler()}}>
                         <Text style={{fontSize: 20,}}>Try Again!</Text>
                     </TouchableOpacity>
                 </View>
