@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import {useSelector} from "react-redux";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar,  Dimensions, Image, TouchableOpacity } from 'react-native';
 
 import data from "../data/data";
@@ -11,7 +12,13 @@ export const IMAGE = Dimensions.get("window").width * 0.25
 
 function Home ({ navigation }) {
     const [ index, setIndex ] = useState(0)
+    const [reactionScore, setReactionScore] = useState([1,2,3])
+    const [speedScore, setSpeedScore] = useState([1,2,5])
+    const [chimpScore, setChimpScore] = useState([1,2,3])
     const isCarousel = React.useRef(null)
+
+    const numberScore = useSelector(state => state.numberReducer)
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -36,11 +43,20 @@ function Home ({ navigation }) {
                            <View style={styles.scoresRow}>
                                <View style={styles.scores}>
                                    <Text style={{fontSize: 18, color: '#222222'}}>High Score</Text>
-                                   <Text style={{fontSize: 20, color: '#222222'}}>{item.high}</Text>
+                                   <Text style={{fontSize: 20, color: '#222222'}}>
+                                       {eval(item.varName).length === 0 ? 0 : Math.max(...eval(item.varName))}{item.unit}
+                                   </Text>
                                </View>
                                <View style={styles.scores}>
                                    <Text style={{fontSize: 18, color: '#222222'}}>Average Score</Text>
-                                   <Text style={{fontSize: 20, color: '#222222'}}>{item.average}</Text>
+                                   <Text style={{fontSize: 20, color: '#222222'}}>
+                                       {
+                                           eval(item.varName).length === 0 ?
+                                           0 :
+                                           Math.round(eval(item.varName).reduce( ( a, b ) => a+b, 0) / eval(item.varName).length *100 ) /100
+                                       }
+                                           {item.unit}
+                                   </Text>
                                </View>
                            </View>
                            <Text style={styles.body}>{item.body}</Text>
