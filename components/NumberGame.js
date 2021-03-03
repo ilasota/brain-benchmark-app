@@ -2,8 +2,9 @@ import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, TextInput, Keyboard, Image } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import {  useDispatch } from "react-redux";
 
-
+import { submitNumber } from '../data/submitNumber'
 
 function NumberGame () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
@@ -22,6 +23,7 @@ function NumberGame () {
     const [timerStatus, setTimerStatus ] = useState(false);
     const [ timeAmount, setTimeAmount ] = useState();
 
+    const dispatch = useDispatch()
 
     let finalNum = number;
 
@@ -183,7 +185,7 @@ function NumberGame () {
                   <View style={styles.endAnswer}>
                       <Text style={{fontSize: 30}}>Your answer</Text>
                       <Text style={{fontSize: 25}}>{savedScore.userAnswer}</Text>
-                      <TouchableOpacity style={styles.endButton} onPress={loseHandler}>
+                      <TouchableOpacity style={styles.endButton} onPress={() =>  {dispatch(submitNumber(savedScore.currentRound - 1)); loseHandler()}}>
                           <Text style={{fontSize: 25}}>Try Again</Text>
                       </TouchableOpacity>
                   </View>
