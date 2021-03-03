@@ -1,7 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image} from 'react-native';
+import {  useDispatch } from "react-redux";
 
+import { reactionSubmit } from "../data/actions";
 
 function ReactionGame () {
     const [ startVisible, setStartVisible ] = useState({display: "flex"});
@@ -12,6 +14,8 @@ function ReactionGame () {
     const [ startTime, setStartTime ] = useState();
     const [ timeElapsed, setTimeElapsed ] = useState();
     const [ timerStatus, setTimerStatus ] = useState(false);
+
+    const dispatch = useDispatch()
 
     let endTime;
     let timer;
@@ -85,7 +89,7 @@ function ReactionGame () {
                     <Text style={{fontSize: 30}}>Your time:</Text>
                     <Text style={{fontSize: 25}}>{timeElapsed}ms</Text>
                     <View style={styles.controlButtons}>
-                        <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
+                        <TouchableOpacity style={styles.restartButton} onPress={() => {dispatch(reactionSubmit(timeElapsed)) ;restartHandler()}}>
                             <Text style={{fontSize: 20,}}>Try Again</Text>
                         </TouchableOpacity>
                     </View>

@@ -12,12 +12,12 @@ export const IMAGE = Dimensions.get("window").width * 0.25
 
 function Home ({ navigation }) {
     const [ index, setIndex ] = useState(0)
-    const [reactionScore, setReactionScore] = useState([1,2,3])
     const [speedScore, setSpeedScore] = useState([1,2,5])
     const [chimpScore, setChimpScore] = useState([1,2,3])
     const isCarousel = React.useRef(null)
 
     const numberScore = useSelector(state => state.numberReducer)
+    const reactionScore = useSelector(state => state.reactionReducer)
 
 
     return (
@@ -44,7 +44,12 @@ function Home ({ navigation }) {
                                <View style={styles.scores}>
                                    <Text style={{fontSize: 18, color: '#222222'}}>High Score</Text>
                                    <Text style={{fontSize: 20, color: '#222222'}}>
-                                       {eval(item.varName).length === 0 ? 0 : Math.max(...eval(item.varName))}{item.unit}
+                                       {eval(item.varName).length === 0 ?
+                                           0 :
+                                           item.varName === "reactionScore" ?
+                                               Math.min(...eval(item.varName)) :
+                                               Math.max(...eval(item.varName))
+                                       }{item.unit}
                                    </Text>
                                </View>
                                <View style={styles.scores}>
