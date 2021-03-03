@@ -1,7 +1,8 @@
 import { createStore } from "redux";
 
+import allReducers from './index'
 
-const store = createStore(numberReducer);
+const store = createStore(allReducers);
 
 
 export default store;
