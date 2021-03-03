@@ -18,3 +18,10 @@ export const speedSubmit = (score) => {
         payload: score,
     };
 };
+
+export const chimpSubmit = (score) => {
+    return{
+        type: 'SUBMIT_CHIMP',
+        payload: score,
+    };
+};
