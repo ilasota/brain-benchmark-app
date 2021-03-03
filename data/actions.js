@@ -11,3 +11,10 @@ export const reactionSubmit = (score) => {
         payload: score,
     };
 };
+
+export const speedSubmit = (score) => {
+    return{
+        type: 'SUBMIT_SPEED',
+        payload: score,
+    };
+};
