@@ -11,6 +11,9 @@ import {
     Image,
     Dimensions
 } from 'react-native';
+import {  useDispatch } from "react-redux";
+
+import { chimpSubmit } from '../data/actions'
 
 export const TILE = Dimensions.get("screen").width * 0.13
 
@@ -26,6 +29,7 @@ function ChimpGame () {
   const [ currentNum , setCurrentNum ] = useState(1);
   const [ roundResult, setRoundResult ] = useState()
 
+  const dispatch = useDispatch()
 
   let squarePosition = Array(36);
   let position = [];
@@ -157,9 +161,9 @@ function ChimpGame () {
                 <View style={styles.resultScreen}>
                     <Text style={{fontSize: 30}}>You lost!</Text>
                     <Text style={{fontSize: 30}}>Your Score:</Text>
-                    <Text style={{fontSize: 50}}>{roundResult}</Text>
+                    <Text style={{fontSize: 50}}>{roundResult === 4 ? 0 : roundResult - 1}</Text>
                     <Text style={{fontSize: 30}}>numbers</Text>
-                    <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
+                    <TouchableOpacity style={styles.endButton} onPress={() => {dispatch(chimpSubmit(roundResult === 4 ? 0 : roundResult - 1)); roundHandler()}}>
                         <Text style={{fontSize: 20}}>Try Again</Text>
                     </TouchableOpacity>
                 </View>
