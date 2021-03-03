@@ -1,7 +1,7 @@
-const numberReducer = (state = [1, 2, 3], action) => {
+const numberReducer = (state = [], action) => {
     switch(action.type){
         case 'SUBMIT':
-            return [...state, 5];
+            return [...state, action.payload];
         default:
             return state
     }
