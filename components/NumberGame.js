@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Text
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import {  useDispatch } from "react-redux";
 
-import { submitNumber } from '../data/submitNumber'
+import { numberSubmit } from '../data/actions'
 
 function NumberGame () {
     const [ gameVisible, setGameVisible ] = useState({display: "none"});
@@ -185,7 +185,7 @@ function NumberGame () {
                   <View style={styles.endAnswer}>
                       <Text style={{fontSize: 30}}>Your answer</Text>
                       <Text style={{fontSize: 25}}>{savedScore.userAnswer}</Text>
-                      <TouchableOpacity style={styles.endButton} onPress={() =>  {dispatch(submitNumber(savedScore.currentRound - 1)); loseHandler()}}>
+                      <TouchableOpacity style={styles.endButton} onPress={() =>  {dispatch(numberSubmit(savedScore.currentRound - 1)); loseHandler()}}>
                           <Text style={{fontSize: 25}}>Try Again</Text>
                       </TouchableOpacity>
                   </View>
