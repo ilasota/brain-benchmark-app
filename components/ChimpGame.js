@@ -107,6 +107,7 @@ function ChimpGame () {
                 }
             }else {
                 setRoundResult(numberAmount);
+                dispatch(chimpSubmit(numberAmount === 4 ? 0 : numberAmount - 1))
                 setNumberAmount(4);
                 setLoseVisible({display: "flex"});
                 setGameVisible({display: "none"});
@@ -163,7 +164,7 @@ function ChimpGame () {
                     <Text style={{fontSize: 30}}>Your Score:</Text>
                     <Text style={{fontSize: 50}}>{roundResult === 4 ? 0 : roundResult - 1}</Text>
                     <Text style={{fontSize: 30}}>numbers</Text>
-                    <TouchableOpacity style={styles.endButton} onPress={() => {dispatch(chimpSubmit(roundResult === 4 ? 0 : roundResult - 1)); roundHandler()}}>
+                    <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
                         <Text style={{fontSize: 20}}>Try Again</Text>
                     </TouchableOpacity>
                 </View>
