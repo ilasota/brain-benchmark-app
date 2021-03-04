@@ -15,6 +15,7 @@ function SpeedGame () {
     const [ delayStatus, setDelayStatus ] = useState(false);
     const [ countdown, setCountdown ] = useState(3);
     const [ counter, setCounter ] = useState(0);
+    const [ result, setResult ] = useState(0);
 
     const dispatch = useDispatch()
 
@@ -64,7 +65,9 @@ function SpeedGame () {
             let timer = setTimeout(() => {
                 setResultVisible({display: "flex"});
                 setDelayStatus(false)
-            }, 100)
+                setResult(counter)
+                dispatch(speedSubmit(counter/5))
+            }, 10)
             return () => { clearTimeout(timer) }
         }
     }, [delayStatus])
@@ -99,9 +102,9 @@ function SpeedGame () {
             <View style={resultVisible}>
                 <View style={styles.resultScreen}>
                     <Text style={{fontWeight: "bold", fontSize: 35}} >You clicked</Text>
-                    <Text style={{fontWeight: "bold", fontSize: 35}} >{counter} times!</Text>
-                    <Text style={{fontWeight: "bold", fontSize: 35}} >{counter/5} CPS</Text>
-                    <TouchableOpacity style={styles.restartButton} onPress={() => {dispatch(speedSubmit(counter/5)); resetHandler()}}>
+                    <Text style={{fontWeight: "bold", fontSize: 35}} >{result} times!</Text>
+                    <Text style={{fontWeight: "bold", fontSize: 35}} >{result/5} CPS</Text>
+                    <TouchableOpacity style={styles.restartButton} onPress={resetHandler}>
                         <Text style={{fontSize: 20,}}>Try Again!</Text>
                     </TouchableOpacity>
                 </View>
