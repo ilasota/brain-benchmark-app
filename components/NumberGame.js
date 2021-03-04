@@ -52,6 +52,7 @@ function NumberGame () {
             setWinScreen({display: "flex"});
         } else {
             setSavedScore({ userAnswer: answer, currentRound: round, currentNumber: finalNum });
+            dispatch(numberSubmit(round - 1));
             setRound(1);
             setNumber(Math.floor(Math.random()*10));
             setAnswer("");
@@ -185,7 +186,7 @@ function NumberGame () {
                   <View style={styles.endAnswer}>
                       <Text style={{fontSize: 30}}>Your answer</Text>
                       <Text style={{fontSize: 25}}>{savedScore.userAnswer}</Text>
-                      <TouchableOpacity style={styles.endButton} onPress={() =>  {dispatch(numberSubmit(savedScore.currentRound - 1)); loseHandler()}}>
+                      <TouchableOpacity style={styles.endButton} onPress={loseHandler}>
                           <Text style={{fontSize: 25}}>Try Again</Text>
                       </TouchableOpacity>
                   </View>
