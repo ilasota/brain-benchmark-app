@@ -58,6 +58,7 @@ function ReactionGame () {
         setTimeElapsed(endTime - startTime);
         setTestVisible({display: "none"});
         setResultVisible({display: "flex"});
+        dispatch(reactionSubmit(endTime - startTime))
     }
 
     return (
@@ -89,7 +90,7 @@ function ReactionGame () {
                     <Text style={{fontSize: 30}}>Your time:</Text>
                     <Text style={{fontSize: 25}}>{timeElapsed}ms</Text>
                     <View style={styles.controlButtons}>
-                        <TouchableOpacity style={styles.restartButton} onPress={() => {dispatch(reactionSubmit(timeElapsed)) ;restartHandler()}}>
+                        <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
                             <Text style={{fontSize: 20,}}>Try Again</Text>
                         </TouchableOpacity>
                     </View>
