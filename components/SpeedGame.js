@@ -79,7 +79,7 @@ function SpeedGame () {
                 <View style={styles.startGame}>
                     <Text style={{fontSize: 40}}>Speed Game</Text>
                     <Image style={styles.image} source={require("../assets/click.png")} />
-                    <Text style={{fontSize: 20}}>Click as fast as you can.</Text>
+                    <Text style={{fontSize: 20}}>Click as fast as you can,</Text>
                     <TouchableOpacity style={styles.startButton} onPress={visibilityHandler}>
                         <Text style={{fontSize: 30}}>Start</Text>
                     </TouchableOpacity>
@@ -95,7 +95,7 @@ function SpeedGame () {
                 <View>
                     <TouchableOpacity style={styles.testScreen} onPress={() => {setCounter(counter + 1)}}>
                         <Text style={{fontWeight: "bold", fontSize: 25}}>CLICK AS FAST</Text>
-                        <Text style={{fontWeight: "bold", fontSize: 25}}>AS YOU CAN</Text>
+                        <Text style={{fontWeight: "bold", fontSize: 25}}>AS YOU CAN!</Text>
                     </TouchableOpacity>
                 </View>
             </View>
