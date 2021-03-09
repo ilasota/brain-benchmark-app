@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
-import Home, {IMAGE, ITEM_WIDTH} from "./Home";
 
 
 function Login({ navigation }) {
