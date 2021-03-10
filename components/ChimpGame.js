@@ -22,14 +22,14 @@ function ChimpGame () {
   const [ startVisible, setStartVisible ] = useState({display: "flex"});
   const [ gameVisible, setGameVisible ] = useState({display: "none"});
   const [ winVisible, setWinVisible ] = useState({display: "none"});
+  const [ numVisible, setNumVisible ] = useState({fontSize: 30});
   const [ loseVisible, setLoseVisible ] = useState({display: "none"});
   const [ gameBoard, setGameBoard ]  = useState([]);
   const [ numberAmount, setNumberAmount ] = useState(4)
-  const [ numVisible, setNumVisible ] = useState({fontSize: 30});
   const [ currentNum , setCurrentNum ] = useState(1);
-  const [ roundResult, setRoundResult ] = useState()
+  const [ roundResult, setRoundResult ] = useState();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   let squarePosition = Array(36);
   let position = [];
@@ -71,7 +71,7 @@ function ChimpGame () {
                 }
             }
         }
-    }
+    };
 
     const roundHandler = () => {
         boardHandler();
@@ -81,7 +81,7 @@ function ChimpGame () {
         setGameVisible({display: "flex"});
         setWinVisible({display: "none"});
         setLoseVisible({display: "none"});
-    }
+    };
 
 
     const gameHandler = (item, itemID) => {
