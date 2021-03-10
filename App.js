@@ -7,7 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import {store, persistor} from './data/store'
 
-import Login from "./components/LoginScreen";
 import Home from "./components/Home";
 import NumberGame from "./components/NumberGame";
 import ReactionGame from "./components/ReactionGame";
@@ -22,11 +21,7 @@ export default function App() {
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
               <NavigationContainer>
-                  <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-                      <Stack.Screen
-                          name="Login"
-                          component={Login}
-                      />
+                  <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
                       <Stack.Screen
                           name="Home"
                           component={Home}
