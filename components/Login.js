@@ -1,18 +1,32 @@
 import "react-native-gesture-handler";
-import React, { useState } from "react";
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity } from "react-native";
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
 
 function Login({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logo}>
+        <Image style={styles.image} source={require("../assets/icon.png")} />
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>BRAIN BENCHMARK</Text>
+      </View>
       <View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-        >
-          <Text>Login</Text>
-        </TouchableOpacity>
+        <TextInput placeholder="Username" />
+        <TextInput placeholder="Pasword" secureTextEntry={true} />
+      </View>
+      <View>
+        <Text>Sing Up</Text>
+      </View>
+      <View>
+        <Text>Play as Guest</Text>
       </View>
     </SafeAreaView>
   );
@@ -24,6 +38,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fcf6f5",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
+  },
+  logo: {
+    alignItems: "center",
+  },
+  image: {
+    width: 125,
+    height: 125,
   },
 });
 
