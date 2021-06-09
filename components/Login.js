@@ -10,8 +10,13 @@ import {
   Image,
   TextInput,
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { loginStatus } from "../data/actions";
 
 function Login({ navigation }) {
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logo}>
@@ -28,7 +33,13 @@ function Login({ navigation }) {
           <TouchableOpacity style={styles.button}>
             <Text style={{ fontSize: 15, fontWeight: "bold" }}>Sign up</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              dispatch(loginStatus("guestLoggin"));
+              navigation.navigate("Home");
+            }}
+          >
             <Text style={{ fontSize: 15, fontWeight: "bold" }}>Play as Guest</Text>
           </TouchableOpacity>
         </View>
