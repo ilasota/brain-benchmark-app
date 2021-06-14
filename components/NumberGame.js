@@ -136,9 +136,9 @@ function NumberGame() {
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
         <View style={styles.startGame}>
-          <Text style={{ fontSize: 40 }}>Number Game</Text>
+          <Text style={styles.hugeFont}>Number Game</Text>
           <Image style={styles.image} source={require("../assets/numbers.png")} />
-          <Text style={{ fontSize: 20 }}>Simple memory test.</Text>
+          <Text style={styles.smallFont}>Simple memory test.</Text>
           <TouchableOpacity
             style={styles.startButton}
             onPress={() => {
@@ -146,18 +146,18 @@ function NumberGame() {
               timerHandler();
             }}
           >
-            <Text style={{ fontSize: 30 }}>Start</Text>
+            <Text style={styles.bigFont}>Start</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={gameVisible}>
         <View style={styles.roundStyle}>
-          <Text style={{ fontSize: 20 }}>Round: {round}</Text>
+          <Text style={styles.smallFont}>Round: {round}</Text>
         </View>
         <View style={styles.gameScreen}>
           <View style={numVisible}>
             <View style={{ alignItems: "center" }}>
-              <Text style={{ fontSize: 40 }}> {number} </Text>
+              <Text style={styles.hugeFont}> {number} </Text>
               <CountdownCircleTimer
                 key={key}
                 isPlaying={animationStatus}
@@ -186,7 +186,7 @@ function NumberGame() {
                 Keyboard.dismiss();
               }}
             >
-              <Text style={{ fontSize: 20 }}>Enter</Text>
+              <Text style={styles.smallFont}>Enter</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -194,19 +194,19 @@ function NumberGame() {
       <View style={winScreen}>
         <View style={styles.roundEnd}>
           <View style={styles.endRound}>
-            <Text style={{ fontSize: 35 }}>Round</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.currentRound}</Text>
+            <Text style={styles.bigFont}>Round</Text>
+            <Text style={styles.mediumFont}>{savedScore.currentRound}</Text>
           </View>
           <Image style={styles.endImage} source={require("../assets/Checkmark.png")} />
           <View style={styles.endNumber}>
-            <Text style={{ fontSize: 30 }}>Number</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.currentNumber}</Text>
+            <Text style={styles.bigFont}>Number</Text>
+            <Text style={styles.mediumFont}>{savedScore.currentNumber}</Text>
           </View>
           <View style={styles.endAnswer}>
-            <Text style={{ fontSize: 30 }}>Your answer</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.userAnswer}</Text>
+            <Text style={styles.bigFont}>Your answer</Text>
+            <Text style={styles.mediumFont}>{savedScore.userAnswer}</Text>
             <TouchableOpacity style={styles.endButton} onPress={winHandler}>
-              <Text style={{ fontSize: 25 }}>Next</Text>
+              <Text style={styles.mediumFont}>Next</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -214,19 +214,19 @@ function NumberGame() {
       <View style={loseScreen}>
         <View style={styles.roundEnd}>
           <View style={styles.endRound}>
-            <Text style={{ fontSize: 35 }}>Round</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.currentRound}</Text>
+            <Text style={styles.bigFont}>Round</Text>
+            <Text style={styles.mediumFont}>{savedScore.currentRound}</Text>
           </View>
           <Image style={styles.endImage} source={require("../assets/X.png")} />
           <View style={styles.endNumber}>
-            <Text style={{ fontSize: 30 }}>Number</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.currentNumber}</Text>
+            <Text style={styles.bigFont}>Number</Text>
+            <Text style={styles.mediumFont}>{savedScore.currentNumber}</Text>
           </View>
           <View style={styles.endAnswer}>
-            <Text style={{ fontSize: 30 }}>Your answer</Text>
-            <Text style={{ fontSize: 25 }}>{savedScore.userAnswer}</Text>
+            <Text style={styles.bigFont}>Your answer</Text>
+            <Text style={styles.mediumFont}>{savedScore.userAnswer}</Text>
             <TouchableOpacity style={styles.endButton} onPress={loseHandler}>
-              <Text style={{ fontSize: 25 }}>Try Again</Text>
+              <Text style={styles.mediumFont}>Try Again</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -334,6 +334,18 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  smallFont: {
+    fontSize: 20,
+  },
+  mediumFont: {
+    fontSize: 25,
+  },
+  bigFont: {
+    fontSize: 30,
+  },
+  hugeFont: {
+    fontSize: 40,
   },
 });
 

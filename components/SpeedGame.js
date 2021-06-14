@@ -80,25 +80,18 @@ function SpeedGame() {
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
         <View style={styles.startGame}>
-          <Text style={{ fontSize: 40 }}>Speed Game</Text>
+          <Text style={styles.bigFont}>Speed Game</Text>
           <Image style={styles.image} source={require("../assets/click.png")} />
-          <Text style={{ fontSize: 20 }}>Click as fast as you can</Text>
+          <Text style={styles.smallFont}>Click as fast as you can</Text>
           <TouchableOpacity style={styles.startButton} onPress={visibilityHandler}>
-            <Text style={{ fontSize: 30 }}>Start</Text>
+            <Text style={styles.mediumFont}>Start</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={waitingVisible}>
         <View style={styles.waitingScreen}>
-          <Text style={{ fontSize: 20 }}>Game starts in:</Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 25,
-            }}
-          >
-            {countdown}
-          </Text>
+          <Text style={styles.smallFont}>Game starts in:</Text>
+          <Text style={styles.smallBoldFont}>{countdown}</Text>
         </View>
       </View>
       <View style={gameVisible}>
@@ -109,53 +102,18 @@ function SpeedGame() {
               setCounter(counter + 1);
             }}
           >
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 25,
-              }}
-            >
-              CLICK AS FAST
-            </Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 25,
-              }}
-            >
-              AS YOU CAN!
-            </Text>
+            <Text style={styles.smallBoldFont}>CLICK AS FAST</Text>
+            <Text style={styles.smallBoldFont}>AS YOU CAN!</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={resultVisible}>
         <View style={styles.resultScreen}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 35,
-            }}
-          >
-            You clicked
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 35,
-            }}
-          >
-            {result} times!
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 35,
-            }}
-          >
-            {result / 5} CPS
-          </Text>
+          <Text style={styles.mediumBoldFont}>You clicked</Text>
+          <Text style={styles.mediumBoldFont}>{result} times!</Text>
+          <Text style={styles.mediumBoldFont}>{result / 5} CPS</Text>
           <TouchableOpacity style={styles.restartButton} onPress={resetHandler}>
-            <Text style={{ fontSize: 20 }}>Try Again!</Text>
+            <Text style={styles.smallFont}>Try Again!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -228,6 +186,23 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  smallFont: {
+    fontSize: 20,
+  },
+  mediumFont: {
+    fontSize: 30,
+  },
+  bigFont: {
+    fontSize: 40,
+  },
+  smallBoldFont: {
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+  mediumBoldFont: {
+    fontSize: 35,
+    fontWeight: "bold",
   },
 });
 

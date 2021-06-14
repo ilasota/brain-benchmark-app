@@ -122,12 +122,12 @@ function ChimpGame() {
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
         <View style={styles.startGame}>
-          <Text style={{ fontSize: 40 }}>Chimp Game</Text>
+          <Text style={styles.bigFont}>Chimp Game</Text>
           <Image style={styles.image} source={require("../assets/chimp.png")} />
-          <Text style={{ fontSize: 20 }}>Press the squares</Text>
-          <Text style={{ fontSize: 20 }}>according to their numbers.</Text>
+          <Text style={styles.smallFont}>Press the squares</Text>
+          <Text style={styles.smallFont}>according to their numbers.</Text>
           <TouchableOpacity style={styles.startButton} onPress={roundHandler}>
-            <Text style={{ fontSize: 30 }}>Start</Text>
+            <Text style={styles.mediumFont}>Start</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -151,7 +151,7 @@ function ChimpGame() {
                 }}
               >
                 <View style={numVisible}>
-                  <Text style={{ fontSize: 30 }}>{item.value}</Text>
+                  <Text style={styles.mediumFont}>{item.value}</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -160,23 +160,23 @@ function ChimpGame() {
       </View>
       <View style={winVisible}>
         <View style={styles.resultScreen}>
-          <Text style={{ fontSize: 30 }}>Good job!</Text>
-          <Text style={{ fontSize: 30 }}>Next round will be</Text>
-          <Text style={{ fontSize: 50 }}>{roundResult + 1}</Text>
-          <Text style={{ fontSize: 30 }}>numbers</Text>
+          <Text style={styles.mediumFont}>Good job!</Text>
+          <Text style={styles.mediumFont}>Next round will be</Text>
+          <Text style={styles.hugeFont}>{roundResult + 1}</Text>
+          <Text style={styles.mediumFont}>numbers</Text>
           <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
-            <Text style={{ fontSize: 20 }}>Next</Text>
+            <Text style={styles.smallFont}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={loseVisible}>
         <View style={styles.resultScreen}>
-          <Text style={{ fontSize: 30 }}>You lost!</Text>
-          <Text style={{ fontSize: 30 }}>Your Score:</Text>
-          <Text style={{ fontSize: 50 }}>{roundResult === 4 ? 0 : roundResult - 1}</Text>
-          <Text style={{ fontSize: 30 }}>numbers</Text>
+          <Text style={styles.mediumFont}>You lost!</Text>
+          <Text style={styles.mediumFont}>Your Score:</Text>
+          <Text style={styles.hugeFont}>{roundResult === 4 ? 0 : roundResult - 1}</Text>
+          <Text style={styles.mediumFont}>numbers</Text>
           <TouchableOpacity style={styles.endButton} onPress={roundHandler}>
-            <Text style={{ fontSize: 20 }}>Try Again</Text>
+            <Text style={styles.smallFont}>Try Again</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -237,6 +237,18 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  smallFont: {
+    fontSize: 20,
+  },
+  mediumFont: {
+    fontSize: 30,
+  },
+  bigFont: {
+    fontSize: 40,
+  },
+  hugeFont: {
+    fontSize: 50,
   },
 });
 

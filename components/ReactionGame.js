@@ -65,56 +65,42 @@ function ReactionGame() {
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
         <View style={styles.startGame}>
-          <Text style={{ fontSize: 40 }}>Reaction Game</Text>
+          <Text style={styles.hugeFont}>Reaction Game</Text>
           <Image style={styles.image} source={require("../assets/speed.png")} />
-          <Text style={{ fontSize: 20 }}>Click when the screen</Text>
-          <Text style={{ fontSize: 20 }}>turns green.</Text>
+          <Text style={styles.smallFont}>Click when the screen</Text>
+          <Text style={styles.smallFont}>turns green.</Text>
           <TouchableOpacity style={styles.startButton} onPress={gameHandler}>
-            <Text style={{ fontSize: 30 }}>Start</Text>
+            <Text style={styles.bigFont}>Start</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={waitingVisible}>
         <TouchableOpacity style={styles.waitingScreen} onPressIn={failHandler}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-            }}
-          >
-            Wait for Green
-          </Text>
+          <Text style={styles.smallBoldFont}>Wait for Green</Text>
         </TouchableOpacity>
       </View>
       <View style={testVisible}>
         <TouchableOpacity style={styles.testScreen} onPressIn={endHandler}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-            }}
-          >
-            PRESS NOW!
-          </Text>
+          <Text style={styles.smallBoldFont}>PRESS NOW!</Text>
         </TouchableOpacity>
       </View>
       <View style={resultVisible}>
         <View style={styles.resultStyle}>
-          <Text style={{ fontSize: 30 }}>Your time:</Text>
-          <Text style={{ fontSize: 25 }}>{timeElapsed}ms</Text>
+          <Text style={styles.bigFont}>Your time:</Text>
+          <Text style={styles.mediumFont}>{timeElapsed}ms</Text>
           <View style={styles.controlButtons}>
             <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
-              <Text style={{ fontSize: 20 }}>Try Again</Text>
+              <Text style={styles.smallFont}>Try Again</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={failVisible}>
         <View style={styles.failStyle}>
-          <Text style={{ fontSize: 30 }}>You pressed too early!</Text>
+          <Text style={styles.bigFont}>You pressed too early!</Text>
           <View style={styles.controlButtons}>
             <TouchableOpacity style={styles.restartButton} onPress={restartHandler}>
-              <Text style={{ fontSize: 20 }}>Try Again</Text>
+              <Text style={styles.smallFont}>Try Again</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -200,6 +186,22 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  smallBoldFont: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  smallFont: {
+    fontSize: 20,
+  },
+  mediumFont: {
+    fontSize: 25,
+  },
+  bigFont: {
+    fontSize: 30,
+  },
+  hugeFont: {
+    fontSize: 40,
   },
 });
 

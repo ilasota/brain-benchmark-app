@@ -21,17 +21,17 @@ function Login({ navigation }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.logo}>
         <Image style={styles.image} source={require("../assets/icon.png")} />
-        <Text style={{ fontSize: 35, fontWeight: "bold" }}>BRAIN BENCHMARK</Text>
+        <Text style={styles.bigFontBold}>BRAIN BENCHMARK</Text>
       </View>
       <View>
         <TextInput style={styles.input} placeholder="Username" />
         <TextInput style={styles.input} placeholder="Pasword" secureTextEntry={true} />
         <TouchableOpacity style={styles.button}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Sign In</Text>
+          <Text style={styles.mediumFontBold}>Sign In</Text>
         </TouchableOpacity>
         <View style={styles.secondaryButtons}>
           <TouchableOpacity style={styles.button}>
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>Sign up</Text>
+            <Text style={styles.smallFontBold}>Sign up</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
@@ -40,7 +40,7 @@ function Login({ navigation }) {
               navigation.navigate("Home");
             }}
           >
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>Play as Guest</Text>
+            <Text style={styles.smallFontBold}>Play as Guest</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -91,6 +91,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     minWidth: "75%",
+  },
+  smallFontBold: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  mediumFontBold: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  bigFontBold: {
+    fontSize: 35,
+    fontWeight: "bold",
   },
 });
 

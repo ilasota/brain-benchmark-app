@@ -31,14 +31,7 @@ function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          BRAIN BENCHMARK
-        </Text>
+        <Text style={styles.mediumFontBold}>BRAIN BENCHMARK</Text>
       </View>
       <Carousel
         data={data}
@@ -58,20 +51,8 @@ function Home({ navigation }) {
             <Image source={item.imgUrl} style={styles.image} />
             <View style={styles.scoresRow}>
               <View style={styles.scores}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: "#222222",
-                  }}
-                >
-                  High Score
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: "#222222",
-                  }}
-                >
+                <Text style={styles.smallFont}>High Score</Text>
+                <Text style={styles.mediumFont}>
                   {eval(item.varName).length === 0
                     ? 0
                     : item.varName === "reactionScore"
@@ -81,20 +62,8 @@ function Home({ navigation }) {
                 </Text>
               </View>
               <View style={styles.scores}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: "#222222",
-                  }}
-                >
-                  Average Score
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: "#222222",
-                  }}
-                >
+                <Text style={styles.smallFont}>Average Score</Text>
+                <Text style={styles.mediumFont}>
                   {eval(item.varName).length === 0
                     ? 0
                     : Math.round(
@@ -203,6 +172,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  smallFont: {
+    fontSize: 18,
+    color: "#222222",
+  },
+  mediumFontBold: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  mediumFont: {
+    fontSize: 20,
+    color: "#222222",
   },
 });
 
