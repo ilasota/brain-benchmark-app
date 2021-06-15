@@ -6,12 +6,10 @@ import { useDispatch } from "react-redux";
 import { speedSubmit } from "../data/actions";
 
 function SpeedGame() {
-  const [startVisible, setStartVisible] = useState({ display: "flex" });
-  const [waitingVisible, setWaitingVisible] = useState({ display: "none" });
-  const [gameVisible, setGameVisible] = useState({
-    display: "none",
-  });
-  const [resultVisible, setResultVisible] = useState({ display: "none" });
+  const [startVisible, setStartVisible] = useState(styles.visible);
+  const [waitingVisible, setWaitingVisible] = useState(styles.invisible);
+  const [gameVisible, setGameVisible] = useState(styles.invisible);
+  const [resultVisible, setResultVisible] = useState(styles.invisible);
   const [countdownStatus, setCountdownStatus] = useState(false);
   const [timerStatus, setTimerStatus] = useState(false);
   const [delayStatus, setDelayStatus] = useState(false);
@@ -22,14 +20,14 @@ function SpeedGame() {
   const dispatch = useDispatch();
 
   const visibilityHandler = () => {
-    setWaitingVisible({ display: "flex" });
-    setStartVisible({ display: "none" });
+    setWaitingVisible(styles.visible);
+    setStartVisible(styles.invisible);
     setCountdownStatus(true);
   };
 
   const resetHandler = () => {
-    setWaitingVisible({ display: "flex" });
-    setResultVisible({ display: "none" });
+    setWaitingVisible(styles.visible);
+    setResultVisible(styles.invisible);
     setCountdown(3);
     setCounter(0);
     setCountdownStatus(true);
@@ -42,8 +40,8 @@ function SpeedGame() {
         if (countdown <= 1) {
           clearInterval(interval);
           setCountdownStatus(false);
-          setWaitingVisible({ display: "none" });
-          setGameVisible({ display: "flex" });
+          setWaitingVisible(styles.invisible);
+          setGameVisible(styles.visible);
           setTimerStatus(true);
         }
       }, 1000);
@@ -54,7 +52,7 @@ function SpeedGame() {
 
     if (timerStatus) {
       let timer = setTimeout(() => {
-        setGameVisible({ display: "none" });
+        setGameVisible(styles.invisible);
         setTimerStatus(false);
         setDelayStatus(true);
       }, 5000);
@@ -65,7 +63,7 @@ function SpeedGame() {
 
     if (delayStatus) {
       let timer = setTimeout(() => {
-        setResultVisible({ display: "flex" });
+        setResultVisible(styles.visible);
         setDelayStatus(false);
         setResult(counter);
         dispatch(speedSubmit(counter / 5));
@@ -203,6 +201,12 @@ const styles = StyleSheet.create({
   mediumBoldFont: {
     fontSize: 35,
     fontWeight: "bold",
+  },
+  visible: {
+    display: "flex",
+  },
+  invisible: {
+    display: "none",
   },
 });
 
