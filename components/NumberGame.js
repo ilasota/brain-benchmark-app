@@ -17,20 +17,12 @@ import { useDispatch } from "react-redux";
 import { numberSubmit } from "../data/actions";
 
 function NumberGame() {
-  const [gameVisible, setGameVisible] = useState({
-    display: "none",
-  });
-  const [startVisible, setStartVisible] = useState({ display: "flex" });
-  const [numVisible, setNumVisible] = useState({
-    display: "flex",
-  });
-  const [inputVisible, setInputVisible] = useState({ display: "none" });
-  const [loseScreen, setLoseScreen] = useState({
-    display: "none",
-  });
-  const [winScreen, setWinScreen] = useState({
-    display: "none",
-  });
+  const [gameVisible, setGameVisible] = useState(styles.invisible);
+  const [startVisible, setStartVisible] = useState(styles.visible);
+  const [numVisible, setNumVisible] = useState(styles.visible);
+  const [inputVisible, setInputVisible] = useState(styles.invisible);
+  const [loseScreen, setLoseScreen] = useState(styles.invisible);
+  const [winScreen, setWinScreen] = useState(styles.invisible);
   const [savedScore, setSavedScore] = useState({
     userAnswer: "",
     currentRound: "",
@@ -50,8 +42,8 @@ function NumberGame() {
   let finalNum = number;
 
   const visibilityHandler = () => {
-    setGameVisible({ display: "flex" });
-    setStartVisible({ display: "none" });
+    setGameVisible(styles.visible);
+    setStartVisible(styles.invisible);
     setAnimationStatus(true);
   };
 
@@ -72,8 +64,8 @@ function NumberGame() {
       }
       setNumber(finalNum);
       setAnswer("");
-      setGameVisible({ display: "none" });
-      setWinScreen({ display: "flex" });
+      setGameVisible(styles.invisible);
+      setWinScreen(styles.visible);
     } else {
       setSavedScore({
         userAnswer: answer,
@@ -84,16 +76,16 @@ function NumberGame() {
       setRound(1);
       setNumber(Math.floor(Math.random() * 10));
       setAnswer("");
-      setGameVisible({ display: "none" });
-      setLoseScreen({ display: "flex" });
+      setGameVisible(styles.invisible);
+      setLoseScreen(styles.visible);
     }
   };
 
   const winHandler = () => {
-    setNumVisible({ display: "flex" });
-    setInputVisible({ display: "none" });
-    setWinScreen({ display: "none" });
-    setGameVisible({ display: "flex" });
+    setNumVisible(styles.visible);
+    setInputVisible(styles.invisible);
+    setWinScreen(styles.invisible);
+    setGameVisible(styles.visible);
     setKey(key + 1);
     setAnimationStatus(true);
     setAnimationTime(2 + round);
@@ -101,10 +93,10 @@ function NumberGame() {
   };
 
   const loseHandler = () => {
-    setNumVisible({ display: "flex" });
-    setInputVisible({ display: "none" });
-    setLoseScreen({ display: "none" });
-    setGameVisible({ display: "flex" });
+    setNumVisible(styles.visible);
+    setInputVisible(styles.invisible);
+    setLoseScreen(styles.invisible);
+    setGameVisible(styles.visible);
     setKey(key + 1);
     setAnimationStatus(true);
     setAnimationTime(3);
@@ -119,11 +111,8 @@ function NumberGame() {
   useEffect(() => {
     if (timerStatus) {
       let timer = setTimeout(() => {
-        setInputVisible({
-          display: "flex",
-          alignItems: "center",
-        });
-        setNumVisible({ display: "none" });
+        setInputVisible(styles.visibleInput);
+        setNumVisible(styles.invisible);
         setTimerStatus(false);
       }, timeAmount);
       return () => {
@@ -346,6 +335,16 @@ const styles = StyleSheet.create({
   },
   hugeFont: {
     fontSize: 40,
+  },
+  visible: {
+    display: "flex",
+  },
+  invisible: {
+    display: "none",
+  },
+  visibleInput: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 

@@ -18,11 +18,11 @@ import { chimpSubmit } from "../data/actions";
 export const TILE = Dimensions.get("screen").width * 0.13;
 
 function ChimpGame() {
-  const [startVisible, setStartVisible] = useState({ display: "flex" });
-  const [gameVisible, setGameVisible] = useState({ display: "none" });
-  const [winVisible, setWinVisible] = useState({ display: "none" });
-  const [numVisible, setNumVisible] = useState({ fontSize: 30 });
-  const [loseVisible, setLoseVisible] = useState({ display: "none" });
+  const [startVisible, setStartVisible] = useState(styles.visible);
+  const [gameVisible, setGameVisible] = useState(styles.invisible);
+  const [winVisible, setWinVisible] = useState(styles.invisible);
+  const [numVisible, setNumVisible] = useState(styles.mediumFont);
+  const [loseVisible, setLoseVisible] = useState(styles.invisible);
   const [gameBoard, setGameBoard] = useState([]);
   const [numberAmount, setNumberAmount] = useState(4);
   const [currentNum, setCurrentNum] = useState(1);
@@ -75,10 +75,10 @@ function ChimpGame() {
     boardHandler();
     setGameBoard(squarePosition);
     setCurrentNum(1);
-    setStartVisible({ display: "none" });
-    setGameVisible({ display: "flex" });
-    setWinVisible({ display: "none" });
-    setLoseVisible({ display: "none" });
+    setStartVisible(styles.invisible);
+    setGameVisible(styles.visible);
+    setWinVisible(styles.invisible);
+    setLoseVisible(styles.invisible);
   };
 
   const gameHandler = (item, itemID) => {
@@ -95,14 +95,14 @@ function ChimpGame() {
     });
     setGameBoard(editedBoard);
     if (item.id === itemID && item.value !== " ") {
-      setNumVisible({ display: "none" });
+      setNumVisible(styles.invisible);
       if (item.value === currentNum) {
         if (item.value === numberAmount) {
           setRoundResult(numberAmount);
           setNumberAmount(numberAmount + 1);
-          setWinVisible({ display: "flex" });
-          setGameVisible({ display: "none" });
-          setNumVisible({ display: "flex" });
+          setWinVisible(styles.visible);
+          setGameVisible(styles.invisible);
+          setNumVisible(styles.visible);
         } else {
           setCurrentNum(currentNum + 1);
         }
@@ -110,9 +110,9 @@ function ChimpGame() {
         setRoundResult(numberAmount);
         dispatch(chimpSubmit(numberAmount === 4 ? 0 : numberAmount - 1));
         setNumberAmount(4);
-        setLoseVisible({ display: "flex" });
-        setGameVisible({ display: "none" });
-        setNumVisible({ display: "flex" });
+        setLoseVisible(styles.visible);
+        setGameVisible(styles.invisible);
+        setNumVisible(styles.visible);
       }
       item.value = " ";
     }
@@ -249,6 +249,12 @@ const styles = StyleSheet.create({
   },
   hugeFont: {
     fontSize: 50,
+  },
+  visible: {
+    display: "flex",
+  },
+  invisible: {
+    display: "none",
   },
 });
 

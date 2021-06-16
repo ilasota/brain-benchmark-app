@@ -6,11 +6,11 @@ import { useDispatch } from "react-redux";
 import { reactionSubmit } from "../data/actions";
 
 function ReactionGame() {
-  const [startVisible, setStartVisible] = useState({ display: "flex" });
-  const [waitingVisible, setWaitingVisible] = useState({ display: "none" });
-  const [testVisible, setTestVisible] = useState({ display: "none" });
-  const [resultVisible, setResultVisible] = useState({ display: "none" });
-  const [failVisible, setFailVisible] = useState({ display: "none" });
+  const [startVisible, setStartVisible] = useState(styles.visible);
+  const [waitingVisible, setWaitingVisible] = useState(styles.invisible);
+  const [testVisible, setTestVisible] = useState(styles.invisible);
+  const [resultVisible, setResultVisible] = useState(styles.invisible);
+  const [failVisible, setFailVisible] = useState(styles.invisible);
   const [startTime, setStartTime] = useState();
   const [timeElapsed, setTimeElapsed] = useState();
   const [timerStatus, setTimerStatus] = useState(false);
@@ -21,23 +21,23 @@ function ReactionGame() {
   let timer;
 
   const gameHandler = () => {
-    setStartVisible({ display: "none" });
-    setWaitingVisible({ display: "flex" });
+    setStartVisible(styles.invisible);
+    setWaitingVisible(styles.visible);
     setTimerStatus(true);
   };
 
   const restartHandler = () => {
-    setResultVisible({ display: "none" });
-    setFailVisible({ display: "none" });
-    setWaitingVisible({ display: "flex" });
+    setResultVisible(styles.invisible);
+    setFailVisible(styles.invisible);
+    setWaitingVisible(styles.visible);
     setTimerStatus(true);
   };
 
   useEffect(() => {
     if (timerStatus) {
       timer = setTimeout(() => {
-        setWaitingVisible({ display: "none" });
-        setTestVisible({ display: "flex" });
+        setWaitingVisible(styles.invisible);
+        setTestVisible(styles.visible);
         setStartTime(new Date());
         setTimerStatus(false);
       }, Math.random() * 2000 + 500);
@@ -49,15 +49,15 @@ function ReactionGame() {
 
   const failHandler = () => {
     setTimerStatus(false);
-    setWaitingVisible({ display: "none" });
-    setFailVisible({ display: "flex" });
+    setWaitingVisible(styles.invisible);
+    setFailVisible(styles.visible);
   };
 
   const endHandler = () => {
     endTime = new Date();
     setTimeElapsed(endTime - startTime);
-    setTestVisible({ display: "none" });
-    setResultVisible({ display: "flex" });
+    setTestVisible(styles.invisible);
+    setResultVisible(styles.visible);
     dispatch(reactionSubmit(endTime - startTime));
   };
 
@@ -202,6 +202,12 @@ const styles = StyleSheet.create({
   },
   hugeFont: {
     fontSize: 40,
+  },
+  visible: {
+    display: "flex",
+  },
+  invisible: {
+    display: "none",
   },
 });
 
