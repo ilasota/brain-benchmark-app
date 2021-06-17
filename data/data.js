@@ -1,8 +1,7 @@
 export default data = [
   {
     title: "Number Game",
-    body:
-      "Simple number memory test. The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. ",
+    body: "Simple number memory test. The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. ",
     imgUrl: require("../assets/numbers.png"),
     varName: "numberScore",
     unit: "",
@@ -10,8 +9,7 @@ export default data = [
   },
   {
     title: "Reaction Game",
-    body:
-      "Simple test that measures your reaction speed. Average reaction time for a person is around 250ms.",
+    body: "Simple test that measures your reaction speed. Average reaction time for a person is around 250ms.",
     imgUrl: require("../assets/speed.png"),
     varName: "reactionScore",
     unit: " ms",
@@ -27,8 +25,7 @@ export default data = [
   },
   {
     title: "Chimp Game",
-    body:
-      "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.",
+    body: "This is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.",
     imgUrl: require("../assets/chimp.png"),
     varName: "chimpScore",
     unit: "",
