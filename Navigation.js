@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Login from "./components/Login";
-import Home from "./components/Home";
-import NumberGame from "./components/NumberGame";
-import ReactionGame from "./components/ReactionGame";
-import SpeedGame from "./components/SpeedGame";
-import ChimpGame from "./components/ChimpGame";
+import Login from "./screens/Login";
+import Home from "./screens/Home";
+import NumberGame from "./screens/NumberGame";
+import ReactionGame from "./screens/ReactionGame";
+import SpeedGame from "./screens/SpeedGame";
+import ChimpGame from "./screens/ChimpGame";
 
 const Stack = createStackNavigator();
 
