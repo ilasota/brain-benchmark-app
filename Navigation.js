@@ -10,6 +10,7 @@ import NumberGame from "./screens/NumberGame";
 import ReactionGame from "./screens/ReactionGame";
 import SpeedGame from "./screens/SpeedGame";
 import ChimpGame from "./screens/ChimpGame";
+import SignUp from "./screens/SignUp";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={startScreen} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="NumberGame" component={NumberGame} />
         <Stack.Screen name="ReactionGame" component={ReactionGame} />
