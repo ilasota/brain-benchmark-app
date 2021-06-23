@@ -24,13 +24,20 @@ function Login({ navigation }) {
         <Text style={styles.bigFontBold}>BRAIN BENCHMARK</Text>
       </View>
       <View>
-        <TextInput style={styles.input} placeholder="Username" />
-        <TextInput style={styles.input} placeholder="Pasword" secureTextEntry={true} />
+        <Text>Username</Text>
+        <TextInput style={styles.input} />
+        <Text>Password</Text>
+        <TextInput style={styles.input} secureTextEntry={true} />
         <TouchableOpacity style={styles.button}>
           <Text style={styles.mediumFontBold}>Sign In</Text>
         </TouchableOpacity>
         <View style={styles.secondaryButtons}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          >
             <Text style={styles.smallFontBold}>Sign up</Text>
           </TouchableOpacity>
           <TouchableOpacity
