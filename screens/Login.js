@@ -64,12 +64,13 @@ const styles = StyleSheet.create({
     height: 125,
   },
   input: {
-    borderWidth: 1,
-    minWidth: "80%",
+    minWidth: "90%",
     fontSize: 20,
-    borderColor: "#071570",
+    borderWidth: 1,
+    borderRadius: 5,
     marginTop: 5,
     padding: 5,
+    borderColor: "#d4d6d9",
   },
   button: {
     alignItems: "center",
