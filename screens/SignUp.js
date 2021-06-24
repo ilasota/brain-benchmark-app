@@ -27,7 +27,7 @@ function SignUp({ navigation }) {
           <TextInput style={styles.input} />
           <Text>Password</Text>
           <TextInput style={styles.input} secureTextEntry={true} />
-          <Text>Repeat Passowrd</Text>
+          <Text>Repeat Passoword</Text>
           <TextInput style={styles.input} secureTextEntry={true} />
         </View>
         <TouchableOpacity style={styles.button}>
