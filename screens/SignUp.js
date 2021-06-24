@@ -31,7 +31,7 @@ function SignUp({ navigation }) {
           <TextInput style={styles.input} secureTextEntry={true} />
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.mediumFontBold}>Sign up!</Text>
+          <Text style={styles.buttonText}>Sign up!</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.goBackButton}
@@ -94,9 +94,12 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
   },
-  mediumFontBold: {
-    fontSize: 20,
+  buttonText: {
+    color: "#fff",
     fontWeight: "bold",
+    fontSize: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 });
 
