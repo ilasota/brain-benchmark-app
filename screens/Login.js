@@ -29,7 +29,7 @@ function Login({ navigation }) {
         <Text>Password</Text>
         <TextInput style={styles.input} secureTextEntry={true} />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.mediumFontBold}>Sign In</Text>
+          <Text style={styles.mediumButtonText}>Sign In</Text>
         </TouchableOpacity>
         <View style={styles.secondaryButtons}>
           <TouchableOpacity
@@ -38,7 +38,7 @@ function Login({ navigation }) {
               navigation.navigate("SignUp");
             }}
           >
-            <Text style={styles.smallFontBold}>Sign up</Text>
+            <Text style={styles.smallButtonText}>Sign up</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
@@ -47,7 +47,7 @@ function Login({ navigation }) {
               navigation.navigate("Home");
             }}
           >
-            <Text style={styles.smallFontBold}>Play as Guest</Text>
+            <Text style={styles.smallButtonText}>Play as Guest</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -100,13 +100,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     minWidth: "75%",
   },
-  smallFontBold: {
+  smallButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
     fontSize: 15,
-    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
   },
-  mediumFontBold: {
-    fontSize: 20,
+  mediumButtonText: {
+    color: "#fff",
     fontWeight: "bold",
+    fontSize: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   bigFontBold: {
     fontSize: 35,
