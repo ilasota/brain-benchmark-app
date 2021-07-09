@@ -5,9 +5,23 @@ export const numberSubmit = (score) => {
   };
 };
 
+export const numberUpdate = (score) => {
+  return {
+    type: "UPDATE_NUMBER",
+    payload: score,
+  };
+};
+
 export const reactionSubmit = (score) => {
   return {
     type: "SUBMIT_REACTION",
+    payload: score,
+  };
+};
+
+export const reactionUpdate = (score) => {
+  return {
+    type: "UPDATE_REACTION",
     payload: score,
   };
 };
@@ -19,9 +33,23 @@ export const speedSubmit = (score) => {
   };
 };
 
+export const speedUpdate = (score) => {
+  return {
+    type: "UPDATE_SPEED",
+    payload: score,
+  };
+};
+
 export const chimpSubmit = (score) => {
   return {
     type: "SUBMIT_CHIMP",
+    payload: score,
+  };
+};
+
+export const chimpUpdate = (score) => {
+  return {
+    type: "UPDATE_CHIMP",
     payload: score,
   };
 };
