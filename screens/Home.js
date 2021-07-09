@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { useSelector } from "react-redux";
 import {
@@ -11,6 +11,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  BackHandler,
 } from "react-native";
 
 import data from "../data/data";
@@ -27,6 +28,11 @@ function Home({ navigation }) {
   const reactionScore = useSelector((state) => state.reactionReducer);
   const speedScore = useSelector((state) => state.speedReducer);
   const chimpScore = useSelector((state) => state.chimpReducer);
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => true);
+    return () => BackHandler.removeEventListener("hardwareBackPress", () => true);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
