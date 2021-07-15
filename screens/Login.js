@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -11,11 +11,62 @@ import {
   TextInput,
 } from "react-native";
 import { useDispatch } from "react-redux";
+import { API_LINK } from "@env";
 
-import { loginStatus } from "../data/actions";
+import { loginStatus, chimpUpdate, speedUpdate, reactionUpdate, numberUpdate } from "../data/actions";
 
 function Login({ navigation }) {
+  const [nameInput, setNameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [errorVisible, setErrorVisible] = useState(styles.invisible);
+
   const dispatch = useDispatch();
+
+  const loginHandler = () => {
+    setErrorVisible(styles.invisible);
+    fetch(`${API_LINK}${nameInput}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: passwordInput }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success) {
+          successHandler();
+        } else {
+          failureHandler();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const successHandler = () => {
+    updateScores();
+    console.log("success");
+    setNameInput("");
+    setPasswordInput("");
+    navigation.navigate("Home");
+  };
+
+  const updateScores = () => {
+    fetch(`${API_LINK}${nameInput}/scores`)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(numberUpdate(json.numberScore));
+        dispatch(speedUpdate(json.speedScore));
+        dispatch(reactionUpdate(json.reactionScore));
+        dispatch(chimpUpdate(json.chimpScore));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const failureHandler = () => {
+    setErrorVisible(styles.visible);
+    console.log("failure");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,10 +76,22 @@ function Login({ navigation }) {
       </View>
       <View>
         <Text>Username</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          value={nameInput}
+          style={styles.input}
+          onChangeText={(enteredInput) => setNameInput(enteredInput)}
+        />
         <Text>Password</Text>
-        <TextInput style={styles.input} secureTextEntry={true} />
-        <TouchableOpacity style={styles.button}>
+        <TextInput
+          value={passwordInput}
+          style={styles.input}
+          secureTextEntry={true}
+          onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
+        />
+        <View style={errorVisible}>
+          <Text style={styles.errorFont}>Wrong password</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => loginHandler()}>
           <Text style={styles.mediumButtonText}>Sign In</Text>
         </TouchableOpacity>
         <View style={styles.secondaryButtons}>
@@ -117,6 +180,18 @@ const styles = StyleSheet.create({
   bigFontBold: {
     fontSize: 35,
     fontWeight: "bold",
+  },
+  errorFont: {
+    color: "#ff0000",
+    fontWeight: "bold",
+    padding: 10,
+  },
+  visible: {
+    display: "flex",
+    alignItems: "center",
+  },
+  invisible: {
+    display: "none",
   },
 });
 
