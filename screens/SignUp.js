@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -11,8 +11,60 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { API_LINK } from "@env";
 
 function SignUp({ navigation }) {
+  const [nameInput, setNameInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [repeatPasswordInput, setRepeatPasswordInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorVisible, setErrorVisible] = useState(styles.invisible);
+
+  const inputChecker = () => {
+    setErrorVisible(styles.invisible);
+    if (!nameInput.trim().length) {
+      setErrorMessage("Enter Username");
+      setErrorVisible(styles.visible);
+    } else if (!emailInput.trim().length) {
+      setErrorMessage("Enter Email");
+      setErrorVisible(styles.visible);
+    } else if (!passwordInput.trim().length) {
+      setErrorMessage("Enter Password");
+      setErrorVisible(styles.visible);
+    } else if (passwordInput !== repeatPasswordInput) {
+      setErrorMessage("Passwords are not the same");
+      setErrorVisible(styles.visible);
+    } else {
+      signUpHandler();
+    }
+  };
+
+  const signUpHandler = () => {
+    fetch(`${API_LINK}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: nameInput.replace(/\s/g, ""),
+        email: emailInput.replace(/\s/g, ""),
+        password: passwordInput,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 402) {
+          setErrorMessage(res.message);
+          setErrorVisible(styles.visible);
+        } else {
+          navigation.navigate("Home");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -22,15 +74,36 @@ function SignUp({ navigation }) {
         </View>
         <View>
           <Text>Username</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            value={nameInput}
+            style={styles.input}
+            onChangeText={(enteredInput) => setNameInput(enteredInput)}
+          />
           <Text>E-mail</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            value={emailInput}
+            style={styles.input}
+            onChangeText={(enteredInput) => setEmailInput(enteredInput)}
+          />
           <Text>Password</Text>
-          <TextInput style={styles.input} secureTextEntry={true} />
+          <TextInput
+            value={passwordInput}
+            style={styles.input}
+            secureTextEntry={true}
+            onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
+          />
           <Text>Repeat Passoword</Text>
-          <TextInput style={styles.input} secureTextEntry={true} />
+          <TextInput
+            value={repeatPasswordInput}
+            style={styles.input}
+            secureTextEntry={true}
+            onChangeText={(enteredInput) => setRepeatPasswordInput(enteredInput)}
+          />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <View style={errorVisible}>
+          <Text style={styles.errorFont}>{errorMessage}</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => inputChecker()}>
           <Text style={styles.buttonText}>Sign up!</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -100,6 +173,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  errorFont: {
+    color: "#ff0000",
+    fontWeight: "bold",
+    padding: 10,
+  },
+  visible: {
+    display: "flex",
+    alignItems: "center",
+  },
+  invisible: {
+    display: "none",
   },
 });
 
