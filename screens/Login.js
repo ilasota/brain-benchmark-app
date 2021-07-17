@@ -18,6 +18,7 @@ import { loginStatus, chimpUpdate, speedUpdate, reactionUpdate, numberUpdate } f
 function Login({ navigation }) {
   const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [errorVisible, setErrorVisible] = useState(styles.invisible);
 
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ function Login({ navigation }) {
 
   const successHandler = () => {
     updateScores();
-    console.log("success");
     setNameInput("");
     setPasswordInput("");
     navigation.navigate("Home");
@@ -64,8 +64,14 @@ function Login({ navigation }) {
   };
 
   const failureHandler = () => {
+    if (!nameInput.trim().length) {
+      setErrorMessage("Enter Username");
+    } else if (!passwordInput.trim().length) {
+      setErrorMessage("Enter Password");
+    } else {
+      setErrorMessage("Wrong Password");
+    }
     setErrorVisible(styles.visible);
-    console.log("failure");
   };
 
   return (
@@ -89,7 +95,7 @@ function Login({ navigation }) {
           onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
         />
         <View style={errorVisible}>
-          <Text style={styles.errorFont}>Wrong password</Text>
+          <Text style={styles.errorFont}>{errorMessage}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => loginHandler()}>
           <Text style={styles.mediumButtonText}>Sign In</Text>
