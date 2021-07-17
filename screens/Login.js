@@ -24,7 +24,7 @@ function Login({ navigation }) {
 
   const loginHandler = () => {
     setErrorVisible(styles.invisible);
-    fetch(`${API_LINK}${nameInput}`, {
+    fetch(`${API_LINK}/${nameInput}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -52,7 +52,7 @@ function Login({ navigation }) {
   };
 
   const updateScores = () => {
-    fetch(`${API_LINK}${nameInput}/scores`)
+    fetch(`${API_LINK}/${nameInput}/scores`)
       .then((res) => res.json())
       .then((json) => {
         dispatch(numberUpdate(json.numberScore));
