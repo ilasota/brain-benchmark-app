@@ -29,7 +29,7 @@ function SignUp({ navigation }) {
     } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) {
       setErrorMessage("Invalid Email");
       setErrorVisible(styles.visible);
-    } else if (/\s/.test(passwordInput)) {
+    } else if (/\s/.test(passwordInput) || passwordInput.length < 5) {
       setErrorMessage("Invalid Password");
       setErrorVisible(styles.visible);
     } else if (passwordInput !== repeatPasswordInput) {
