@@ -23,14 +23,14 @@ function SignUp({ navigation }) {
 
   const inputChecker = () => {
     setErrorVisible(styles.invisible);
-    if (!nameInput.trim().length) {
-      setErrorMessage("Enter Username");
+    if (/\s/.test(nameInput) || nameInput.length < 5) {
+      setErrorMessage("Invalid Username");
       setErrorVisible(styles.visible);
-    } else if (!emailInput.trim().length) {
-      setErrorMessage("Enter Email");
+    } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) {
+      setErrorMessage("Invalid Email");
       setErrorVisible(styles.visible);
-    } else if (!passwordInput.trim().length) {
-      setErrorMessage("Enter Password");
+    } else if (/\s/.test(passwordInput)) {
+      setErrorMessage("Invalid Password");
       setErrorVisible(styles.visible);
     } else if (passwordInput !== repeatPasswordInput) {
       setErrorMessage("Passwords are not the same");
@@ -48,8 +48,8 @@ function SignUp({ navigation }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName: nameInput.replace(/\s/g, ""),
-        email: emailInput.replace(/\s/g, ""),
+        userName: nameInput,
+        email: emailInput,
         password: passwordInput,
       }),
     })
@@ -92,7 +92,7 @@ function SignUp({ navigation }) {
             secureTextEntry={true}
             onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
           />
-          <Text>Repeat Passoword</Text>
+          <Text>Repeat Password</Text>
           <TextInput
             value={repeatPasswordInput}
             style={styles.input}
