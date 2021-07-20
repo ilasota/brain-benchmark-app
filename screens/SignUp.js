@@ -11,7 +11,10 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
+
+import { loginStatus } from "../data/actions";
 
 function SignUp({ navigation }) {
   const [nameInput, setNameInput] = useState("");
@@ -20,6 +23,8 @@ function SignUp({ navigation }) {
   const [repeatPasswordInput, setRepeatPasswordInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorVisible, setErrorVisible] = useState(styles.invisible);
+
+  const dispatch = useDispatch();
 
   const inputChecker = () => {
     setErrorVisible(styles.invisible);
@@ -60,6 +65,7 @@ function SignUp({ navigation }) {
           setErrorVisible(styles.visible);
         } else {
           navigation.navigate("Home");
+          dispatch(loginStatus("loggedIn"));
         }
       })
       .catch((err) => console.error(err));

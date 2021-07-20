@@ -48,6 +48,7 @@ function Login({ navigation }) {
     updateScores();
     setNameInput("");
     setPasswordInput("");
+    dispatch(loginStatus("loggedIn"));
     navigation.navigate("Home");
   };
 
