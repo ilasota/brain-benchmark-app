@@ -11,6 +11,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 
 import data from "../data/data";
@@ -21,6 +22,7 @@ export const IMAGE = Dimensions.get("window").width * 0.25;
 
 function Home({ navigation }) {
   const [index, setIndex] = useState(0);
+  const [sideMenuVisible, setSideMenuVisible] = useState(false);
   const isCarousel = React.useRef(null);
 
   const numberScore = useSelector((state) => state.numberReducer);
@@ -32,7 +34,15 @@ function Home({ navigation }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.mediumFontBold}>BRAIN BENCHMARK</Text>
+        <TouchableOpacity onPress={() => setSideMenuVisible(true)}>
+          <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
+        </TouchableOpacity>
       </View>
+      <Modal visible={sideMenuVisible} animationType={"slide"} transparent={true}>
+        <TouchableOpacity onPress={() => setSideMenuVisible(false)}>
+          <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
+        </TouchableOpacity>
+      </Modal>
       <Carousel
         data={data}
         style={{
@@ -113,10 +123,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   header: {
-    alignItems: "flex-start",
+    alignItems: "center",
+    justifyContent: "space-between",
     width: "100%",
     paddingVertical: 3,
     paddingHorizontal: 10,
+    flexDirection: "row",
+  },
+  hamburgerIcon: {
+    width: 25,
+    height: 25,
   },
   carousel: {
     flex: 1,
