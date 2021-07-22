@@ -38,17 +38,26 @@ function Home({ navigation }) {
           <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
         </TouchableOpacity>
       </View>
-      <Modal visible={sideMenuVisible} animationType={"slide"} transparent={true}>
-        <TouchableOpacity onPress={() => setSideMenuVisible(false)}>
-          <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
-        </TouchableOpacity>
+      <Modal visible={sideMenuVisible} animationType={"fade"} transparent={true}>
+        <View style={styles.modalBackground}>
+          <View style={styles.sideMenu}>
+            <TouchableOpacity onPress={() => setSideMenuVisible(false)}>
+              <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text>Profile</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text>Followed</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text>Log out</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </Modal>
       <Carousel
         data={data}
-        style={{
-          flex: 1,
-          justifyContent: "space-between",
-        }}
         layout="default"
         ref={isCarousel}
         sliderWidth={SLIDER_WIDTH}
@@ -133,6 +142,17 @@ const styles = StyleSheet.create({
   hamburgerIcon: {
     width: 25,
     height: 25,
+  },
+  modalBackground: {
+    backgroundColor: "#00000080",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  sideMenu: {
+    backgroundColor: "#fcf6f5",
+    width: "65%",
+    height: "100%",
   },
   carousel: {
     flex: 1,
