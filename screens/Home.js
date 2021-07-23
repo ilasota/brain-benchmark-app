@@ -41,17 +41,21 @@ function Home({ navigation }) {
       <Modal visible={sideMenuVisible} animationType={"fade"} transparent={true}>
         <View style={styles.modalBackground}>
           <View style={styles.sideMenu}>
-            <TouchableOpacity onPress={() => setSideMenuVisible(false)}>
+            <TouchableOpacity style={styles.sideHeader} onPress={() => setSideMenuVisible(false)}>
               <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text>Profile</Text>
+            <TouchableOpacity style={styles.sideMenuItem}>
+              <Image style={styles.sideMenuIcon} source={require("../assets/profile.png")} />
+              <Text style={styles.mediumFont}>Profile</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text>Followed</Text>
+            <TouchableOpacity style={styles.sideMenuItem}>
+              <Image style={styles.sideMenuIcon} source={require("../assets/friends.png")} />
+              <Text style={styles.mediumFont}>Followed</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text>Log out</Text>
+
+            <TouchableOpacity style={styles.sideMenuItem}>
+              <Image style={styles.sideMenuIcon} source={require("../assets/sign-out.png")} />
+              <Text style={styles.mediumFont}>Log out</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -140,8 +144,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   hamburgerIcon: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
   },
   modalBackground: {
     backgroundColor: "#00000080",
@@ -151,8 +155,25 @@ const styles = StyleSheet.create({
   },
   sideMenu: {
     backgroundColor: "#fcf6f5",
-    width: "65%",
+    width: "80%",
     height: "100%",
+  },
+  sideHeader: {
+    marginTop: 10,
+    marginHorizontal: 10,
+    borderBottomColor: "#00000080",
+    borderBottomWidth: 1,
+  },
+  sideMenuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 5,
+    paddingVertical: 10,
+  },
+  sideMenuIcon: {
+    width: 50,
+    height: 50,
+    marginRight: 15,
   },
   carousel: {
     flex: 1,
