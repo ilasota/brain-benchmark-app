@@ -44,7 +44,13 @@ function Home({ navigation }) {
             <TouchableOpacity style={styles.sideHeader} onPress={() => setSideMenuVisible(false)}>
               <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.sideMenuItem}>
+            <TouchableOpacity
+              style={styles.sideMenuItem}
+              onPress={() => {
+                setSideMenuVisible(false);
+                navigation.navigate("Profile");
+              }}
+            >
               <Image style={styles.sideMenuIcon} source={require("../assets/profile.png")} />
               <Text style={styles.mediumFont}>Profile</Text>
             </TouchableOpacity>
