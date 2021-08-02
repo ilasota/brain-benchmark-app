@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { reactionSubmit } from "../data/actions";
 
-function ReactionGame() {
+function ReactionGame({ navigation }) {
   const [startVisible, setStartVisible] = useState(styles.visible);
   const [waitingVisible, setWaitingVisible] = useState(styles.invisible);
   const [testVisible, setTestVisible] = useState(styles.invisible);
@@ -64,6 +64,9 @@ function ReactionGame() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.startGame}>
           <Text style={styles.hugeFont}>Reaction Game</Text>
           <Image style={styles.image} source={require("../assets/speed.png")} />
@@ -85,6 +88,9 @@ function ReactionGame() {
         </TouchableOpacity>
       </View>
       <View style={resultVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.resultStyle}>
           <Text style={styles.bigFont}>Your time:</Text>
           <Text style={styles.mediumFont}>{timeElapsed}ms</Text>
@@ -96,6 +102,9 @@ function ReactionGame() {
         </View>
       </View>
       <View style={failVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.failStyle}>
           <Text style={styles.bigFont}>You pressed too early!</Text>
           <View style={styles.controlButtons}>
@@ -119,6 +128,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
+  },
+  arrowPlacement: {
+    justifyContent: "flex-start",
+    marginHorizontal: 20,
+  },
+  backarrow: {
+    width: 30,
+    height: 25,
   },
   startButton: {
     alignItems: "center",
