@@ -17,7 +17,7 @@ import { chimpSubmit } from "../data/actions";
 
 export const TILE = Dimensions.get("screen").width * 0.13;
 
-function ChimpGame() {
+function ChimpGame({ navigation }) {
   const [startVisible, setStartVisible] = useState(styles.visible);
   const [gameVisible, setGameVisible] = useState(styles.invisible);
   const [winVisible, setWinVisible] = useState(styles.invisible);
@@ -121,6 +121,9 @@ function ChimpGame() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.startGame}>
           <Text style={styles.bigFont}>Chimp Game</Text>
           <Image style={styles.image} source={require("../assets/chimp.png")} />
@@ -170,6 +173,9 @@ function ChimpGame() {
         </View>
       </View>
       <View style={loseVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.resultScreen}>
           <Text style={styles.mediumFont}>You lost!</Text>
           <Text style={styles.mediumFont}>Your Score:</Text>
@@ -195,6 +201,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
+  },
+  arrowPlacement: {
+    justifyContent: "flex-start",
+    marginHorizontal: 20,
+  },
+  backarrow: {
+    width: 30,
+    height: 25,
   },
   startButton: {
     alignItems: "center",
