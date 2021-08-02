@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { speedSubmit } from "../data/actions";
 
-function SpeedGame() {
+function SpeedGame({ navigation }) {
   const [startVisible, setStartVisible] = useState(styles.visible);
   const [waitingVisible, setWaitingVisible] = useState(styles.invisible);
   const [gameVisible, setGameVisible] = useState(styles.invisible);
@@ -77,6 +77,9 @@ function SpeedGame() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.startGame}>
           <Text style={styles.bigFont}>Speed Game</Text>
           <Image style={styles.image} source={require("../assets/click.png")} />
@@ -106,6 +109,9 @@ function SpeedGame() {
         </View>
       </View>
       <View style={resultVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.resultScreen}>
           <Text style={styles.mediumBoldFont}>You clicked</Text>
           <Text style={styles.mediumBoldFont}>{result} times!</Text>
@@ -130,6 +136,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
+  },
+  arrowPlacement: {
+    justifyContent: "flex-start",
+    marginHorizontal: 20,
+  },
+  backarrow: {
+    width: 30,
+    height: 25,
   },
   startButton: {
     alignItems: "center",
