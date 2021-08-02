@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 
 import { numberSubmit } from "../data/actions";
 
-function NumberGame() {
+function NumberGame({ navigation }) {
   const [gameVisible, setGameVisible] = useState(styles.invisible);
   const [startVisible, setStartVisible] = useState(styles.visible);
   const [numVisible, setNumVisible] = useState(styles.visible);
@@ -124,6 +124,9 @@ function NumberGame() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={startVisible}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.startGame}>
           <Text style={styles.hugeFont}>Number Game</Text>
           <Image style={styles.image} source={require("../assets/numbers.png")} />
@@ -201,6 +204,9 @@ function NumberGame() {
         </View>
       </View>
       <View style={loseScreen}>
+        <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
+          <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
+        </TouchableOpacity>
         <View style={styles.roundEnd}>
           <View style={styles.endRound}>
             <Text style={styles.bigFont}>Round</Text>
@@ -234,6 +240,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
+  },
+  arrowPlacement: {
+    justifyContent: "flex-start",
+    marginHorizontal: 20,
+  },
+  backarrow: {
+    width: 30,
+    height: 25,
   },
   startButton: {
     alignItems: "center",
