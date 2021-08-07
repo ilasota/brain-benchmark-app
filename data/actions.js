@@ -60,3 +60,10 @@ export const loginStatus = (status) => {
     payload: status,
   };
 };
+
+export const userNameSubmit = (status) => {
+  return {
+    type: "SUBMIT_USERNAME",
+    payload: status,
+  };
+};
