@@ -13,7 +13,14 @@ import {
 import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
 
-import { loginStatus, chimpUpdate, speedUpdate, reactionUpdate, numberUpdate } from "../data/actions";
+import {
+  loginStatus,
+  chimpUpdate,
+  speedUpdate,
+  reactionUpdate,
+  numberUpdate,
+  userNameSubmit,
+} from "../data/actions";
 
 function Login({ navigation }) {
   const [nameInput, setNameInput] = useState("");
@@ -46,6 +53,7 @@ function Login({ navigation }) {
 
   const successHandler = () => {
     updateScores();
+    dispatch(userNameSubmit(nameInput));
     setNameInput("");
     setPasswordInput("");
     dispatch(loginStatus("loggedIn"));
