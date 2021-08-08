@@ -14,7 +14,7 @@ import {
 import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
 
-import { loginStatus } from "../data/actions";
+import { loginStatus, userNameSubmit } from "../data/actions";
 
 function SignUp({ navigation }) {
   const [nameInput, setNameInput] = useState("");
@@ -65,6 +65,7 @@ function SignUp({ navigation }) {
           setErrorVisible(styles.visible);
         } else {
           navigation.navigate("Home");
+          dispatch(userNameSubmit(nameInput));
           dispatch(loginStatus("loggedIn"));
         }
       })
