@@ -13,8 +13,17 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
+import { useDispatch } from "react-redux";
 
 import data from "../data/data";
+import {
+  loginStatus,
+  userNameSubmit,
+  chimpUpdate,
+  speedUpdate,
+  reactionUpdate,
+  numberUpdate,
+} from "../data/actions";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -24,11 +33,23 @@ function Home({ navigation }) {
   const [index, setIndex] = useState(0);
   const [sideMenuVisible, setSideMenuVisible] = useState(false);
   const isCarousel = React.useRef(null);
+  const dispatch = useDispatch();
 
   const numberScore = useSelector((state) => state.numberReducer);
   const reactionScore = useSelector((state) => state.reactionReducer);
   const speedScore = useSelector((state) => state.speedReducer);
   const chimpScore = useSelector((state) => state.chimpReducer);
+
+  const logOutHandler = () => {
+    setSideMenuVisible(false);
+    dispatch(numberUpdate([]));
+    dispatch(speedUpdate([]));
+    dispatch(reactionUpdate([]));
+    dispatch(chimpUpdate([]));
+    dispatch(userNameSubmit(""));
+    dispatch(loginStatus("notLoggedIn"));
+    navigation.navigate("Login");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,7 +80,7 @@ function Home({ navigation }) {
               <Text style={styles.mediumFont}>Followed</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sideMenuItem}>
+            <TouchableOpacity style={styles.sideMenuItem} onPress={() => logOutHandler()}>
               <Image style={styles.sideMenuIcon} source={require("../assets/sign-out.png")} />
               <Text style={styles.mediumFont}>Log out</Text>
             </TouchableOpacity>
