@@ -122,6 +122,7 @@ function Login({ navigation }) {
             style={styles.button}
             onPress={() => {
               dispatch(loginStatus("guestLoggin"));
+              dispatch(userNameSubmit("Guest"));
               navigation.navigate("Home");
             }}
           >
