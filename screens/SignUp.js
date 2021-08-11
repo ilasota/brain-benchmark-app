@@ -10,6 +10,7 @@ import {
   TextInput,
   Image,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
@@ -23,6 +24,7 @@ function SignUp({ navigation }) {
   const [repeatPasswordInput, setRepeatPasswordInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorVisible, setErrorVisible] = useState(styles.invisible);
+  const [loadingVisible, setLoadingVisible] = useState(styles.invisible);
 
   const dispatch = useDispatch();
 
@@ -46,6 +48,7 @@ function SignUp({ navigation }) {
   };
 
   const signUpHandler = () => {
+    setLoadingVisible(styles.visible);
     fetch(`${API_LINK}`, {
       method: "POST",
       headers: {
@@ -60,6 +63,7 @@ function SignUp({ navigation }) {
     })
       .then((res) => res.json())
       .then((res) => {
+        setLoadingVisible(styles.invisible);
         if (res.status === 401 || res.status === 402) {
           setErrorMessage(res.message);
           setErrorVisible(styles.visible);
@@ -110,6 +114,7 @@ function SignUp({ navigation }) {
         <View style={errorVisible}>
           <Text style={styles.errorFont}>{errorMessage}</Text>
         </View>
+        <ActivityIndicator size="small" color="#000" style={loadingVisible} />
         <TouchableOpacity style={styles.button} onPress={() => inputChecker()}>
           <Text style={styles.buttonText}>Sign up!</Text>
         </TouchableOpacity>
