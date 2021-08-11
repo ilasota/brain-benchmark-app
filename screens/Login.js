@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
@@ -27,11 +28,13 @@ function Login({ navigation }) {
   const [passwordInput, setPasswordInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorVisible, setErrorVisible] = useState(styles.invisible);
+  const [loadingVisible, setLoadingVisible] = useState(styles.invisible);
 
   const dispatch = useDispatch();
 
   const loginHandler = () => {
     setErrorVisible(styles.invisible);
+    setLoadingVisible(styles.visible);
     fetch(`${API_LINK}/${nameInput}`, {
       method: "POST",
       headers: {
@@ -42,6 +45,7 @@ function Login({ navigation }) {
     })
       .then((res) => res.json())
       .then((json) => {
+        setLoadingVisible(styles.invisible);
         if (json.success) {
           successHandler();
         } else {
@@ -106,6 +110,7 @@ function Login({ navigation }) {
         <View style={errorVisible}>
           <Text style={styles.errorFont}>{errorMessage}</Text>
         </View>
+        <ActivityIndicator size="small" color="#000" style={loadingVisible} />
         <TouchableOpacity style={styles.button} onPress={() => loginHandler()}>
           <Text style={styles.mediumButtonText}>Sign In</Text>
         </TouchableOpacity>
