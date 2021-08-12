@@ -75,11 +75,16 @@ function Home({ navigation }) {
               <Image style={styles.sideMenuIcon} source={require("../assets/profile.png")} />
               <Text style={styles.mediumFont}>Profile</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.sideMenuItem}>
+            <TouchableOpacity
+              style={styles.sideMenuItem}
+              onPress={() => {
+                setSideMenuVisible(false);
+                navigation.navigate("FollowList");
+              }}
+            >
               <Image style={styles.sideMenuIcon} source={require("../assets/friends.png")} />
               <Text style={styles.mediumFont}>Followed</Text>
             </TouchableOpacity>
-
             <TouchableOpacity style={styles.sideMenuItem} onPress={() => logOutHandler()}>
               <Image style={styles.sideMenuIcon} source={require("../assets/sign-out.png")} />
               <Text style={styles.mediumFont}>Log out</Text>
