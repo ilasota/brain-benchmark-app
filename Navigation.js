@@ -12,6 +12,7 @@ import SpeedGame from "./screens/SpeedGame";
 import ChimpGame from "./screens/ChimpGame";
 import SignUp from "./screens/SignUp";
 import Profile from "./screens/Profile";
+import FollowList from "./screens/FollowList";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ function Navigation() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="FollowList" component={FollowList} />
         <Stack.Screen name="NumberGame" component={NumberGame} />
         <Stack.Screen name="ReactionGame" component={ReactionGame} />
         <Stack.Screen name="SpeedGame" component={SpeedGame} />
