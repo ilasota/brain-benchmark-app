@@ -11,7 +11,8 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { API_LINK } from "@env";
 
 import { chimpSubmit } from "../data/actions";
 
@@ -29,6 +30,8 @@ function ChimpGame({ navigation }) {
   const [roundResult, setRoundResult] = useState();
 
   const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userNameReducer);
+  const chimpScore = useSelector((state) => state.chimpReducer);
 
   let squarePosition = Array(36);
   let position = [];
@@ -108,7 +111,7 @@ function ChimpGame({ navigation }) {
         }
       } else {
         setRoundResult(numberAmount);
-        dispatch(chimpSubmit(numberAmount === 4 ? 0 : numberAmount - 1));
+        scoreSaveHandler();
         setNumberAmount(4);
         setLoseVisible(styles.visible);
         setGameVisible(styles.invisible);
@@ -116,6 +119,18 @@ function ChimpGame({ navigation }) {
       }
       item.value = " ";
     }
+  };
+
+  const scoreSaveHandler = () => {
+    dispatch(chimpSubmit(numberAmount === 4 ? 0 : numberAmount - 1));
+    fetch(`${API_LINK}/${userName}/scores`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ chimpScore: [...chimpScore, numberAmount === 4 ? 0 : numberAmount - 1] }),
+    }).catch((err) => console.error(err));
   };
 
   return (
