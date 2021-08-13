@@ -67,3 +67,17 @@ export const userNameSubmit = (status) => {
     payload: status,
   };
 };
+
+export const followSubmit = (score) => {
+  return {
+    type: "SUBMIT_FOLLOW",
+    payload: score,
+  };
+};
+
+export const followUpdate = (score) => {
+  return {
+    type: "UPDATE_FOLLOW",
+    payload: score,
+  };
+};
