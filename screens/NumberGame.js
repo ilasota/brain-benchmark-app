@@ -12,7 +12,8 @@ import {
   Image,
 } from "react-native";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { API_LINK } from "@env";
 
 import { numberSubmit } from "../data/actions";
 
@@ -38,6 +39,8 @@ function NumberGame({ navigation }) {
   const [timeAmount, setTimeAmount] = useState();
 
   const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userNameReducer);
+  const numberScore = useSelector((state) => state.numberReducer);
 
   let finalNum = number;
 
@@ -72,7 +75,7 @@ function NumberGame({ navigation }) {
         currentRound: round,
         currentNumber: finalNum,
       });
-      dispatch(numberSubmit(round - 1));
+      scoreSaveHandler();
       setRound(1);
       setNumber(Math.floor(Math.random() * 10));
       setAnswer("");
@@ -120,6 +123,18 @@ function NumberGame({ navigation }) {
       };
     }
   }, [setInputVisible, setNumVisible, timerStatus, timeAmount]);
+
+  const scoreSaveHandler = () => {
+    dispatch(numberSubmit(round - 1));
+    fetch(`${API_LINK}/${userName}/scores`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ numberScore: [...numberScore, round - 1] }),
+    }).catch((err) => console.error(err));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
