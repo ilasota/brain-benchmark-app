@@ -1,7 +1,8 @@
 import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { API_LINK } from "@env";
 
 import { reactionSubmit } from "../data/actions";
 
@@ -16,6 +17,8 @@ function ReactionGame({ navigation }) {
   const [timerStatus, setTimerStatus] = useState(false);
 
   const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userNameReducer);
+  const reactionScore = useSelector((state) => state.reactionReducer);
 
   let endTime;
   let timer;
@@ -58,7 +61,19 @@ function ReactionGame({ navigation }) {
     setTimeElapsed(endTime - startTime);
     setTestVisible(styles.invisible);
     setResultVisible(styles.visible);
+    scoreSaveHandler();
+  };
+
+  const scoreSaveHandler = () => {
     dispatch(reactionSubmit(endTime - startTime));
+    fetch(`${API_LINK}/${userName}/scores`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ reactionScore: [...reactionScore, endTime - startTime] }),
+    }).catch((err) => console.error(err));
   };
 
   return (
