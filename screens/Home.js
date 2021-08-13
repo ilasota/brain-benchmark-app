@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   StyleSheet,
   View,
@@ -13,7 +13,6 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
-import { useDispatch } from "react-redux";
 
 import data from "../data/data";
 import {
