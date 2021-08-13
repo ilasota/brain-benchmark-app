@@ -1,7 +1,8 @@
 import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, SafeAreaView, StatusBar, TouchableOpacity, Image } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { API_LINK } from "@env";
 
 import { speedSubmit } from "../data/actions";
 
@@ -18,6 +19,8 @@ function SpeedGame({ navigation }) {
   const [result, setResult] = useState(0);
 
   const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userNameReducer);
+  const speedScore = useSelector((state) => state.speedReducer);
 
   const visibilityHandler = () => {
     setWaitingVisible(styles.visible);
@@ -66,13 +69,25 @@ function SpeedGame({ navigation }) {
         setResultVisible(styles.visible);
         setDelayStatus(false);
         setResult(counter);
-        dispatch(speedSubmit(counter / 5));
+        scoreSaveHandler();
       }, 10);
       return () => {
         clearTimeout(timer);
       };
     }
   }, [countdownStatus, countdown, timerStatus, delayStatus]);
+
+  const scoreSaveHandler = () => {
+    dispatch(speedSubmit(counter / 5));
+    fetch(`${API_LINK}/${userName}/scores`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ speedScore: [...speedScore, counter / 5] }),
+    }).catch((err) => console.error(err));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
