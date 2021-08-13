@@ -21,6 +21,7 @@ import {
   reactionUpdate,
   numberUpdate,
   userNameSubmit,
+  followUpdate,
 } from "../data/actions";
 
 function Login({ navigation }) {
@@ -57,6 +58,7 @@ function Login({ navigation }) {
 
   const successHandler = () => {
     updateScores();
+    updateFollow();
     dispatch(userNameSubmit(nameInput));
     setNameInput("");
     setPasswordInput("");
@@ -72,6 +74,15 @@ function Login({ navigation }) {
         dispatch(speedUpdate(json.speedScore));
         dispatch(reactionUpdate(json.reactionScore));
         dispatch(chimpUpdate(json.chimpScore));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const updateFollow = () => {
+    fetch(`${API_LINK}/${nameInput}/followed`)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(followUpdate(json.followed));
       })
       .catch((err) => console.error(err));
   };
