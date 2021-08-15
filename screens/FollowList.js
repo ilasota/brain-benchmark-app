@@ -37,6 +37,7 @@ function FollowList({ navigation }) {
 
   const inputHandler = () => {
     setListData([...listData, followInput]);
+    dispatch(followSubmit(followInput));
     setFollowInput("");
   };
 
@@ -56,7 +57,7 @@ function FollowList({ navigation }) {
           <Text>daiughdwi</Text>
         </TouchableOpacity>
         <FlatList
-          data={data}
+          data={listData}
           onSubmitEnding={inputHandler}
           keyExtractor={() => Math.random().toString()}
           renderItem={({ item }) => (
