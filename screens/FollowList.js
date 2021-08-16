@@ -11,6 +11,7 @@ import {
   Image,
   FlatList,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { API_LINK } from "@env";
@@ -19,10 +20,15 @@ import { followSubmit } from "../data/actions";
 
 function FollowList({ navigation }) {
   const [noConnectionVisible, setNoConnectionVisible] = useState();
+  const [errorVisible, setErrorVisible] = useState(styles.invisible);
+  const [loadingVisible, setLoadingVisible] = useState(styles.invisible);
+  const [errorMessage, setErrorMessage] = useState("");
   const [listVisible, setListVisible] = useState();
   const [followInput, setFollowInput] = useState("");
   const followListData = useSelector((state) => state.followListReducer);
   const [listData, setListData] = useState(followListData);
+
+  const userName = useSelector((state) => state.userNameReducer);
 
   const dispatch = useDispatch();
 
@@ -32,13 +38,35 @@ function FollowList({ navigation }) {
       setListVisible(styles.invisible);
     } else {
       setNoConnectionVisible(styles.invisible);
-      setListVisible(styles.visible);
+      setListVisible(styles.listVisible);
     }
   });
 
   const inputHandler = () => {
-    setListData([...listData, followInput]);
-    dispatch(followSubmit(followInput));
+    setErrorVisible(styles.invisible);
+    setLoadingVisible(styles.visible);
+    fetch(`${API_LINK}/${userName}/followed`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ followed: followInput }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status > 400) {
+          setErrorMessage(res.message);
+          setErrorVisible(styles.visible);
+          setLoadingVisible(styles.invisible);
+        } else {
+          setLoadingVisible(styles.invisible);
+          setListData([...listData, followInput]);
+          dispatch(followSubmit(followInput));
+        }
+      })
+      .catch((err) => console.error(err));
+
     setFollowInput("");
   };
 
@@ -63,6 +91,10 @@ function FollowList({ navigation }) {
             <Text style={styles.mediumFontBold}>Add</Text>
           </TouchableOpacity>
         </View>
+        <View style={errorVisible}>
+          <Text style={styles.errorFont}>{errorMessage}</Text>
+        </View>
+        <ActivityIndicator size="small" color="#000" style={loadingVisible} />
         <View style={styles.list}>
           <FlatList
             data={listData}
@@ -143,9 +175,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
   },
-  visible: {
+  listVisible: {
     display: "flex",
     flex: 1,
+  },
+  visible: {
+    display: "flex",
+    alignItems: "center",
   },
   invisible: {
     display: "none",
@@ -158,6 +194,11 @@ const styles = StyleSheet.create({
   mediumFont: {
     fontSize: 20,
     color: "#484848",
+  },
+  errorFont: {
+    color: "#ff0000",
+    fontWeight: "bold",
+    padding: 10,
   },
 });
 
