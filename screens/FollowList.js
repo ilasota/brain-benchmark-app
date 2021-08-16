@@ -52,10 +52,16 @@ function FollowList({ navigation }) {
         </View>
       </View>
       <View style={listVisible}>
-        <TextInput style={styles.input} onChangeText={(input) => setFollowInput(input)} value={followInput} />
-        <TouchableOpacity onPress={inputHandler}>
-          <Text>daiughdwi</Text>
-        </TouchableOpacity>
+        <View style={styles.inputStyle}>
+          <TextInput
+            style={styles.inputBar}
+            onChangeText={(input) => setFollowInput(input)}
+            value={followInput}
+          />
+          <TouchableOpacity style={styles.button} onPress={inputHandler}>
+            <Text style={styles.mediumFontBold}>Add</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={listData}
           onSubmitEnding={inputHandler}
@@ -93,6 +99,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  inputStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  inputBar: {
+    minWidth: "60%",
+    fontSize: 20,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 5,
+    padding: 5,
+    borderColor: "#d4d6d9",
+  },
+  button: {
+    alignItems: "center",
+    marginVertical: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 10,
+    backgroundColor: "#3ac1e3",
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 7,
+  },
   visible: {
     display: "flex",
   },
@@ -103,12 +139,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#484848",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
   },
 });
 
