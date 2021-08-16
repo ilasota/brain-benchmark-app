@@ -13,6 +13,7 @@ import {
   TextInput,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import { API_LINK } from "@env";
 
 import { followSubmit } from "../data/actions";
 
@@ -62,20 +63,23 @@ function FollowList({ navigation }) {
             <Text style={styles.mediumFontBold}>Add</Text>
           </TouchableOpacity>
         </View>
-        <FlatList
-          data={listData}
-          onSubmitEnding={inputHandler}
-          keyExtractor={() => Math.random().toString()}
-          renderItem={({ item }) => (
-            <View>
-              <TouchableOpacity>
-                <View>
-                  <Text>{item}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
+        <View style={styles.list}>
+          <FlatList
+            data={listData}
+            onSubmitEnding={inputHandler}
+            keyExtractor={() => Math.random().toString()}
+            renderItem={({ item }) => (
+              <View>
+                <TouchableOpacity>
+                  <View style={styles.listItem}>
+                    <Text style={styles.mediumFont}>{item}</Text>
+                    <Text style={styles.mediumFont}>{">"}</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -129,8 +133,19 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 7,
   },
+  list: {
+    flex: 1,
+  },
+  listItem: {
+    borderBottomColor: "#d4d6d9",
+    borderBottomWidth: 1,
+    padding: 10,
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
   visible: {
     display: "flex",
+    flex: 1,
   },
   invisible: {
     display: "none",
@@ -138,6 +153,10 @@ const styles = StyleSheet.create({
   mediumFontBold: {
     fontSize: 20,
     fontWeight: "bold",
+    color: "#484848",
+  },
+  mediumFont: {
+    fontSize: 20,
     color: "#484848",
   },
 });
