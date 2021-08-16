@@ -22,6 +22,7 @@ import {
   speedUpdate,
   reactionUpdate,
   numberUpdate,
+  followUpdate,
 } from "../data/actions";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80;
@@ -45,6 +46,7 @@ function Home({ navigation }) {
     dispatch(speedUpdate([]));
     dispatch(reactionUpdate([]));
     dispatch(chimpUpdate([]));
+    dispatch(followUpdate([]));
     dispatch(userNameSubmit(""));
     dispatch(loginStatus("notLoggedIn"));
     navigation.navigate("Login");
