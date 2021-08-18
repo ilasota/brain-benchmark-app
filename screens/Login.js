@@ -82,7 +82,7 @@ function Login({ navigation }) {
     fetch(`${API_LINK}/${nameInput}/followed`)
       .then((res) => res.json())
       .then((json) => {
-        dispatch(followUpdate(json.followed));
+        dispatch(followUpdate(json));
       })
       .catch((err) => console.error(err));
   };
