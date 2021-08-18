@@ -101,7 +101,9 @@ function FollowList({ navigation }) {
             keyExtractor={() => Math.random().toString()}
             renderItem={({ item }) => (
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("FollowedProfile", { followedName: item })}
+                >
                   <View style={styles.listItem}>
                     <Text style={styles.mediumFont}>{item}</Text>
                     <Text style={styles.mediumFont}>{">"}</Text>
