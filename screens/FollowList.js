@@ -55,7 +55,7 @@ function FollowList({ navigation }) {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status > 400) {
+        if (res.status === 403) {
           setErrorMessage(res.message);
           setErrorVisible(styles.visible);
           setLoadingVisible(styles.invisible);
@@ -98,7 +98,6 @@ function FollowList({ navigation }) {
         <View style={styles.list}>
           <FlatList
             data={listData}
-            onSubmitEnding={inputHandler}
             keyExtractor={() => Math.random().toString()}
             renderItem={({ item }) => (
               <View>
