@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   View,
@@ -14,7 +14,7 @@ import {
   Modal,
 } from "react-native";
 
-import data from "../data/data";
+import CarouselItem from "../components/CarouselItem";
 import {
   loginStatus,
   userNameSubmit,
@@ -32,13 +32,9 @@ export const IMAGE = Dimensions.get("window").width * 0.25;
 function Home({ navigation }) {
   const [index, setIndex] = useState(0);
   const [sideMenuVisible, setSideMenuVisible] = useState(false);
+  const data = ["NumberGame", "ReactionGame", "SpeedGame", "ChimpGame"];
   const isCarousel = React.useRef(null);
   const dispatch = useDispatch();
-
-  const numberScore = useSelector((state) => state.numberReducer);
-  const reactionScore = useSelector((state) => state.reactionReducer);
-  const speedScore = useSelector((state) => state.speedReducer);
-  const chimpScore = useSelector((state) => state.chimpReducer);
 
   const logOutHandler = () => {
     setSideMenuVisible(false);
@@ -101,45 +97,7 @@ function Home({ navigation }) {
         itemWidth={ITEM_WIDTH}
         useScrollView={true}
         onSnapToItem={(index) => setIndex(index)}
-        renderItem={({ item }) => (
-          <View style={styles.carousel}>
-            <Text style={styles.headerCar}>{item.title}</Text>
-            <Image source={item.imgUrl} style={styles.image} />
-            <View style={styles.scoresRow}>
-              <View style={styles.scores}>
-                <Text style={styles.smallFont}>High Score</Text>
-                <Text style={styles.mediumFont}>
-                  {eval(item.varName).length === 0
-                    ? 0
-                    : item.varName === "reactionScore"
-                    ? Math.min(...eval(item.varName))
-                    : Math.max(...eval(item.varName))}
-                  {item.unit}
-                </Text>
-              </View>
-              <View style={styles.scores}>
-                <Text style={styles.smallFont}>Average Score</Text>
-                <Text style={styles.mediumFont}>
-                  {eval(item.varName).length === 0
-                    ? 0
-                    : Math.round(
-                        (eval(item.varName).reduce((a, b) => a + b, 0) / eval(item.varName).length) * 100
-                      ) / 100}
-                  {item.unit}
-                </Text>
-              </View>
-            </View>
-            <Text style={styles.body}>{item.body}</Text>
-            <TouchableOpacity
-              style={styles.playButton}
-              onPress={() => {
-                navigation.navigate(item.navi);
-              }}
-            >
-              <Text style={styles.buttonText}>PLAY!</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        renderItem={({ item }) => <CarouselItem type={item} />}
       />
       <Pagination
         containerStyle={{ padding: 5 }}
