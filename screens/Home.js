@@ -11,10 +11,11 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
-  Modal,
 } from "react-native";
 
 import CarouselItem from "../components/CarouselItem";
+import SideMenu from "../components/SideMenu";
+
 import {
   loginStatus,
   userNameSubmit,
@@ -34,6 +35,7 @@ function Home({ navigation }) {
   const [sideMenuVisible, setSideMenuVisible] = useState(false);
   const data = ["NumberGame", "ReactionGame", "SpeedGame", "ChimpGame"];
   const isCarousel = React.useRef(null);
+
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
@@ -56,39 +58,19 @@ function Home({ navigation }) {
           <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
         </TouchableOpacity>
       </View>
-      <Modal visible={sideMenuVisible} animationType={"fade"} transparent={true}>
-        <View style={styles.modalBackground}>
-          <View style={styles.sideMenu}>
-            <TouchableOpacity style={styles.sideHeader} onPress={() => setSideMenuVisible(false)}>
-              <Image style={styles.hamburgerIcon} source={require("../assets/hamburger-icon.png")} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.sideMenuItem}
-              onPress={() => {
-                setSideMenuVisible(false);
-                navigation.navigate("Profile");
-              }}
-            >
-              <Image style={styles.sideMenuIcon} source={require("../assets/profile.png")} />
-              <Text style={styles.mediumFont}>Profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.sideMenuItem}
-              onPress={() => {
-                setSideMenuVisible(false);
-                navigation.navigate("FollowList");
-              }}
-            >
-              <Image style={styles.sideMenuIcon} source={require("../assets/friends.png")} />
-              <Text style={styles.mediumFont}>Followed</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.sideMenuItem} onPress={() => logOutHandler()}>
-              <Image style={styles.sideMenuIcon} source={require("../assets/sign-out.png")} />
-              <Text style={styles.mediumFont}>Log out</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      <SideMenu
+        visible={sideMenuVisible}
+        onMakeInvisible={() => setSideMenuVisible(false)}
+        onFollowNavi={() => {
+          navigation.navigate("FollowList");
+          setSideMenuVisible(false);
+        }}
+        onProfileNavi={() => {
+          navigation.navigate("Profile");
+          setSideMenuVisible(false);
+        }}
+        onLogOut={() => logOutHandler()}
+      />
       <Carousel
         data={data}
         layout="default"
@@ -138,100 +120,9 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  modalBackground: {
-    backgroundColor: "#00000080",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
-  sideMenu: {
-    backgroundColor: "#fcf6f5",
-    width: "80%",
-    height: "100%",
-  },
-  sideHeader: {
-    marginTop: 10,
-    marginHorizontal: 10,
-    borderBottomColor: "#00000080",
-    borderBottomWidth: 1,
-  },
-  sideMenuItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 5,
-    paddingVertical: 10,
-  },
-  sideMenuIcon: {
-    width: 50,
-    height: 50,
-    marginRight: 15,
-  },
-  carousel: {
-    flex: 1,
-    alignItems: "center",
-    borderRadius: 8,
-    minWidth: ITEM_WIDTH,
-    paddingBottom: 40,
-    justifyContent: "space-between",
-  },
-  headerCar: {
-    color: "#222222",
-    fontSize: 30,
-    fontWeight: "bold",
-    paddingVertical: 3,
-  },
-  image: {
-    width: IMAGE,
-    height: IMAGE,
-  },
-  body: {
-    color: "#222222",
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  scoresRow: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    width: 300,
-  },
-  scores: {
-    alignItems: "center",
-  },
-  playButton: {
-    alignItems: "center",
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    backgroundColor: "#3ac1e3",
-    borderRadius: 15,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 7,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  smallFont: {
-    fontSize: 18,
-    color: "#222222",
-  },
   mediumFontBold: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  mediumFont: {
-    fontSize: 20,
-    color: "#222222",
   },
 });
 
