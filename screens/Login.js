@@ -10,6 +10,7 @@ import {
   Image,
   TextInput,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { API_LINK } from "@env";
@@ -100,52 +101,54 @@ function Login({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logo}>
-        <Image style={styles.image} source={require("../assets/icon.png")} />
-        <Text style={styles.bigFontBold}>BRAIN BENCHMARK</Text>
-      </View>
-      <View>
-        <Text>Username</Text>
-        <TextInput
-          value={nameInput}
-          style={styles.input}
-          onChangeText={(enteredInput) => setNameInput(enteredInput)}
-        />
-        <Text>Password</Text>
-        <TextInput
-          value={passwordInput}
-          style={styles.input}
-          secureTextEntry={true}
-          onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
-        />
-        <View style={errorVisible}>
-          <Text style={styles.errorFont}>{errorMessage}</Text>
+      <ScrollView>
+        <View style={styles.logo}>
+          <Image style={styles.image} source={require("../assets/icon.png")} />
+          <Text style={styles.bigFontBold}>BRAIN BENCHMARK</Text>
         </View>
-        <ActivityIndicator size="small" color="#000" style={loadingVisible} />
-        <TouchableOpacity style={styles.button} onPress={() => loginHandler()}>
-          <Text style={styles.mediumButtonText}>Sign In</Text>
-        </TouchableOpacity>
-        <View style={styles.secondaryButtons}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("SignUp");
-            }}
-          >
-            <Text style={styles.smallButtonText}>Sign up</Text>
+        <View>
+          <Text>Username</Text>
+          <TextInput
+            value={nameInput}
+            style={styles.input}
+            onChangeText={(enteredInput) => setNameInput(enteredInput)}
+          />
+          <Text>Password</Text>
+          <TextInput
+            value={passwordInput}
+            style={styles.input}
+            secureTextEntry={true}
+            onChangeText={(enteredInput) => setPasswordInput(enteredInput)}
+          />
+          <View style={errorVisible}>
+            <Text style={styles.errorFont}>{errorMessage}</Text>
+          </View>
+          <ActivityIndicator size="small" color="#000" style={loadingVisible} />
+          <TouchableOpacity style={styles.button} onPress={() => loginHandler()}>
+            <Text style={styles.mediumButtonText}>Sign In</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              dispatch(loginStatus("guestLoggin"));
-              dispatch(userNameSubmit("Guest"));
-              navigation.navigate("Home");
-            }}
-          >
-            <Text style={styles.smallButtonText}>Play as Guest</Text>
-          </TouchableOpacity>
+          <View style={styles.secondaryButtons}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate("SignUp");
+              }}
+            >
+              <Text style={styles.smallButtonText}>Sign up</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                dispatch(loginStatus("guestLoggin"));
+                dispatch(userNameSubmit("Guest"));
+                navigation.navigate("Home");
+              }}
+            >
+              <Text style={styles.smallButtonText}>Play as Guest</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -212,6 +215,7 @@ const styles = StyleSheet.create({
   bigFontBold: {
     fontSize: 35,
     fontWeight: "bold",
+    textAlign: "center",
   },
   errorFont: {
     color: "#ff0000",
