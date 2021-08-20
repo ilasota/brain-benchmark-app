@@ -19,7 +19,8 @@ import { API_LINK } from "@env";
 import { followSubmit } from "../data/actions";
 
 function FollowList({ navigation }) {
-  const [noConnectionVisible, setNoConnectionVisible] = useState();
+  const [listErrorVisible, setListErrorVsible] = useState();
+  const [listError, setListError] = useState("");
   const [errorVisible, setErrorVisible] = useState(styles.invisible);
   const [loadingVisible, setLoadingVisible] = useState(styles.invisible);
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,10 +35,15 @@ function FollowList({ navigation }) {
 
   NetInfo.fetch().then((state) => {
     if (!state.isConnected) {
-      setNoConnectionVisible(styles.visible);
+      setListErrorVsible(styles.visible);
+      setListError("No Internet Connection");
+      setListVisible(styles.invisible);
+    } else if (userName === "Guest") {
+      setListErrorVsible(styles.visible);
+      setListError("Logged in as Guest");
       setListVisible(styles.invisible);
     } else {
-      setNoConnectionVisible(styles.invisible);
+      setListErrorVsible(styles.invisible);
       setListVisible(styles.listVisible);
     }
   });
@@ -75,9 +81,9 @@ function FollowList({ navigation }) {
       <TouchableOpacity style={styles.arrowPlacement} onPress={() => navigation.navigate("Home")}>
         <Image source={require("../assets/backarrow.png")} style={styles.backarrow} />
       </TouchableOpacity>
-      <View style={noConnectionVisible}>
+      <View style={listErrorVisible}>
         <View style={styles.netInfoPlacement}>
-          <Text style={styles.mediumFontBold}>No Internet Connection</Text>
+          <Text style={styles.mediumFontBold}>{listError}</Text>
         </View>
       </View>
       <View style={listVisible}>
