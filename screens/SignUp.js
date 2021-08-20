@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
   bigFontBold: {
     fontSize: 35,
     fontWeight: "bold",
+    textAlign: "center",
   },
   buttonText: {
     color: "#fff",
