@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import { API_LINK } from "@env";
 
+import ProfileItem from "../components/ProfileItem";
+
 function FollowedProfile({ navigation, route }) {
   const [numberScore, setNumberScore] = useState([]);
   const [speedScore, setSpeedScore] = useState([]);
@@ -24,7 +26,6 @@ function FollowedProfile({ navigation, route }) {
   const { followedName } = route.params;
 
   useEffect(() => {
-    const ac = new AbortController();
     fetch(`${API_LINK}/${followedName}/scores`)
       .then((res) => res.json())
       .then((json) => {
@@ -56,24 +57,10 @@ function FollowedProfile({ navigation, route }) {
       </View>
       <ActivityIndicator size="small" color="#000" style={loadingVisible} />
       <ScrollView contentContainerStyle={scoresVisible}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
-          <Image style={styles.image} source={require("../assets/numbers.png")} />
-          <View style={{ flex: 1 }}>
-            <View style={{ alignItems: "center" }}>
-              <Text>Number Game</Text>
-            </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-evenly", flex: 1 }}>
-              <View>
-                <Text>High Score</Text>
-                <Text>12</Text>
-              </View>
-              <View>
-                <Text>Average Score</Text>
-                <Text>10,5</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <ProfileItem type={"NumberGame"} data={numberScore} />
+        <ProfileItem type={"SpeedGame"} data={speedScore} />
+        <ProfileItem type={"ReactionGame"} data={reactionScore} />
+        <ProfileItem type={"ChimpGame"} data={chimpScore} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -98,10 +85,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingVertical: 3,
     paddingHorizontal: 10,
-  },
-  image: {
-    height: 60,
-    width: 60,
   },
   mediumFontBold: {
     fontSize: 30,
