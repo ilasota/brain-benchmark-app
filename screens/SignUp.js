@@ -30,7 +30,7 @@ function SignUp({ navigation }) {
 
   const inputChecker = () => {
     setErrorVisible(styles.invisible);
-    if (/\s/.test(nameInput) || nameInput.length < 5) {
+    if (/\s/.test(nameInput) || nameInput.length < 5 || nameInput === "Guest") {
       setErrorMessage("Invalid Username");
       setErrorVisible(styles.visible);
     } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) {
