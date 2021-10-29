@@ -21,7 +21,7 @@ Currently, Brain Benchmark includes 4 games:
 You can follow people to see their high and average scores.<br />
 ![Follow Screen](https://media.giphy.com/media/YRuB7yshSNlZIOhdKp/giphy.gif)
 ## Download 
-You can download .apk file for android phones  [here](https://mega.nz/file/QAVU1LpB#cX8RGyRrm1EBuq9s1RjYoL_RS9YxADwPqUzzpO9AsWk).
+You can download .apk file for android phones  [here](https://mega.nz/file/ZV9jRKyK#MotBKjNmwOs0T6Pev2SxdkCRjSgnd8_Yg0eskWYWz7o).
 ## Tech
 - React Native
 - Expo
