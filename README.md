@@ -1,4 +1,4 @@
-<p align="center"><img width="250" alt="A-Frame" src="https://i.imgur.com/AfYJPb1.png"></p>
+<p align="center"><img width="250" alt="A-Frame" src="https://i.imgur.com/AdvGP94.png"></p>
 <p align="center"><b>Set of games testing speed, memory and reaction time.</b></p>
 <div align="center">
   <a href="https://mega.nz/file/ZV9jRKyK#MotBKjNmwOs0T6Pev2SxdkCRjSgnd8_Yg0eskWYWz7o">Download</a>
