@@ -16,7 +16,7 @@
 <h2 align="center">Social</h2>
 <div align="center">
  You can follow people to see their high and average scores.<br /><br />
- <img target="_blank" src="https://media.giphy.com/media/YRuB7yshSNlZIOhdKp/giphy.gif" height="auto" width="100%" ></img>
+ <img target="_blank" src="https://media.giphy.com/media/YRuB7yshSNlZIOhdKp/giphy.gif" height="auto" width="50%" ></img>
 </div>
 
 <h2 align="center">Authentication</h2>
